@@ -1,0 +1,713 @@
+[
+ {
+  "id": 2,
+  "status": "KEEP",
+  "addr": "0x58e2a853bB14e46bEFD3148bd4280370feA4655a",
+  "dwell": 4,
+  "cat": "bond/reward pool (OHM-style LP bond)",
+  "mech": "spot-price-read-then-act (stale quote reused after own swap)",
+  "chain": "bsc"
+ },
+ {
+  "id": 4,
+  "status": "KEEP",
+  "addr": "0x2a7FFf44C19f39468064ab5e5c304De01D591675",
+  "dwell": 1764,
+  "cat": "algorithmic stablecoin (ETH-collateralised)",
+  "mech": "split-invariance / rounding in redemption curve",
+  "chain": "mainnet"
+ },
+ {
+  "id": 8,
+  "status": "KEEP",
+  "addr": "0x51fF48f2d43966bE796692BdDdfaE96A435242a8",
+  "dwell": 1369,
+  "cat": "leveraged trading vault + isolated lending",
+  "mech": "spot-price-read-then-act (CL LP + collateral valued off a manipulated UniV3 pool)",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 10,
+  "status": "KEEP",
+  "addr": "0xFB60CD0B36aD4bD839b91767a6Ad9055AB6aD825",
+  "dwell": 3,
+  "cat": "launchpad factory / LP custodian",
+  "mech": "arbitrary calldata forwarding (approval injection)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 12,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "RWA strategy behind a perp LP vault",
+  "mech": "misconfiguration present since deployment",
+  "chain": null
+ },
+ {
+  "id": 13,
+  "status": "KEEP",
+  "addr": "0xcE6A6e4413D85A136bBaC8AaE6fB46eAa77F295e",
+  "dwell": 18,
+  "cat": "interest-bearing lending/bond protocol",
+  "mech": "spot-price-read-then-act + discrete-index interest accrual",
+  "chain": "bsc"
+ },
+ {
+  "id": 14,
+  "status": "KEEP",
+  "addr": "0x684D722EbF8980f49492f631f56765DD4Fb302A7",
+  "dwell": 10,
+  "cat": "token + reserve release contract",
+  "mech": "unprotected public claim (no eligibility check)",
+  "chain": "bsc"
+ },
+ {
+  "id": 16,
+  "status": "KEEP",
+  "addr": "0xc8C85A3b4d03FB3451e7248Ff94F780c92F884fD",
+  "dwell": 1953,
+  "cat": "index/structured product issuance",
+  "mech": "TOCTOU between quote read and settlement (no state lock)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 17,
+  "status": "BORDER",
+  "addr": null,
+  "dwell": null,
+  "cat": "token sale / treasury",
+  "mech": "signature-validation bypass with no bounds check on the signed discount",
+  "chain": null
+ },
+ {
+  "id": 18,
+  "status": "KEEP",
+  "addr": "0x8D65744527f55d0b2338350912d5C99A81ddF0e2",
+  "dwell": 197,
+  "cat": "custom token with reward-on-transfer",
+  "mech": "uncapped subsidy / self-dealing reward path",
+  "chain": "bsc"
+ },
+ {
+  "id": 19,
+  "status": "KEEP",
+  "addr": "0xf5d7029eb6751d170dcF0Bb1c87Af6f93d5A2e9a",
+  "dwell": 33,
+  "cat": "custom token with referral/reward recycle",
+  "mech": "uncapped subsidy redeemed against an attacker-deflated pool",
+  "chain": "bsc"
+ },
+ {
+  "id": 24,
+  "status": "KEEP",
+  "addr": "0x574fc478bc45ce144105fa44d98b4b2e4bd442cb",
+  "dwell": 1836,
+  "cat": "reward vault",
+  "mech": "unverified purchase accounting (balance-delta reward, no payment check)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 25,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "structured products / bond maker",
+  "mech": "permissionless registration + crafted payoff mispriced by the pricer",
+  "chain": null
+ },
+ {
+  "id": 27,
+  "status": "KEEP",
+  "addr": "0x71518580f36feceffe0721f06ba4703218cd7f63",
+  "dwell": 1023,
+  "cat": "cross-chain bridge (EVM side)",
+  "mech": "unbacked payout via the import path",
+  "chain": "mainnet"
+ },
+ {
+  "id": 30,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "CDP stablecoin (MakerDAO fork)",
+  "mech": "oracle manipulation \u2014 no deviation/floor/drawdown checks on the median feed",
+  "chain": null
+ },
+ {
+  "id": 39,
+  "status": "KEEP",
+  "addr": "0x66c6f3b4B4b458e6d764759Ecf122484ebEf7580",
+  "dwell": 8,
+  "cat": "lending/yield provider (abandoned)",
+  "mech": "governance capture -> proxy upgrade -> arbitrary transferFrom over live approvals",
+  "chain": "mainnet"
+ },
+ {
+  "id": 40,
+  "status": "BORDER",
+  "addr": null,
+  "dwell": null,
+  "cat": "perp venue (pre-launch vault)",
+  "mech": "mark-price manipulation in a thin market",
+  "chain": null
+ },
+ {
+  "id": 41,
+  "status": "KEEP",
+  "addr": "0x73043143e0a6418cc45d82d4505b096b802fd365",
+  "dwell": 1673,
+  "cat": "streaming payments",
+  "mech": "unsafe integer cast (uint128 -> int128) reverses transfer direction",
+  "chain": "mainnet"
+ },
+ {
+  "id": 42,
+  "status": "KEEP",
+  "addr": "0x65DE72bD1897B017C91f41c86de2B15873320804",
+  "dwell": 947,
+  "cat": "ERC-4337 smart accounts",
+  "mech": "validation-phase side effect + session-key validation bypass",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 43,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "LST-backed stablecoin",
+  "mech": "asymmetric peg validation (mint checks spot, burn does not)",
+  "chain": null
+ },
+ {
+  "id": 45,
+  "status": "KEEP",
+  "addr": "0x98c49e13bf99d7cad8069faa2a370933ec9ecf17",
+  "dwell": 513,
+  "cat": "yield vault (multi-ark allocator)",
+  "mech": "NAV/share-price inflation via donated overvalued assets",
+  "chain": "mainnet"
+ },
+ {
+  "id": 47,
+  "status": "KEEP",
+  "addr": "0x25e5e82f5702a27c3466fe68f14abdbbadfca826",
+  "dwell": 369,
+  "cat": "privacy pool",
+  "mech": "note-to-nullifier binding failure (double-spend) + prooflessDeposit without format validation",
+  "chain": "mainnet"
+ },
+ {
+  "id": 48,
+  "status": "KEEP",
+  "addr": "0xBd497eE429D9D3E46446339286271b3714a83B29",
+  "dwell": 109,
+  "cat": "lending market on wrapped RWA (xStock)",
+  "mech": "ERC4626 exchange-rate donation inflates collateral in the same tx",
+  "chain": "mainnet"
+ },
+ {
+  "id": 49,
+  "status": "KEEP",
+  "addr": "0x5021d71859f81b4c905b573591db8f9cc4a0c6fe",
+  "dwell": 0,
+  "cat": "custom token (burn-on-sell)",
+  "mech": "token burns from the AMM pair balance then re-syncs reserves",
+  "chain": "bsc"
+ },
+ {
+  "id": 51,
+  "status": "KEEP",
+  "addr": "0xfD4c9a491DD777b8b3e13659e9E379252eC78390",
+  "dwell": 1800,
+  "cat": "LP-wrapper vault tokens (UniV3)",
+  "mech": "signature-validation bypass in EIP-2612 permit (only checks ecrecover != 0)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 59,
+  "status": "KEEP",
+  "addr": "0x58815cdf9955121a6274680ab396a36fc9e00000",
+  "dwell": 50,
+  "cat": "custom token",
+  "mech": "config value already incoherent + burn-from-pair desync",
+  "chain": "bsc"
+ },
+ {
+  "id": 62,
+  "status": "KEEP",
+  "addr": "0x1b5732eb98911c25acf7bdfaffb9409782cae6d7",
+  "dwell": 0,
+  "cat": "custom token/helper",
+  "mech": "live-balance-driven sell/burn/sync against its own pair",
+  "chain": "bsc"
+ },
+ {
+  "id": 63,
+  "status": "KEEP",
+  "addr": "0x737901bea3eeb88459df9ef1BE8fF3Ae1B42A2ba",
+  "dwell": 1931,
+  "cat": "rollup bridge (deprecated, immutable)",
+  "mech": "unconstrained public input (proof_id) in the escape-hatch circuit",
+  "chain": "mainnet"
+ },
+ {
+  "id": 64,
+  "status": "KEEP",
+  "addr": "0x88886f0fd371dff856291badced45922bc888888",
+  "dwell": 40,
+  "cat": "mining/hashrate reward protocol",
+  "mech": "reward path reachable via zero-value transferFrom; mints into the pair without sync",
+  "chain": "bsc"
+ },
+ {
+  "id": 65,
+  "status": "KEEP",
+  "addr": "0x6c60bf5db0670ae94489d3dde2c60f271625db50",
+  "dwell": 0,
+  "cat": "custom token",
+  "mech": "missing return statement causes double transfer on router-routed trades",
+  "chain": "bsc"
+ },
+ {
+  "id": 66,
+  "status": "KEEP",
+  "addr": "0xc2c3ae0a7b405058558c9b4a63b373486cb86ac7",
+  "dwell": 1509,
+  "cat": "options index vault (legacy)",
+  "mech": "redemption math with zeroed component transfer amounts",
+  "chain": "mainnet"
+ },
+ {
+  "id": 67,
+  "status": "KEEP",
+  "addr": "0xFF1F2B4ADb9dF6FC8eAFecDcbF96A2B351680455",
+  "dwell": 1467,
+  "cat": "rollup bridge (deprecated, immutable)",
+  "mech": "proven-vs-settled mismatch (numRealTxs outside the hashed header)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 71,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "NFT-liquidity token (DN404/BT404)",
+  "mech": "shared-codebase packed-ownership/underflow flaw",
+  "chain": null
+ },
+ {
+  "id": 73,
+  "status": "KEEP",
+  "addr": "0xbc4191167d4b0251cab5201a527daa8a7d3846b0",
+  "dwell": 2797,
+  "cat": "dividend/reward pool",
+  "mech": "dividend checkpoints not initialised for new dual depositors",
+  "chain": "mainnet"
+ },
+ {
+  "id": 74,
+  "status": "BORDER",
+  "addr": "0xb501d26ba74eab601576b62617cf41042bef6865",
+  "dwell": 1917,
+  "cat": "DAO governance + AMM pool",
+  "mech": "governance capture with no timelock (propose+vote+execute in one tx)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 76,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "NFT-liquidity protocol (BT404)",
+  "mech": "packed-ownership alias + unchecked underflow -> near-infinite mint",
+  "chain": null
+ },
+ {
+  "id": 77,
+  "status": "KEEP",
+  "addr": "0xAaAaAAAaA24eEeb8d57D431224f73832bC34f688",
+  "dwell": 1105,
+  "cat": "monolithic DEX",
+  "mech": "surplus-collateral accounting flaw across proxy sidecars",
+  "chain": "mainnet"
+ },
+ {
+  "id": 79,
+  "status": "KEEP",
+  "addr": "0xac9bf7c320d4ce2d0ac978b83955dd67351897d2",
+  "dwell": 0,
+  "cat": "custom token",
+  "mech": "forgeable add-liquidity detection bypasses sell fees",
+  "chain": "bsc"
+ },
+ {
+  "id": 80,
+  "status": "KEEP",
+  "addr": "0x986058ec93756E57b4e55b406dD0BeE24bcD95e3",
+  "dwell": 153,
+  "cat": "custom token with auto-swap treasury",
+  "mech": "contract auto-dumps 20% of its own reserves at min-out 0; per-address guards farmable",
+  "chain": "bsc"
+ },
+ {
+  "id": 81,
+  "status": "KEEP",
+  "addr": "0x6f50cffEcd4e00EcF7E442774C08c089450B62Ca",
+  "dwell": 0,
+  "cat": "custom token",
+  "mech": "permissionless maintenance function burns from the pair then sync()s",
+  "chain": "bsc"
+ },
+ {
+  "id": 82,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "bond/yield vault",
+  "mech": "duplicate pool IDs inflate a lock amount",
+  "chain": null
+ },
+ {
+  "id": 86,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "reward hook",
+  "mech": "storage-slot collision (rewards mapping vs Solady ReentrancyGuard fixed slot)",
+  "chain": null
+ },
+ {
+  "id": 91,
+  "status": "KEEP",
+  "addr": "0xFEC7D27525cC4efDe5b785EEb5E37Df90E9cd1d5",
+  "dwell": 3,
+  "cat": "custom token/pool",
+  "mech": "reserve manipulation via the AROS/USDT pair",
+  "chain": "bsc"
+ },
+ {
+  "id": 92,
+  "status": "KEEP",
+  "addr": "0x92D60629FF5d53a0098B51E9b1D59546D1D8e5B6",
+  "dwell": 94,
+  "cat": "NFT reward claim",
+  "mech": "signature-validation bypass (ecrecover==address(0) equals a zeroed admin)",
+  "chain": "bsc"
+ },
+ {
+  "id": 93,
+  "status": "KEEP",
+  "addr": "0x3E13019dA3BAAd134493e751704D2D4245Eec7CA",
+  "dwell": 281,
+  "cat": "custom token + staking",
+  "mech": "no access control on Staking.sync(); forgeable add/remove-liquidity detection",
+  "chain": "bsc"
+ },
+ {
+  "id": 94,
+  "status": "KEEP",
+  "addr": "0xef0f12d08d66e76E1866e60F30a0DaA578e00c04",
+  "dwell": 34,
+  "cat": "agent token with LP custody",
+  "mech": "reentrancy (BNB sent before lpInfo is zeroed)",
+  "chain": "bsc"
+ },
+ {
+  "id": 95,
+  "status": "BORDER",
+  "addr": "0xEb3a9C56d963b971d320f889bE2fb8B59853e449",
+  "dwell": 1922,
+  "cat": "liquidity locker (launchpad)",
+  "mech": "undisclosed owner-only backdoor defeating the advertised timelocks",
+  "chain": "bsc"
+ },
+ {
+  "id": 96,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "custom token",
+  "mech": "onlyOwner accepts owner == address(0), re-owning a renounced token",
+  "chain": null
+ },
+ {
+  "id": 99,
+  "status": "BORDER",
+  "addr": "0xecbdc0b76142740bb564b8aa1bcd061cb151a666",
+  "dwell": 3,
+  "cat": "custom token",
+  "mech": "unbounded treasury redistribution to an owner-set whitelisted address",
+  "chain": "bsc"
+ },
+ {
+  "id": 100,
+  "status": "KEEP",
+  "addr": "0x068E3563b1c19590F822c0e13445c4FA1b9EEFa5",
+  "dwell": 1218,
+  "cat": "wrapped stablecoin with reward emission",
+  "mech": "uncapped subsidy with no per-address claim ledger (Sybil-farmable)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 101,
+  "status": "KEEP",
+  "addr": "0x1f1d37a3Bf840e35c6a860c7C2dA71Fe555123ca",
+  "dwell": 88,
+  "cat": "Gnosis Safe module / cross-chain router",
+  "mech": "trusts a caller-supplied sourceAddress string on a permissionless express path",
+  "chain": "mainnet"
+ },
+ {
+  "id": 103,
+  "status": "KEEP",
+  "addr": "0x365083717efb17f3895290ba38f20f568c7a4d8a",
+  "dwell": 785,
+  "cat": "token distribution proxy",
+  "mech": "SignatureChecker given an attacker-supplied signer source returns true",
+  "chain": "mainnet"
+ },
+ {
+  "id": 105,
+  "status": "KEEP",
+  "addr": "0x80e1a981285181686a3951b05ded454734892a09",
+  "dwell": 1092,
+  "cat": "stablecoin vault",
+  "mech": "reentrant deposit/withdraw against a fixed daily price + share rounding",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 106,
+  "status": "KEEP",
+  "addr": "0x0000317bec33af037b5fab2028f52d14658f6a56",
+  "dwell": 566,
+  "cat": "cross-chain bridge/router",
+  "mech": "abi.encodePacked hash collision in retry-message verification",
+  "chain": "mainnet"
+ },
+ {
+  "id": 110,
+  "status": "KEEP",
+  "addr": "0x71518580f36feceffe0721f06ba4703218cd7f63",
+  "dwell": 957,
+  "cat": "cross-chain bridge (EVM side)",
+  "mech": "unbacked payout via the import path",
+  "chain": "mainnet"
+ },
+ {
+  "id": 112,
+  "status": "KEEP",
+  "addr": "0xa70f31c06f921019237fc00b1417217dae5c37c5",
+  "dwell": 95,
+  "cat": "reward/position distributor",
+  "mech": "flash-loan-manipulated pricing on a redeem path",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 116,
+  "status": "KEEP",
+  "addr": "0x5C59D0eC51729E40C413903bE6A4612f4E2452da",
+  "dwell": 749,
+  "cat": "DAO treasury (Colony)",
+  "mech": "meta-transaction self-call defeats DSAuth (msg.sender == self)",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 117,
+  "status": "KEEP",
+  "addr": "0x0adc63e71b035d5c7fdb1b4593999fa1f296f1b2",
+  "dwell": 55,
+  "cat": "DeFi diamond (EIP-2535)",
+  "mech": "re-initializable proxy (initialize(address) with _initialized still 0)",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 118,
+  "status": "KEEP",
+  "addr": "0x404404A845FFF0201f3a4D419B4839fC419c99F7",
+  "dwell": 102,
+  "cat": "staking contract",
+  "mech": "hardcoded owner backdoor in verified source",
+  "chain": "bsc"
+ },
+ {
+  "id": 123,
+  "status": "KEEP",
+  "addr": "0x30bD8eAb29181F790D7e495786d4B96d7AfDC518",
+  "dwell": 613,
+  "cat": "dark pool / trading venue (legacy V1)",
+  "mech": "unprotected initializer on the proxy after a desynced migration",
+  "chain": "arbitrum"
+ },
+ {
+  "id": 124,
+  "status": "KEEP",
+  "addr": "0xeEeEEe53033F7227d488ae83a27Bc9A9D5051756",
+  "dwell": 624,
+  "cat": "market-maker RFQ settlement proxy",
+  "mech": "permissionless signer registration + authorization keyed on the wrong party",
+  "chain": "mainnet"
+ },
+ {
+  "id": 125,
+  "status": "KEEP",
+  "addr": "0x8CCB1ffD5C2aa6Bd926473425Dea4c8c15DE60fd",
+  "dwell": 241,
+  "cat": "DEX extension/hook",
+  "mech": "callback takes payer/token/amount from the lock payload without checking the lock initiator",
+  "chain": "mainnet"
+ },
+ {
+  "id": 126,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "leveraged staking module",
+  "mech": "not publicly detailed",
+  "chain": null
+ },
+ {
+  "id": 132,
+  "status": "KEEP",
+  "addr": "0xb9c7c84a1aa0dd40b5b38aae815ad0cdd2e5f88a",
+  "dwell": 39,
+  "cat": "ERC4626 RWA vault (clone)",
+  "mech": "withdraw override omits the allowance spend when msg.sender != owner",
+  "chain": "mainnet"
+ },
+ {
+  "id": 133,
+  "status": "KEEP",
+  "addr": "0xf55dff7898930a2d28cdbc39d615b1624ac86888",
+  "dwell": 100,
+  "cat": "custom token",
+  "mech": "sell hook drains token from its own pair via sync/isBurnPair",
+  "chain": "bsc"
+ },
+ {
+  "id": 134,
+  "status": "KEEP",
+  "addr": "0x48B9AACC350b20147001f88821d31731Ba4C30ed",
+  "dwell": 538,
+  "cat": "cross-chain gateway/router",
+  "mech": "arbitrary-call sink with missing access control",
+  "chain": "mainnet"
+ },
+ {
+  "id": 135,
+  "status": "KEEP",
+  "addr": "0x67b93f6676bd1911c5fae7ffa90fff5f35e14dcd",
+  "dwell": 99,
+  "cat": "ERC4626 yield vault (clone)",
+  "mech": "oracle misconfiguration \u2014 non-existent UniV3 fee tier 42 makes getPool() return address(0)",
+  "chain": "base"
+ },
+ {
+  "id": 138,
+  "status": "KEEP",
+  "addr": "0x5f0ad32c00641d1d2bb628ff341e0d4bb4494318",
+  "dwell": 2,
+  "cat": "yield vault",
+  "mech": "signature covers only part of the struct (aggregator/tokens/amount unsigned)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 139,
+  "status": "KEEP",
+  "addr": "0xd35c6717cca1e04696b694dcb1643ac3620d2152",
+  "dwell": 7,
+  "cat": "DEX router",
+  "mech": "decimal/asset mismatch \u2014 USDC-scaled quote transferred as cbBTC units",
+  "chain": "base"
+ },
+ {
+  "id": 141,
+  "status": "KEEP",
+  "addr": "0x80b8eeb34a2ba5dd90c61e02a12ea30515dca6f5",
+  "dwell": 1423,
+  "cat": "options vault (new deployment)",
+  "mech": "first-depositor share-rounding on a vault with pre-existing assets",
+  "chain": "mainnet"
+ },
+ {
+  "id": 142,
+  "status": "KEEP",
+  "addr": "0x1880D832aa283d05b8eAB68877717E25FbD550Bb",
+  "dwell": 219,
+  "cat": "revnet borrowing extension",
+  "mech": "caller-supplied loan source registered on first use (forged accounting context)",
+  "chain": "mainnet"
+ },
+ {
+  "id": 149,
+  "status": "KEEP",
+  "addr": "0xf3A3648bB1Da9D3aeA107da77E6f5bA9Cf313127",
+  "dwell": 845,
+  "cat": "NFT staking / reward redemption",
+  "mech": "duplicate IDs accepted; nextRedeem advanced only after payout",
+  "chain": "mainnet"
+ },
+ {
+  "id": 151,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "cross-chain token gateway",
+  "mech": "MMR proof forgery \u2014 VerifyProof() does not enforce leaf_index < leafCount",
+  "chain": null
+ },
+ {
+  "id": 153,
+  "status": "BORDER",
+  "addr": "0xaEa6E5CA6c1FeeAbBd3A114BCbca30A21424F76b",
+  "dwell": 36,
+  "cat": "node-staking vault",
+  "mech": "referral-tier self-dealing via proxy contracts bypassing a 1-node-per-address limit",
+  "chain": "bsc"
+ },
+ {
+  "id": 154,
+  "status": "KEEP",
+  "addr": "0xf282737992Da4217bf5f8B6AE621181e84d7d3b9",
+  "dwell": 788,
+  "cat": "staking/rewards config",
+  "mech": "missing onlyOwner on a setter after a refactor",
+  "chain": "base"
+ },
+ {
+  "id": 156,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "OFT bridge adapter",
+  "mech": "ownership transfer reachable due to missing/bypassed onlyOwner",
+  "chain": null
+ },
+ {
+  "id": 157,
+  "status": "BORDER",
+  "addr": "0xad6cea45f98444a922a2b4fe96b8c90f0862d2f4",
+  "dwell": 552,
+  "cat": "multicall executor (router family)",
+  "mech": "permissionless arbitrary-call runner over victim approvals (design, not code bug)",
+  "chain": "bsc"
+ },
+ {
+  "id": 158,
+  "status": "KEEP",
+  "addr": null,
+  "dwell": null,
+  "cat": "custom token",
+  "mech": "reserve manipulation via sync() on the pair",
+  "chain": null
+ },
+ {
+  "id": 160,
+  "status": "KEEP",
+  "addr": "0x1d6f03b0b20b2ec05b37bf60f56af442ced66666",
+  "dwell": 23,
+  "cat": "custom token",
+  "mech": "burn-to-dead collapses the pair reserve to 1 token",
+  "chain": "bsc"
+ }
+]

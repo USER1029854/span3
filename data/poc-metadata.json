@@ -1,0 +1,3387 @@
+{
+ "2026-04__AaveRebalancerCreditDelegation_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 6,999.91 WAVAX",
+   "// Attacker : 0xf59dc5521f191bcb53a9bcbd1654be81b72ee96f",
+   "// Attack Contract : 0xe44eea4c6c2085d590a4a6bea01cf83e87a37be5",
+   "// Vulnerable Contract : 0x7a7bab45363efb0394ff27bfa29bb7c0534ca8c9",
+   "// Attack Tx : https://snowscan.xyz/tx/0xaaa1b2e561738399af890dde2b18252b698e9b0ae7c8430fdd855f426835001b",
+   "// @Info",
+   "// Vulnerable Contract Code : https://snowscan.xyz/address/0x7a7bab45363efb0394ff27bfa29bb7c0534ca8c9#code",
+   "// Aave Pool Proxy : https://snowscan.xyz/address/0x794a61358d6845594f94dc1db02a252b5b4814ad#code",
+   "// Aave Pool Implementation : https://snowscan.xyz/address/0x6cddff90124ba51afac5715314db7c9546b32204#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2046504796463808991",
+   "//",
+   "// The rebalancer executes caller-supplied target/data from its own address. The attacker used that surface to",
+   "// call Aave Pool.borrow(WAVAX, 7000e18, 2, 0, victim). Aave accepted the borrow because the victim had delegated",
+   "// WAVAX borrowing power to the rebalancer, minting variable WAVAX debt to the victim and sending WAVAX to the",
+   "// rebalancer. A second arbitrary call transferred the acquired WAVAX out."
+  ],
+  "chains": [
+   "avalanche"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    83324252
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__JUDAO_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 205,259.49 USDT + 36 BNB",
+   "// Attacker : 0x5384b34c74024d6563b323351a4bbfa18432161b",
+   "// Attack Contract : 0x530904b5b5ec86cca0528a682614f57f87e7f079",
+   "// Vulnerable Contract : 0xf55dff7898930a2d28cdbc39d615b1624ac86888",
+   "// Attack Tx : https://bscscan.com/tx/0x956e38b8ddb40ba080c8042c685ae52ee5c1b096f1d7f0c4a6c59be3eb4265bd",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0xf55dff7898930a2d28cdbc39d615b1624ac86888#code",
+   "// @Analysis",
+   "// Twitter Guy : https://t.me/defimon_alerts/2955",
+   "//",
+   "// JUDAO's sell transfer hook drains JUDAO directly from its Pancake pair. The attacker bought JUDAO with",
+   "// flash-loaned USDT, sold into the pair to trigger both sync(true) mining and isBurnPair reserve burns,",
+   "// then directly swapped the JUDAO balance credited to the pair for excess USDT."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    95070973
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__JuiceboxREVLoans_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 21.77 ETH",
+   "// Attacker : 0x23245f620d1e910Ad76E6B6dE4F8284A53C9aD2d",
+   "// Attack Contract : EOA direct call; fake source deployed by attacker",
+   "// Vulnerable Contract : 0x1880D832aa283d05b8eAB68877717E25FbD550Bb",
+   "// Victim : Juicebox revnet #3 treasury in JBMultiTerminal",
+   "// Attack Tx : https://etherscan.io/tx/0x9adbd62355eb72b4ff6c58716a503133672ed9317ab930a4c6aa31c7a1a8f938",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x1880D832aa283d05b8eAB68877717E25FbD550Bb#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2046862935650345139",
+   "//",
+   "// REVLoans registers the caller-supplied loan source the first time borrowFrom() uses it.",
+   "// A fake terminal/token can therefore inflate totalBorrowedFrom without paying real assets.",
+   "// After registering the fake source, the attacker borrows native ETH from JBMultiTerminal",
+   "// with tiny revnet-token collateral and receives the drained treasury ETH."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    24917718
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__KipseliPropAMM_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 0.93 cbBTC",
+   "// Attacker : 0x2352a1fca90182509dca9c12b2cad582a38e8b82",
+   "// Attack Contract : 0x74513519689b1fb427747624a4dd87b3849d39cd",
+   "// Vulnerable Contract : 0xd35c6717cca1e04696b694dcb1643ac3620d2152",
+   "// Attack Tx : https://basescan.org/tx/0x96edeeb3d49d7a54c60d227bedce5bf64df5d52effd9fd80334175a9553db3bb",
+   "// @Info",
+   "// Vulnerable Contract Code : https://basescan.org/address/0xd35c6717cca1e04696b694dcb1643ac3620d2152#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2046873857571934254",
+   "//",
+   "// Kipseli's PropAMM route accepted WETH -> cbBTC and produced a USDC-scale quote. The returned integer",
+   "// was transferred as cbBTC units, turning a roughly 92 USDC quote into about 0.926 cbBTC."
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    45008654
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__MONA_LisaVault_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// @title   MONA LisaVault \u2014 Exploit PoC (BSC, block 92,429,268)",
+   "//",
+   "// @description",
+   "//   The MONA node-staking vault (LisaVault) on BSC was exploited in two stages:",
+   "//",
+   "//   STAGE 1 \u2014 LP Drain (insider component)",
+   "//     The vault deployer (0xDd02...) also controlled the entire MONA/USDT",
+   "//     PancakeSwap LP, supplying 9,874,973 MONA + 66,450 USDT as liquidity.",
+   "//     In the exploit tx the deployer's LP was redeemed: MONA returned to the",
+   "//     deployer while the 66,450 USDT was routed to the exploit contract.",
+   "//     In this PoC we replicate this with vm.prank(VAULT_OWNER).",
+   "//",
+   "//   STAGE 2 \u2014 Vault self-referral exploit",
+   "//     For each 220 USDT node purchase the vault distributes:",
+   "//       80 USDT \u2192 vault reserve",
+   "//       20 USDT \u2192 WBNB conversion (PancakeSwap USDT/WBNB LP)",
+   "//       70 USDT \u2192 Level-1 referrer (exploit contract)",
+   "//       50 USDT \u2192 Level-2 referrer (also exploit-controlled)",
+   "//     By buying 25 nodes via proxy contracts (bypassing the 1-node-per-address",
+   "//     limit) and controlling both referrer tiers, the attacker recovers",
+   "//     25 \u00d7 (70 + 50) = 3,000 USDT. Combined with the 66,450 USDT from",
+   "//     Stage 1 and small MONA dividend sales, net profit \u2248 60,950 USDT.",
+   "//",
+   "// @exploitTx   0x3a60e1b3a4b0736be4f31839bfd7abc8bfc53b93ddbd3702e77fbc64561a7ea4",
+   "// @block       92,429,268",
+   "// @attacker    0x7eeEC499e501293f6e589d550046375a2ad0b4c3",
+   "// @flashSrc    ListaDAO:Moolah (WBNB flash loan used as inflated collateral",
+   "//              to borrow USDT \u2014 simulated here via PancakeSwap flash swap)",
+   "// @profit      60,950.308 USDT",
+   "// @victims     MONA node stakers (9,522 MONA drained) + LP provider (66,450 USDT)",
+   "// @refs",
+   "//   https://bscscan.com/tx/0x3a60e1b3a4b0736be4f31839bfd7abc8bfc53b93ddbd3702e77fbc64561a7ea4",
+   "//   https://app.blocksec.com/phalcon/explorer/tx/bsc/0x3a60e1b3a4b0736be4f31839bfd7abc8bfc53b93ddbd3702e77fbc64561a7ea4",
+   "// \u2500\u2500 External interfaces \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "inline",
+    92429267
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__PerpPair_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 165647.74 USDC",
+   "// Attacker : 0x8d6778d7fae00ad2e0bc12194cf03b756fed9db3",
+   "// Attack Contract : 0xb87275489272ce1c4be358fc5856ea3273093cf8",
+   "// Vulnerable Contract : 0xb68396dd4230253d27589e2004ac37389836ae17",
+   "// Attack Tx : https://lineascan.build/tx/0xcb0744a0d453e5556f162608fae8275dabd14292bffbfcd8394af4610c606447",
+   "// @Info",
+   "// Vulnerable Contract Code : https://lineascan.build/address/0xb68396dd4230253d27589e2004ac37389836ae17#code",
+   "// CurveMath Code : https://lineascan.build/address/0x78197fe93999e34d5a688e1819923c66dcf8f4db#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2041070927908126897",
+   "//",
+   "// The attacker used a 60,000 USDC Aave flash loan to seed two fresh LP/trader helper pairs.",
+   "// Each LP helper added PerpPair liquidity, each trader helper opened an oversized long that skewed",
+   "// the virtual AMM, and the LP helper immediately realized inflated PnL and withdrew it from the vault."
+  ],
+  "chains": [
+   "linea"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    30067820
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__RWAVault_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 398,655.47 USDC vault outflow",
+   "// Attacker : 0x7137804200a073f616d92e87007f1f100100b56a",
+   "// Attack Contract : 0x50c140c2f705fa9d0bd0f4f253bacf4087588d17",
+   "// Vulnerable Contract : 0x317aa10528ff675ef4c358ea6a5b7b5494325733",
+   "// Victim : 0xb9c7c84a1aa0dd40b5b38aae815ad0cdd2e5f88a",
+   "// Attack Tx : https://etherscan.io/tx/0x6b04344d5627df59d3bc645e7454f4605a90272852a91e435e370376643353b3",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x317aa10528ff675ef4c358ea6a5b7b5494325733#code",
+   "// Vault Entry/State Contract : https://etherscan.io/address/0xb9c7c84a1aa0dd40b5b38aae815ad0cdd2e5f88a#code",
+   "// @Analysis",
+   "// Twitter Guy : https://t.me/defimon_alerts/2958",
+   "//",
+   "// RWAVault overrides ERC4626 withdraw without the allowance spend required when msg.sender != owner.",
+   "// The attacker withdraws eight depositor balances to an attacker-controlled receiver, swaps 5,000 USDC",
+   "// to ETH for the block beneficiary, and forwards the remaining USDC to the attacker EOA."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    24979315
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__SaturnProtocol_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo \u2014 Vulnerability Disclosure (unpatched, no historical exploit)",
+   "// Protocol      : Saturn Protocol \u2014 StakedUSDat (sUSDat) ERC4626 vault",
+   "// Chain         : Ethereum Mainnet",
+   "// TVL at Risk   : ~$35.7M USD (DeFiLlama, 2026-04-14)",
+   "// Severity      : SAT-001 Critical | SAT-002 High",
+   "// Date Found    : 2026-04-14",
+   "// Researcher    : Innora Security Research (feng@innora.ai)",
+   "// Full Report   : https://gist.github.com/sgInnora/b70ad98327649ed4ab976a122f45e485",
+   "// Twitter       : https://x.com/Innora_sg/status/2043979131617194043",
+   "// @Vulnerability SAT-001 \u2014 Withdrawal Freeze via Arithmetic Underflow",
+   "//   convertFromStrc() panics when strcBalance < getUnvestedAmount().",
+   "//   Triggered by processing queued redemptions after distributing rewards",
+   "//   (routine operations \u2014 no malicious actor required).",
+   "//   Effect: all withdrawals frozen for up to 30 days (vestingPeriod);",
+   "//   indefinitely if transferInRewards() is called again during the freeze.",
+   "// @Vulnerability SAT-002 \u2014 PROCESSOR Extracts up to 33.33% per Conversion",
+   "//   _validateConversion() applies toleranceBps=2000 (20%) independently to",
+   "//   BOTH price and amount checks. Compound effect: 1 - (0.8/1.2) = 33.33%",
+   "//   extraction rate per convertFromUsdat() call.",
+   "//   PROCESSOR_ROLE: 0x09d6e34ce24d54890ff0bc6a090b5f880f8c729f",
+   "// @Contracts",
+   "//   sUSDat Proxy : 0xD166337499E176bbC38a1FBd113Ab144e5bd2Df7",
+   "//   sUSDat Impl  : 0x2005e0ca201a37694125ff267ae57872bea0a0ce",
+   "//   SwapFacility : 0xB6807116b3B1B321a390594e31ECD6e0076f6278",
+   "//   USDat        : 0x23238f20b894f29041f48D88eE91131C395Aaa71",
+   "//   WithdrawQueue: 0x4Bc9FEC04F0F95e9b42a3EF18F3C96fB57923D2e",
+   "// @Verification",
+   "//   cast call 0xD166337499E176bbC38a1FBd113Ab144e5bd2Df7 \"toleranceBps()(uint256)\" \\",
+   "//     --rpc-url https://1rpc.io/eth",
+   "//   # Returns: 2000 (unpatched as of 2026-04-14)",
+   "// @Run",
+   "//   forge test --match-contract SaturnProtocol_SAT001 -vvv --fork-url https://rpc.ankr.com/eth",
+   "//   forge test --match-contract SaturnProtocol_SAT001_Proof -vvv   # (no fork needed)"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [],
+  "ntx": 0
+ },
+ "2026-04__SingularityDynaVault_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 413.13K USDC plus residual vault shares",
+   "// Attacker : 0x5c2cbe53f2ce1b58532d4985a9b9d3db87d3af4c",
+   "// Attack Contract : 0x9ad48257024f8cd3ab7fde97c95950159fcaefae",
+   "// Vulnerable Contract : 0x67b93f6676bd1911c5fae7ffa90fff5f35e14dcd",
+   "// Victim : 0x67b93f6676bd1911c5fae7ffa90fff5f35e14dcd",
+   "// Attack Tx : https://basescan.org/tx/0x00b949bc3ed3edb58b04faedfbd8eb1db2edceae761382e80fe012919f8d3732",
+   "// @Info",
+   "// Vulnerable Contract Code : https://basescan.org/address/0x67b93f6676bd1911c5fae7ffa90fff5f35e14dcd#code",
+   "// Oracle Dependency : https://basescan.org/address/0x73b8c192bfc323c3ea224c88219d55dfc319e89f",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2048698708309705069",
+   "//",
+   "// dynBaseUSDCv3 priced non-USDC reserves through an oracle path configured with Uniswap V3 fee tier 42.",
+   "// The direct pools did not exist and the fallback token/WETH pools had zero liquidity, so totalAssets()",
+   "// only counted the idle USDC. The attacker deposited flash-loaned USDC, minted almost all vault shares,",
+   "// redeemed a proportional basket of the real reserves, repaid Morpho, and forwarded the residual assets."
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    45183966
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__SquidMulticallAllowanceDrain_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 1 ETH",
+   "// Attacker : 0xe02b595ca69d8d3e120043536e6e76caea385a82",
+   "// Attack Contract : 0x101c6e9f62554ddd3a32f395c655e20512ab321d",
+   "// Vulnerable Contract : 0xad6cea45f98444a922a2b4fe96b8c90f0862d2f4",
+   "// Attack Tx : https://bscscan.com/tx/0x81d0c429ee7eae19d8c4d9d797dbd3828279060096e703b11cca739c9b1301e9",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0xad6cea45f98444a922a2b4fe96b8c90f0862d2f4#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2041530294369386806",
+   "//",
+   "// The attacker used SquidMulticall.run with one Default call whose target was the Binance-Peg ETH token.",
+   "// Because the victim had approved SquidMulticall, the multicall contract could execute transferFrom and",
+   "// move 1 ETH from the victim to the attacker.",
+   "// The Twitter report notes about $800K of cross-chain approvals were at risk and about $512K was later",
+   "// rescued by Defimon. This PoC is scoped to the exploit transaction, which transferred 1 ETH."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    91122249
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__SubQuerySettings_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 218.07M SQT",
+   "// Attacker : 0x910175f3fee798ADD5faBD3e9cbB63D0a785482C",
+   "// Attack Contract : 0xF5D3C18416f364342d8AaD69AFC13e490d05a7af",
+   "// Vulnerable Contract : 0xf282737992Da4217bf5f8B6AE621181e84d7d3b9",
+   "// Victim : 0x7A68b10EB116a8b71A9b6f77B32B47EB591B6Ded",
+   "// Attack Tx : https://basescan.org/tx/0xd063b3848a6b8c67f46990ab166665d454147855819acb60c083c0aea0180b2d",
+   "// @Info",
+   "// Vulnerable Contract Code : https://basescan.org/address/0xf282737992Da4217bf5f8B6AE621181e84d7d3b9#code",
+   "// @Analysis",
+   "// Telegram : https://t.me/defimon_alerts/2909",
+   "//",
+   "// The attacker used the unprotected Settings.setBatchAddress() function to make the attack helper the",
+   "// StakingManager and RewardsDistributor. Staking then accepted the helper's unbondCommission() and",
+   "// withdrawARequest() calls and transferred the Staking proxy's SQT balance to the helper, which forwarded it."
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    44590468
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__ThetanutsVaultShareRounding_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 0.15 WBTC",
+   "// Attacker : 0xaea2d93328242389b3e34271252b1bc9253b718a",
+   "// Attack Contract : 0xe26f5a496db55de2a69bdc4eef023927b3c2a209",
+   "// Vulnerable Contract : 0x80b8eeb34a2ba5dd90c61e02a12ea30515dca6f5",
+   "// Attack Tx : https://etherscan.io/tx/0x1bc83899060c27106b6fb4257b208925085794e83b21c444854442fd3554862c",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x80b8eeb34a2ba5dd90c61e02a12ea30515dca6f5#code",
+   "// @Analysis",
+   "// Source : https://t.me/defimon_alerts/2933",
+   "//",
+   "// The Thetanuts BTC/USD covered call vault held WBTC while totalSupply() was zero.",
+   "// The attacker flash-loaned WBTC, minted shares with two deposits, and called",
+   "// initWithdraw(uint256) to redeem nearly all of the vault's pre-existing WBTC."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    24923218
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__XLootStaking_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 6.21 ETH",
+   "// Attacker : 0xAcDcD2e9787E889305200900d6Cf6C0548578630",
+   "// Attack Contract : 0xd8A948b2ee03165a3c6b8940837bab664BC5CF4d",
+   "// Vulnerable Contract : 0xf3A3648bB1Da9D3aeA107da77E6f5bA9Cf313127",
+   "// Victim : 0x9d87Ff196646A99BDdb16876066aA863900118b4",
+   "// Attack Tx : https://etherscan.io/tx/0xab19752a450a205ccaca9afb8505e2d8b79593ee2edab1f67bdec27a4f14871f",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xf3A3648bB1Da9D3aeA107da77E6f5bA9Cf313127#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2044709964091187660",
+   "//",
+   "// Staking.redeem(uint256[]) calculates all xLOOT rewards before it advances xLoot.nextRedeem[id]. The calculation",
+   "// loops over every supplied ID and only checks ownerOf(id), so the same owned NFT can be supplied many times in a",
+   "// single redeem call. After a 2.1 ETH Balancer flash loan triggers a new epoch through receive(), seven owned xLOOT",
+   "// IDs repeated 155 times each claim the epoch reward 1,085 times, paying 6.2098 ETH before the 2.1 WETH repayment."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    24885767
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__giddyvaultv3_compound_auth_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$1.3M",
+   "// Attacker : 0x81fe3d7d35dfefa15b9e6800b6aefc3358e7b156",
+   "// Attack Contract : 0x7326a1ab0d696ae317958d136d6e4c693ea34528",
+   "// Attack Deployer : 0x50a5312bf627b6be07e60015ed3d418e992d76eb",
+   "// Vulnerable Contract : 0x5f0ad32c00641d1d2bb628ff341e0d4bb4494318",
+   "// Attack Tx : https://etherscan.io/tx/0x5edb66a4c2ea55bba95d36d27713e3bb1c67c3c4199a8a1759e754c6f25482e5",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x5f0ad32c00641d1d2bb628ff341e0d4bb4494318#code",
+   "// @Analysis",
+   "// Twitter guy : https://x.com/DefimonAlerts/status/2047334517535642024",
+   "//",
+   "// GiddyVaultV3 validates EIP-712 compound authorizations using only keccak256(SwapInfo.data).",
+   "// The attacker reused valid signed data while replacing fromToken, toToken, amount, and aggregator.",
+   "// Each compound call made a strategy approve the attacker helper for uint256.max, after which the",
+   "// helper drained the strategy-held YieldBasis gauge tokens to the attacker."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    24942491
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-04__unverified_a152_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 229,030.97 USDT",
+   "// Attacker : 0x224c940003dd0b8aa1a20e655ced0363d573fa46",
+   "// Attack Contract : 0x99464c162b5816384e76f14912a87af9834c65db",
+   "// Vulnerable Contract : 0xa152751251a72f7d9e8a8998e9eadbefbf10e4f3",
+   "// Attack Tx : https://etherscan.io/tx/0x57709a498f27c7219b634ae20e7d2cbf9ab8dd6aca7b3845fabf93b57760b576",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xa152751251a72f7d9e8a8998e9eadbefbf10e4f3#code",
+   "// @Analysis",
+   "// twitter guy : https://t.me/defimon_alerts/2987",
+   "//",
+   "// The attacker routed through an already-authorized spending contract and its helper to reuse victim",
+   "// AllowanceTarget approvals. The PoC keeps the vulnerable drain path exact, then uses a balance-derived",
+   "// liquidation path to consolidate the drained assets into USDT for the transaction sender."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    24973581
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__AROS_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$295K",
+   "// Attacker : https://bscscan.com/address/0x6f548693937039C8C4343E01C5bd42c5986508f5",
+   "// Attack Contract : https://bscscan.com/address/0x240F473a094096b4FB41d480Ca57a7cc22c924e5",
+   "// Vulnerable Contract : https://bscscan.com/address/0xFEC7D27525cC4efDe5b785EEb5E37Df90E9cd1d5",
+   "// Attack Tx : https://bscscan.com/tx/0xe89fe640ec5241edfca7d8dcae77a0a4270dee15e4bbd043fc60e393aabf41e1",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0xFEC7D27525cC4efDe5b785EEb5E37Df90E9cd1d5#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2061289921990570349"
+  ],
+  "chains": [],
+  "blocks": [],
+  "ntx": 5
+ },
+ "2026-05__AdsharesBridge_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$628K",
+   "// Attacker : https://etherscan.io/address/0x63e22ce9bde9bb8892a447258abfcaa4142f001b",
+   "// Attack Contract : N/A",
+   "// Vulnerable Contract : https://etherscan.io/address/0xcfcEcFe2bD2FED07A9145222E8a7ad9Cf1Ccd22A",
+   "// Attack Tx : https://etherscan.io/tx/0x8844b4ec371c4b13d7fac701b5d546a7c2fba12621a9596dd14b662b14408789",
+   "// Attack Tx 2 : https://etherscan.io/tx/0xfba82bb34515d7aefbf0c89582b71d915ec8861c96babaafdc882743dbc23509",
+   "// Attack Tx 3 : https://etherscan.io/tx/0xa3476575183204b4a662dd6ee56f6499d806e4f41ce83d98366752d31e9e9ca3",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xcfcEcFe2bD2FED07A9145222E8a7ad9Cf1Ccd22A#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2055751467579936770"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [],
+  "ntx": 3
+ },
+ "2026-05__DxSale_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$7.3M USD",
+   "// Attacker : 0xC4574DDEF299e7E563971e200433e592EeaaFA69",
+   "// Attack Contract : 0x74ad1ef17fbb3e494c31c72f7ec730a27fef0310 (EIP-7702 delegated drainer)",
+   "// Vulnerable Contract : 0xEb3a9C56d963b971d320f889bE2fb8B59853e449 (DxSale Legacy Liquidity Locker)",
+   "// Attack Tx : 0xe211904a8a40f653acd64ffc33a42429ef571c1e2da16976d07ac0f9a0bcc9c1",
+   "// @Analysis",
+   "// Post-mortem : https://crypto.news/dxsale-exploit-drains-7-3m-in-bnb-through-hidden-contract-backdoor/",
+   "// Twitter Guy : https://x.com/Tahax1/status/1928169316736651568",
+   "// Hacking God : https://x.com/CoinsultAudits/status/1928203831996297670",
+   "// Root Cause:",
+   "// DxSale deployer secretly transferred locker ownership through 89 wallets over 269 days.",
+   "// Final owner (attacker) used privileged DXLOCKERLP() owner-only backdoor to drain",
+   "// all 1400+ locked LP positions without bypassing individual timelocks.",
+   "// Attack used EIP-7702 tx type 4 delegation to a custom drainer contract for batch execution.",
+   "// Function selectors decoded from unverified bytecode via 4byte.directory:",
+   "// 0xae4f4df1: DXLOCKERLP(address,uint256) -- owner-only backdoor drain function",
+   "// 0xc7450462: UserLockerCount(address)    -- returns number of locks for a user",
+   "// 0xdd2e0ac0: unlockToken(uint256)        -- normal user unlock (timelock enforced)",
+   "// 0x0511a506: createLocker(address,uint256,uint256,string) payable -- lock tokens",
+   "// 0x6cda375b: changeFees(uint256)         -- owner fee update"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    100806731
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__Ekubo_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$1.4M",
+   "// Attacker : https://etherscan.io/address/0xA911Ff351B143634Dbc5aF3E204EA074583A83e3",
+   "// Attack Contract : https://etherscan.io/address/0x61b0dAD9628D3e644eB560a5c9B0F960430E3A75",
+   "// Vulnerable Contract : https://etherscan.io/address/0x8CCB1ffD5C2aa6Bd926473425Dea4c8c15DE60fd",
+   "// Attack Tx : https://etherscan.io/tx/0x770bc9a1f7c32cb63a5002b9ceb5c7994cd3af0fc6b2309cb32d3c46f629daa0",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x8CCB1ffD5C2aa6Bd926473425Dea4c8c15DE60fd#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : https://x.com/EkuboProtocol/status/2051754481465856038",
+   "// Twitter Guy : https://x.com/blockaid_/status/2051757787714118125"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-05__ElevateFi_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~16,000 USD",
+   "// Attacker : 0x7abd3f84e28f49f8f3d64fa21981fa36e4fb37f0",
+   "// Attack Contract / Execution Address : 0x7abd3f84e28f49f8f3d64fa21981fa36e4fb37f0",
+   "// EIP-7702 Authorized Code : 0x0511889ef593412386a889a3b7e3327cbc81f19e",
+   "// Vulnerable Contract : 0xcddc83a34fc9a7b9e6b1df7c14b585cf73283174",
+   "// Victim : 0x816ec92012e61269dcfe72188fe6d2352defce74",
+   "// Attack Tx : https://polygonscan.com/tx/0x2bd7213a764dd93d18dedeca7f4e0cf5c3cdce1739d79b53e41b72ec9efed87e",
+   "// @Info",
+   "// Vulnerable Contract Code : https://polygonscan.com/address/0xcddc83a34fc9a7b9e6b1df7c14b585cf73283174#code",
+   "// @Analysis",
+   "// Telegram : https://t.me/defimon_alerts/3040",
+   "//",
+   "// ElevateFi priced fixed-USD staking packages from the raw DAI/EFI pair reserves. This PoC funds the attacker",
+   "// with DAI to isolate the victim bug, pumps the pair spot price, creates 100 underpriced package-7 stakes, then",
+   "// advances one epoch and claims EFI from the staking vault. The real tx sourced the DAI through nested flash loans",
+   "// and executed from the attacker EOA through EIP-7702 authorized code."
+  ],
+  "chains": [
+   "polygon"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    87132216
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__FractalProtocol_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$13.7K",
+   "// Attacker : https://arbiscan.io/address/0xe2acec13c6d1aaca584f827a22f2e4a02131e39a",
+   "// Attack Contract : https://arbiscan.io/address/0x43514743caa5a7d4a8b07f5d25fb242391bbc8da",
+   "// Vulnerable Contract : https://arbiscan.io/address/0x80e1a981285181686a3951b05ded454734892a09",
+   "// Attack Tx : https://arbiscan.io/tx/0x20db78913a51c3b3aece860ea142c240f3f8fa3b5bbf533a3d1d48eed857e10f",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://arbiscan.io/address/0x80e1a981285181686a3951b05ded454734892a09#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2058619391776878967"
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-05__HumaCreditApprovalBypass_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~101390 USDC",
+   "// Attacker : 0x13B44e416e0f66359502E843AF2e1191f1260DaF",
+   "// Attack Contract : 0x44d4a434ae1529106e4b801315e22721978022a3",
+   "// Vulnerable Contract : 0x57107d02c2b70e09ad77240dbde7ad77fe91ea1c (Huma BaseCreditPool impl)",
+   "// Attack Tx : https://polygonscan.com/tx/0x7b8d641d76affcc029fd0e0f06ab81ad675b1da21ef79b82e1343016040ba359",
+   "// @Info",
+   "// Vulnerable Contract Code : https://polygonscan.com/address/0x57107d02c2b70e09ad77240dbde7ad77fe91ea1c#code",
+   "// @Analysis",
+   "// Twitter Guy :",
+   "//",
+   "// Huma Finance credit pools gate large credit lines behind the Evaluation Agent's",
+   "// approveCredit(). However both requestCredit() and refreshAccount() are open to anyone,",
+   "// and BaseCreditPool._updateDueInfo() unconditionally sets a credit line to GoodStanding",
+   "// when a billing period has passed and no payment is missed, without checking that the line",
+   "// was ever EA-approved. So an attacker can: (1) requestCredit() with creditLimit up to the",
+   "// pool's maxCreditLine (state = Requested), (2) refreshAccount() to flip the un-approved",
+   "// line straight to GoodStanding, then (3) drawdown() the pool's entire liquidity. The PoC",
+   "// drains three Polygon pools (one native-USDC, two USDC.e) for the test contract and",
+   "// forwards the proceeds to the attacker EOA."
+  ],
+  "chains": [
+   "polygon"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    86725403
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__INKFinance_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$140K",
+   "// Attacker : https://polygonscan.com/address/0x90b147592191388e955401af43842e19faa87ee2",
+   "// Attack Contract : https://polygonscan.com/address/0x74f28b9A35D72504E007C60803eF47f1A44b109e",
+   "// Vulnerable Contract : https://polygonscan.com/address/0xeF2C77f3B9b8aaa067239bc6B4588Bae26433494",
+   "// Attack Tx : https://polygonscan.com/tx/0xb469a24ec737be16fe41367a7b5b315c7f03b4e0ff3af50b3a2db03b3066b982",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://polygonscan.com/address/0xeF2C77f3B9b8aaa067239bc6B4588Bae26433494#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Hacking God : https://www.cryptotimes.io/2026/05/11/ink-finance-exploited-on-polygon-140k-usdt-drained-in-flash-loan-attack/"
+  ],
+  "chains": [
+   "polygon"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-05__JoeAgent_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$45K USD (62.5 BNB + ~1,195,918 JOE)",
+   "// Attacker : 0xaa761779945dcc5f26064fc6dcb36ffab6ac7610",
+   "// Attack Contract : 0x31F81FCD91025728F24bD6f0E4EfB156e345A4CF",
+   "// Vulnerable Contract : 0xef0f12d08d66e76E1866e60F30a0DaA578e00c04 (Joe Agent / JOE, ERC1967 proxy)",
+   "// Implementation : 0xb12ce0a21f67a9fc3c8ad1c7dbc4b017b7e67319",
+   "// Attack Tx : 0xd16a1c3dcd84427b2c7dcccbe1854c1c5bf65900460e1a44a95c1aaaf140c3a5",
+   "// @Analysis",
+   "// Attack date: May 27, 2026",
+   "// Chain: BSC, Block: 100812531",
+   "// SlowMist: https://x.com/SlowMist_Team/status/2059887450663551352",
+   "// Root Cause:",
+   "// Joe Agent lets a user park LP inside the token contract (zapNativeForLP / addLiquidityViaContract),",
+   "// tracked per-user in lpInfo[user].lpAmount. removeLiquidityViaContract(liquidity,...) pulls that LP",
+   "// out of PancakeSwap, unwraps the WBNB and forwards the BNB to the user with a low-level call --",
+   "// and only updates lpInfo[user].lpAmount AFTER that external call (violating checks-effects-interactions).",
+   "//",
+   "// Because lpInfo is still un-zeroed when the BNB lands, the attacker's receive() re-enters",
+   "// removeLiquidityViaContract with the SAME liquidity value over and over. Each re-entry passes the",
+   "// `liquidity <= lpInfo[user].lpAmount` check and burns a fresh slice of LP -- but that LP belongs to",
+   "// the whole pool of depositors, not the attacker. ~25 nested calls drain 25 x 2.5 = 62.5 BNB (plus the",
+   "// JOE side of every burned LP) against a single ~437 LP position that the attacker only paid for once.",
+   "//",
+   "// Function selectors:",
+   "// 0x7cc112a6: zapNativeForLP(address,uint256,uint256,uint256,uint256)        -- deposit BNB -> LP position",
+   "// 0xacff149d: removeLiquidityViaContract(uint256,uint256,uint256,uint256)    -- vulnerable withdraw",
+   "// 0x11067f6a: lpInfo(address)                                                -- (lpAmount, lastAddLpTime)"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    100812531
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__LegendaryMoneyMonNft_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$85.5K USD (85,519.47 USDT)",
+   "// Attacker : 0xE1582248C593Df4B367e131922438Fec9D76E787",
+   "// Attack Contract : 0x157ba211f05dd2c83006be949e12b2f0f0a0c1d9 (delegated to the attacker EOA via EIP-7702)",
+   "// Vulnerable Contract : 0x92D60629FF5d53a0098B51E9b1D59546D1D8e5B6 (LegendaryMoneyMonNft - \"Legendary MoneyMon NFTs\")",
+   "// MON Token : 0xA1C1A7341a1713F174D59926E49E4A1228924100 (Moneymon / MON)",
+   "// Attack Tx : 0x15c835c070672948b3487d35254bce96831bec9f5212f78b04e683fed74bf4a2",
+   "// @Analysis",
+   "// Attack date: May 28, 2026",
+   "// Chain: BSC, Block: 100937039",
+   "// SlowMist: https://x.com/SlowMist_Team/status/2060205558687486441",
+   "// Root Cause:",
+   "// LegendaryMoneyMonNft.cliamRewred() lets a user pull an arbitrary ERC20 amount out of the contract",
+   "// as long as verify() returns true:",
+   "//",
+   "//   function verify(address payment,address user,uint _nftid,uint amount,uint _time,string _exname,bytes sig)",
+   "//       returns (bool) { ... return recoverSigner(ethSignedMessageHash, sig) == admin; }",
+   "//",
+   "//   function recoverSigner(bytes32 hash, bytes sig) returns (address) {",
+   "//       (bytes32 r, bytes32 s, uint8 v) = splitSignature(sig);",
+   "//       return ecrecover(hash, v, r, s);          // <-- never checks for the address(0) return",
+   "//   }",
+   "//",
+   "// `ecrecover` returns address(0) for a malformed signature (e.g. r = s = 0). The contract never rejects",
+   "// that, and `changeadmin()` had already been used to set `admin` to the zero address on-chain. So an",
+   "// attacker submits cliamRewred(...) with a 65-byte signature of (r=0, s=0, v=27): ecrecover returns",
+   "// address(0), which equals admin, verify() passes, and the contract transfers the requested token amount",
+   "// to msg.sender. The attacker drains the contract's entire MON balance and swaps it to USDT on PancakeSwap.",
+   "//",
+   "// Note: the real attack ran the drain logic from the attacker EOA itself via an EIP-7702 SetCode (type-4)",
+   "// transaction delegating to 0x157ba211.... For the PoC we use vm.prank to act as the attacker EOA instead.",
+   "//",
+   "// Function selectors:",
+   "// 0x33444682: cliamRewred(address,uint256,uint256,uint256,string,bytes)  -- vulnerable claim",
+   "// 0x26ea7ab8: changeadmin(address)                                        -- onlyOwner; admin was set to 0"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    100937039
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__MAPProtocol_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$180K",
+   "// Attacker : https://etherscan.io/address/0x40592025392bd7d7463711c6e82ed34241b64279",
+   "// Attack Contract : https://etherscan.io/address/0x2475396a308861559ef30dc46aad6136367a1c30",
+   "// Vulnerable Contract : https://etherscan.io/address/0x0000317bec33af037b5fab2028f52d14658f6a56",
+   "// Attack Tx : https://etherscan.io/tx/0x31e56b4737649e0acdb0ebb4eca44d16aeca25f60c022cbde85f092bde27664a",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x0000317bec33af037b5fab2028f52d14658f6a56#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : https://x.com/MapProtocol/status/2059587998409490510"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    25137571
+   ]
+  ],
+  "ntx": 3
+ },
+ "2026-05__MureDistribution_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~5.45 ETH",
+   "// Attacker : https://etherscan.io/address/0x08096e9ae70d7c5f2707b203a7801b75d1412156",
+   "// Attack Contract : https://etherscan.io/address/0x2b896760f8ad2ecf58ef93bdf71ac5e85c2b7f63",
+   "// Vulnerable Contract : https://etherscan.io/address/0x365083717efb17f3895290ba38f20f568c7a4d8a",
+   "// Attack Tx : https://etherscan.io/tx/0xb83040361a0ec72fa2d06ad69493226518a5f8b5d96c19b400626248f9c5b798",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x365083717efb17f3895290ba38f20f568c7a4d8a#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2058211424761942226"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    25141106
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__NewMarketTrading_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$3.98M USD across 88 Gnosis Safes on Ethereum / Base / Arbitrum",
+   "//                         (this PoC drains one Ethereum victim Safe: ~5,806 USDC)",
+   "// Attacker      : 0x7c82cB4b2909C50C7c0F2B696Eee7565e0a23BB8 (main operator)",
+   "//                 0x9BDC730183821b6bb2B51BE30B77C964FA645b91 (co-operator, sent this tx)",
+   "// Attack Contract : 0xe1d5FCfBba4d46F4937de369De415dD7E2D3265a (Ethereum wrapper)",
+   "// Vulnerable Contract : 0x1f1d37a3Bf840e35c6a860c7C2dA71Fe555123ca (New Market Trading \"SquidRouterModule\" Safe module)",
+   "// Victim Safe   : 0xa081B9F72d586624F2eaA1eaCf53C1A268810e4E",
+   "// Attack Tx     : 0x59d17fd31e31959b2d562508bf91c4fc1271682ba7d61a6209865e1151b69aea",
+   "// @Analysis",
+   "// Attack date: May 25, 2026  Chain: Ethereum  Block: 25170513",
+   "// rekt.news: https://rekt.news/newmarkettrading-rekt",
+   "// Verified source (same address, Base): https://base.blockscout.com/address/0x1f1d37a3Bf840e35c6a860c7C2dA71Fe555123ca?tab=contract",
+   "//",
+   "// Run (Cancun EVM is required -- the Uniswap UniversalRouter uses EIP-1153 transient storage;",
+   "//      the repo default evm_version is 'shanghai'):",
+   "//   FOUNDRY_EVM_VERSION=cancun forge test --contracts src/test/2026-05/NewMarketTrading_exp.sol \\",
+   "//       --match-contract NewMarketTradingExploit -vv",
+   "//",
+   "// Root Cause:",
+   "// The SquidRouterModule is a Gnosis Safe module that lets a whitelisted Squid/Axelar bridge message run",
+   "// swap/approve actions on a Safe. It inherits Axelar's AxelarExpressExecutableWithToken, which exposes:",
+   "//",
+   "//   function expressExecuteWithToken(bytes32 commandId, string sourceChain, string sourceAddress,",
+   "//                                    bytes payload, string symbol, uint256 amount) external payable {",
+   "//       ...",
+   "//       IERC20(gatewayToken).safeTransferFrom(msg.sender, address(this), amount); // relayer fronts `amount`",
+   "//       _executeWithToken(commandId, sourceChain, sourceAddress, payload, symbol, amount);",
+   "//   }",
+   "//",
+   "// This is the Axelar \"express\" fast path: ANYONE may call it. A relayer is supposed to front `amount`",
+   "// tokens and be reimbursed later when the real cross-chain message clears gateway.validateContractCallAndMint().",
+   "// The express path therefore performs NO gateway/cryptographic validation of the message.",
+   "//",
+   "// The module's override trusts caller-supplied data instead of the actual caller:",
+   "//",
+   "//   function _executeWithToken(..., string sourceAddress, bytes payload, string tokenSymbol, uint256 amount) {",
+   "//       address srcAddress = Strings.parseAddress(sourceAddress);",
+   "//       require(srcAddress == squidRouter, InvalidSourceAddress(srcAddress)); // <- compares a STRING the caller passed",
+   "//       _processPayload(IERC20(_getTokenAddress(tokenSymbol)), amount, payload);",
+   "//   }",
+   "//   function _processPayload(IERC20 bridgedToken, uint256 amount, bytes payload) {",
+   "//       (address module, address safe, address delegate, ActionsExecutionParams params)",
+   "//           = abi.decode(payload, (address, address, address, ActionsExecutionParams)); // <- delegate & safe from payload",
+   "//       require(module == address(this), ...);",
+   "//       bridgedToken.safeTransfer(safe, amount);",
+   "//       _handleActions(safe, delegate, params); // checks delegate's permission, never msg.sender == delegate",
+   "//   }",
+   "//",
+   "// Missing check: require(msg.sender == delegate)  (and/or genuine Axelar gateway validation on this path).",
+   "//",
+   "// Exploit (NO flash loan, NO funds fronted):",
+   "//   1. Call expressExecuteWithToken with amount = 0  -> safeTransferFrom(attacker, module, 0) costs nothing.",
+   "//   2. sourceAddress = the public squidRouter address string -> passes the require.",
+   "//   3. payload carries: module = the module, safe = victim Safe, delegate = a REAL public NMT delegate",
+   "//      (0x0f7aAa84...) that already holds APPROVE+SWAP permission on the Safe, and 3 actions:",
+   "//        a. ERC20_APPROVE   (USDC -> Permit2)",
+   "//        b. PERMIT2_APPROVE (USDC -> UniversalRouter)",
+   "//        c. UNI_V3_SWAP_EXACT_IN  USDC -> worthless \"u\" token, amountOutMin = 0",
+   "//   The module drives the Safe to swap its entire USDC into the attacker-owned Uniswap V3 pool.",
+   "//",
+   "// Function selectors:",
+   "// 0x_express... : expressExecuteWithToken(bytes32,string,string,bytes,string,uint256) -- public Axelar express entry"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    25170513
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__Renegade_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$209K",
+   "// Attacker : https://arbiscan.io/address/0x777253F28AdC29645152b7b41BE5c772A9657777",
+   "// Attack Contract : https://arbiscan.io/address/0x33FB722C76D4e9fC0c86BbF10EBDeA45a4434a34",
+   "// Vulnerable Contract : https://arbiscan.io/address/0x30bD8eAb29181F790D7e495786d4B96d7AfDC518",
+   "// Attack Tx : https://arbiscan.io/tx/0x0e494685ace16d372066c5b4db959b58ebac6d88166c2d9d618e0e421dc0c77e",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://arbiscan.io/address/0x30bD8eAb29181F790D7e495786d4B96d7AfDC518#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : https://x.com/renegade_fi/status/2053531772634427599",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2053538325969977801"
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-05__SEAToken_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$110K",
+   "// Attacker : https://arbiscan.io/address/0x352173fabf0e67e1cb1fcdf15474d0477d5d3674",
+   "// Attack Contract : https://arbiscan.io/address/0x32db518e84955739912b6257cc65e3e8374b60e4",
+   "// Vulnerable Contract : https://arbiscan.io/address/0xa70f31c06f921019237fc00b1417217dae5c37c5",
+   "// Attack Tx : https://arbiscan.io/tx/0x001cb16e17c4c5a5c4d02423c9e9b2f2b11ab6b2a1baf2ba53b8fcaf06167716",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://arbiscan.io/address/0xa70f31c06f921019237fc00b1417217dae5c37c5#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Hacking God : https://anomly.rs/metasea-redeemposition-distributor-drain-arb-2026-05-17"
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-05__SKP_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$212K USD",
+   "// Attacker : 0x83B9e7EDC5B3127E4853A4F4945b92aa88eEF0C8",
+   "// Attack Contract : 0xE924853DcDfcB89292335042AB10d68c7315D7C1",
+   "// Vulnerable Contract : 0xeCBDc0B76142740Bb564B8aA1BCd061Cb151a666 (SKP Token)",
+   "// Attack Tx : 0xbc01ea37bd2ff8f6aa6afcfbe0406114ff27a01e9aa56102bfa4ad8a0c2f25ee",
+   "// @Analysis",
+   "// Attack date: May 26, 2026",
+   "// Chain: BSC, Block: 100582079",
+   "// Root Cause:",
+   "// The SKP token exposes ownerBurnLiquidityPairTokens(uint256), an owner-only backdoor that",
+   "// burns SKP held directly inside the SKP/USDT LP pair. The deployer/owner first burns the",
+   "// bulk of the SKP sitting in the pair, then calls sync() on the pair to force the reserves",
+   "// to match the now-depleted SKP balance. With SKP reserves slashed but USDT reserves intact,",
+   "// the on-chain SKP/USDT price spikes. The attacker (who is the owner) then supplies the",
+   "// over-valued SKP as collateral on Venus/Lista DAO to borrow BTCB + USDT.",
+   "// Function selectors decoded from bytecode:",
+   "// 0x4eb9b26d: ownerBurnLiquidityPairTokens(uint256) -- owner-only burn-from-LP backdoor",
+   "// 0xfff6cae9: sync()                                -- pair reserve resync",
+   "// burnPercent() = 200 (2% auto-burn on transfer)",
+   "// brunFee()     = 500 (5% transfer fee)",
+   "// feeWhiteList(address)                             -- bypass fees"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    100582079
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__SKP_exp2.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// @title   SKP/USDT BNB \u2014 Deliberately Engineered Token Drain (BSC, block 100,582,079)",
+   "//",
+   "// @description",
+   "//   A premeditated insider exploit (exit scam) on BNB Smart Chain targeting the",
+   "//   SKP/USDT PancakeSwap V2 pair. The SKP token's _transfer() hook",
+   "//   (_runSpecialPairFlow) fires whenever the pair sends SKP to a buyer and",
+   "//   redistributes an unbounded amount of treasury SKP to a single whitelisted",
+   "//   address (WL_ADDRESS). The trigger (balanceOf(pair) \u2212 reserve) is flash-loan",
+   "//   inflatable in one transaction; the redistribution source is a treasury with",
+   "//   no issuance cap.",
+   "//",
+   "//   This is NOT a conventional external hack. On-chain evidence proves the operator",
+   "//   engineered every precondition:",
+   "//",
+   "//     1. setFeeWhiteList() is onlyOwner \u2014 no outside party could set WL_ADDRESS.",
+   "//        The owner changed WL to the exploit contract ~6 days before the drain:",
+   "//        https://bscscan.com/tx/0xadf1b6ff02a917043c816bc8bd1ed67038d64a19d06544b09ceeb872518fda37",
+   "//        https://bscscan.com/tx/0xedb2b6a35cf9637d11bef3e440a36994fd6eb72e1dcbee3b8343757ab55699b4",
+   "//",
+   "//     2. WL_ADDRESS was deployed and funded by the same wallet that deployed SKP.",
+   "//        (BSCScan: WL creator == SKP deployer 0x041F52BF...)",
+   "//",
+   "//     3. SKP contract source was intentionally left unverified on BSCScan \u2014 opacity",
+   "//        designed to conceal the hook from LP buyers.",
+   "//",
+   "//     4. BlockRazor private mempool + deBridge cross-chain bridge were configured in",
+   "//        advance (outsiders do not set up exit infrastructure before an \"accident\").",
+   "//",
+   "//     5. SKP deployer simultaneously operated 7+ throwaway tokens (SLT2, ZEST,",
+   "//        ZXMOTO, FIFA2026, POPMART\u2026) \u2014 a classic disposable launcher pattern.",
+   "//",
+   "//     6. ~14-day lifecycle: LP seeded \u2192 retail buyers sniped in \u2192 drain executed.",
+   "//        The \"holder count\" was inflated by dust airdrops to simulate organic adoption.",
+   "//",
+   "//   Media (SlowMist, CryptoTimes) classified this as a smart-contract vulnerability.",
+   "//   The on-chain record contradicts that framing. This is a rug pull with a",
+   "//   vulnerability-shaped cover story.",
+   "//",
+   "// @exploitTx  0xbc01ea37bd2ff8f6aa6afcfbe0406114ff27a01e9aa56102bfa4ad8a0c2f25ee",
+   "// @block      100,582,079 (fork at 100,582,078 \u2014 one block before the exploit tx)",
+   "// @attacker   0x83b9e7edc5b3127e4853a4f4945b92aa88eef0c8",
+   "// @wl         0x646f7bb10d81ff9734510d4e7583eb5247b28743 (set by owner 6 days prior)",
+   "// @skp        0xecbdc0b76142740bb564b8aa1bcd061cb151a666 (unverified source on BSCScan)",
+   "// @profit     ~$212,195 USDT on-chain / ~$233,967 USDT in this PoC (no fees)",
+   "// @refs",
+   "//   Exploit tx:     https://bscscan.com/tx/0xbc01ea37bd2ff8f6aa6afcfbe0406114ff27a01e9aa56102bfa4ad8a0c2f25ee",
+   "//   SKP token:      https://bscscan.com/address/0xecbdc0b76142740bb564b8aa1bcd061cb151a666",
+   "//   SKP/USDT pair:  https://bscscan.com/address/0x47c8c3b123de467892ac7df6dfcf7ca3db901733",
+   "//   WL setter tx 1: https://bscscan.com/tx/0xadf1b6ff02a917043c816bc8bd1ed67038d64a19d06544b09ceeb872518fda37",
+   "//   WL setter tx 2: https://bscscan.com/tx/0xedb2b6a35cf9637d11bef3e440a36994fd6eb72e1dcbee3b8343757ab55699b4",
+   "//   TenArmor alert: https://www.bitget.com/amp/news/detail/12560605230076",
+   "// \u2500\u2500 External interfaces \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "inline",
+    100582078
+   ]
+  ],
+  "ntx": 3
+ },
+ "2026-05__SQTokenStaking_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$346.1K",
+   "// Attacker : https://bscscan.com/address/0xE746c9043Aa0106853c5e4380A9A307Fe385378e",
+   "// Attack Contract : https://bscscan.com/address/0x0ECADd99B6A2f5b18a9e05c29074471A5970dd0D",
+   "// Vulnerable Contract : https://bscscan.com/address/0x404404A845FFF0201f3a4D419B4839fC419c99F7",
+   "// Attack Tx : https://bscscan.com/tx/0x1bae633eda9b3d98999ea116bc403712eaa07093ec32bd6d559085cc4607f5b8",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x404404A845FFF0201f3a4D419B4839fC419c99F7#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : N/A",
+   "// Twitter Guy : https://x.com/Defi_Nerd_sec/status/2054425936746148148"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [],
+  "ntx": 3
+ },
+ "2026-05__SharwaMarginTrading_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 32.85K USDC",
+   "// Attacker : 0x4551835e7c40d2a3d407c89d6a91eff98285c681",
+   "// Attack Contract : 0x7e3c13314ceefc7578242d5eae9ed4dcbeb8d377",
+   "// Vulnerable Contract : 0x729cf665c09ef112c607290415a566fffa45826f",
+   "// Attack Tx : https://arbiscan.io/tx/0x05cfcfe9bdf8d19aaea3ba417e6559aee37c82120974e75335d06e56030f4dad",
+   "// @Info",
+   "// Vulnerable Contract Code : https://arbiscan.io/address/0x729cf665c09ef112c607290415a566fffa45826f#code",
+   "// @Analysis",
+   "// Twitter Guy : https://t.me/defimon_alerts/2975",
+   "//",
+   "// Sharwa valued Hegic option NFT collateral through a Uniswap V3 spot Quoter path. The attacker transferred the",
+   "// option NFT into a receiver contract, used the ERC721 callback to manipulate the USDC/USDC.e spot price, deposited",
+   "// the option as collateral, borrowed USDC/WETH/WBTC, swapped the proceeds back to USDC, repaid Balancer, and kept",
+   "// the remaining USDC."
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    458233155
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__SquidRouterModule_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 0.25 WBTC + 0.29 wTAO + 0.02 WETH",
+   "// Attacker : 0x9bdc730183821b6bb2b51be30b77c964fa645b91",
+   "// Attack Contract : 0xe1d5fcfbba4d46f4937de369de415dd7e2d3265a",
+   "// Vulnerable Contract : 0x1f1d37a3bf840e35c6a860c7c2da71fe555123ca",
+   "// Attack Tx : https://etherscan.io/tx/0x2d52984706d5ac567d554d40a62beeeda9e3901dd3847e93dd2a3117902abfeb",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x1f1d37a3bf840e35c6a860c7c2da71fe555123ca#code",
+   "// @Analysis",
+   "// Source : https://t.me/defimon_alerts/3045",
+   "//",
+   "// The public Axelar express path accepts a caller-supplied payload and uses the delegate encoded in that payload",
+   "// for Safe permission checks. The attacker supplied a payload naming a delegate with wildcard permissions on the",
+   "// victim Safe, then used the module to approve Permit2 and swap the Safe's WBTC, wTAO, and WETH into u."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    25170474
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__TesseraSwap_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$20K",
+   "// Attacker : 0x2352a1fca90182509dca9c12b2cad582a38e8b82",
+   "// Attack Contract : 0x74513519689b1fb427747624a4dd87b3849d39cd",
+   "// Vulnerable Contract : 0x55555522005bcae1c2424d474bfd5ed477749e3e",
+   "// Victim : 0x3dbe077e7986657e95e1cc50089f17a5a4af0aae",
+   "// Attack Tx : https://basescan.org/tx/0xc2df72ff612c90e07c9e051e7772a39f31fb4ca9e61f5b705f921bffa26b36de",
+   "// @Info",
+   "// Vulnerable Contract Code : https://basescan.org/address/0x55555522005bcae1c2424d474bfd5ed477749e3e#code",
+   "// @Analysis",
+   "// Twitter Guy : https://t.me/defimon_alerts/3038",
+   "//",
+   "// TesseraSwap transferred USDC from its treasury before collecting WETH from the attacker callback. The attacker",
+   "// used the received USDC to buy the owed WETH externally, repaid Tessera, and kept the WETH/USDC spread."
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    46175320
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__TrustedVolumes_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$5.87M USD",
+   "//            (1,291.16 WETH + 206,282.45 USDT + 16.939 WBTC + 1,268,771.49 USDC)",
+   "// Attacker / signer   : 0xC3EBDdEa4f69df717a8f5c89e7cF20C1c0389100 (the registered \"allowed order signer\")",
+   "// Attack Contract     : 0xd4d5DB5EC65272b26F756712247281515f211e95 (created by the attack tx; acts as `taker`)",
+   "// Vulnerable Contract : 0xeEeEEe53033F7227d488ae83a27Bc9A9D5051756 (TrustedVolumes RFQ settlement proxy)",
+   "//                       -> delegatecalls implementation 0x88eb28009351Fb414A5746F5d8CA91cdc02760d8 (UNVERIFIED bytecode)",
+   "// Victim (maker/resolver) : 0x9ba0cf1588e1dfa905ec948f7fe5104dd40eda31 (granted UNLIMITED approval to the proxy)",
+   "// Attack Tx           : 0xc5c61b3ac39d854773b9dc34bd0cdbc8b5bbf75f18551802a0b5881fcb990513",
+   "// @Analysis",
+   "// Attack date: May 7, 2026  Chain: Ethereum  Block: 25039670 (tx index 8)",
+   "// rekt.news: https://rekt.news/trustedvolumes-rekt",
+   "// Analyses: https://www.darknavy.org/web3/exploits/trustedvolumes-rfq-proxy-drain/",
+   "//           https://blog.verichains.io/p/trustedvolumes-exploit-analysis",
+   "//",
+   "// Run:",
+   "//   forge test --contracts src/test/2026-05/TrustedVolumes_exp.sol --match-contract TrustedVolumesExploit -vv",
+   "//",
+   "// ---------------------------------------------------------------------------------------------------",
+   "// Root cause (two-bug chain on an RFQ settlement contract):",
+   "//",
+   "// The proxy settles signed RFQ orders. An order says: maker gives `makerAmount` of `makerAsset` to the",
+   "// taker, taker gives `takerAmount` of `takerAsset` to the maker; the maker (the party whose funds move",
+   "// out via its standing approval to the proxy) must have signed/authorized the order. The maker can",
+   "// delegate signing to another key via an \"allowed order signer\" registry.",
+   "//",
+   "//  BUG #1 -- permissionless signer registration:",
+   "//      registerAllowedOrderSigner(address signer, bool allowed)   selector 0xea7faa61",
+   "//      has ZERO access control. It writes  _allowedOrderSigner[msg.sender][signer] = allowed.",
+   "//      Anyone can register any EOA as a valid signer *for their own key*.",
+   "//",
+   "//  BUG #2 -- authorization keyed on the wrong party (taker, not maker):",
+   "//      The fill function (selector 0x4112e1c2) recovers the order signer with ecrecover, then checks",
+   "//      authorization as  _allowedOrderSigner[order.taker][recoveredSigner]  -- it uses the TAKER",
+   "//      (an attacker-controlled field) as the lookup key instead of the order.maker who actually owns",
+   "//      the funds. It then pulls  makerAsset  FROM order.maker  via the maker's standing approval.",
+   "//",
+   "// Exploit: the attacker contract (= the taker) calls registerAllowedOrderSigner(attackerEOA, true),",
+   "// which sets _allowedOrderSigner[taker][attackerEOA] = true. It then submits orders where:",
+   "//   maker = the victim resolver (0x9ba0..., which holds the assets and has unlimited approval to the proxy),",
+   "//   taker = the attacker contract,",
+   "//   makerAsset/makerAmount = the asset to steal (e.g. 1291 WETH),",
+   "//   takerAsset/takerAmount = USDC / 1 wei (the attacker pays 1 unit dust per order),",
+   "//   signature = signed by attackerEOA over the order.",
+   "// Because authorization is checked against the taker key (which the attacker registered), the",
+   "// attacker-signed orders pass even though the victim maker never approved them, and the maker's",
+   "// approved balances are drained out. Four orders drain WETH, USDT, WBTC and USDC for ~$5.87M.",
+   "//",
+   "// ---------------------------------------------------------------------------------------------------",
+   "// PoC method:",
+   "// The settlement implementation is UNVERIFIED bytecode, so this PoC reproduces the hack by replaying the",
+   "// attacker's EXACT on-chain calldata (the register call + the 4 signed fill orders, including the real",
+   "// ECDSA signatures the attacker produced) against a fork pinned one block before the attack. We act as",
+   "// the original attack contract address (the order `taker`) so the registry key and the signed `taker`",
+   "// field line up. Replaying the genuine calldata is the faithful, deterministic way to demonstrate an",
+   "// exploit on a contract whose source is not published."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    25039670
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__VerusBridge_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$11.58M",
+   "// Attacker : https://etherscan.io/address/0x5abb91b9c01a5ed3ae762d32b236595b459d5777",
+   "// Attack Contract : https://etherscan.io/address/0x65cb8b128bf6e690761044cceca422bb239c25f9",
+   "// Vulnerable Contract : https://etherscan.io/address/0x71518580f36feceffe0721f06ba4703218cd7f63",
+   "// Attack Tx : https://etherscan.io/tx/0x6990f01720f57fc515d0e976a0c4f8157e0a9529194c4c15d190e98d087eb321",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x71518580f36feceffe0721f06ba4703218cd7f63#code",
+   "//",
+   "// @Analysis",
+   "// Post-mortem : https://x.com/VerusCoin/status/2056829444124213652"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    25118334
+   ]
+  ],
+  "ntx": 21
+ },
+ "2026-05__WUSD_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$200K USD (USDC + USDT drained from Uniswap V3 GLO pools)",
+   "// Attacker        : 0x88329A09428778F62BC0C8BAac0997864E5a57f8",
+   "// Vulnerable      : 0x068E3563b1c19590F822c0e13445c4FA1b9EEFa5 (WUSD - Wrapped USD, _englove reward path)",
+   "// Reward token    : 0x70c5f366db60a2a0c59c4c24754803ee47ed7284 (GLOVE / GLO)",
+   "// Attack Tx       : 0x2051c1f8d43730c41cc353b5dffd8cc59f96cb1ca56fdce4b28fb127bdb37712",
+   "// @Analysis",
+   "// Attack date : May 25, 2026",
+   "// Chain       : Ethereum, Block 25170426",
+   "// ExVul alert : https://x.com/exvulsec/status/2058803971947385330",
+   "//",
+   "// Root Cause:",
+   "// WUSD.wrap() pays a GLOVE reward via the internal _englove() routine:",
+   "//",
+   "//   function _englove(uint256 wrapping) internal {",
+   "//       uint256 gloves = IGlove(_GLOVE).balanceOf(msg.sender);",
+   "//       if (wrapping >= _MIN_GLOVABLE && gloves < _MAX_GLOVE) {",
+   "//           IGlove(_GLOVE).mintCreditless(msg.sender, Math.min(_MAX_GLOVE - gloves,",
+   "//               wrapping > 1_000e18 ? (_MAX_GLOVE * wrapping) / _EPOCH",
+   "//                                   : (_MID_GLOVE * wrapping) / 1_000e18));",
+   "//       }",
+   "//   }",
+   "//",
+   "// Eligibility depends ONLY on msg.sender's *current* GLOVE balance (gloves < _MAX_GLOVE = 2e18)",
+   "// and the wrap size (wrapping >= _MIN_GLOVABLE = 100e18). There is no per-address claim ledger,",
+   "// no cooldown, and no identity binding. A brand-new address always holds 0 GLOVE < _MAX_GLOVE,",
+   "// so it ALWAYS qualifies for a fresh ~2 GLOVE mint when it wraps >= 100,000 WUSD.",
+   "//",
+   "// The minted GLOVE is \"creditless\" (soulbound) and only vests into transferable \"credited\"",
+   "// GLOVE through unwrap()->_deglove(), proportional to how many global epochs elapsed since the",
+   "// wrap. The global epoch advances by 1 for every _EPOCH (=100,000e18) of cumulative wrapping,",
+   "// and full vesting requires 100 epochs to pass. Each 100,000 WUSD wrap both mints GLOVE AND",
+   "// advances one epoch, so a batch of Sybil wraps + a short \"pump\" of extra wraps drives enough",
+   "// epochs to vest the whole batch.",
+   "//",
+   "// Exploit (per the on-chain campaign, 80 fresh addresses per tx):",
+   "//   1. Morpho USDT flash loan as working capital (fully recovered).",
+   "//   2. Deploy N fresh helper contracts; each is funded 101,000 USDT and wraps 100,000 WUSD,",
+   "//      harvesting ~2 creditless GLOVE and advancing one epoch (1,000 USDT = 1% fee per wrap).",
+   "//   3. \"Pump\" extra 100,000-WUSD wrap/unwrap cycles to advance >=100 epochs total.",
+   "//   4. Unwrap every helper in full -> _deglove vests the creditless GLOVE into credited GLOVE",
+   "//      and returns the USDT principal.",
+   "//   5. Each helper dumps its own credited GLOVE into the Uniswap V3 GLO/USDC / GLO/USDT pools.",
+   "//   6. Repay the Morpho flash loan; keep the drained USDC + USDT.",
+   "//",
+   "// Economics note (verified on-fork at the attack block): the two GLO pools are thin",
+   "// (~1,040 GLO + ~$63K stables each, GLO spot ~$188). A full 80-address batch drains",
+   "// ~$20K of stablecoins from the LPs (matching the reported 11,702 USDC + 8,079 USDT) while",
+   "// freely minting ~160 GLOVE of protocol incentives. WUSD's own 1% wrap fee is the attacker's",
+   "// cost. This is an incentive-abuse / LP-drain (the documented ~$200K-class incident), not a",
+   "// self-financing arbitrage."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    25170426
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-05__YSDAO_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~19.49K USDT",
+   "// Attacker : https://bscscan.com/address/0x8114650Cfd2617CD05C59898De7C620ae413b460",
+   "// Attack Contract : https://bscscan.com/address/0xafBf780569B95C5766F78b9CC5788899Aa5616Af",
+   "// Vulnerable Token : https://bscscan.com/address/0xc036A13D7A6A84677DfCcec483eED124654B7918",
+   "// Vulnerable Staking : https://bscscan.com/address/0x3E13019dA3BAAd134493e751704D2D4245Eec7CA",
+   "// Attack Tx : https://bscscan.com/tx/0x91f26d96373bbec6a6a8517c7be995a739d65f20fed589d53bc47d8140f91907",
+   "//",
+   "// @Analysis",
+   "// YSDAO's transfer protection detects add/remove liquidity by reading the Pancake V2",
+   "// pair's current token balances against reserves. The attacker combines a V3 USDT",
+   "// flash loan with a V2 pair callback:",
+   "//   1. Buy YSDAO while making the pair output 1 wei USDT, so _isRemoveLiquidity()",
+   "//      sees pair USDT balance below reserve and skips buy tax/cooldown accounting.",
+   "//   2. Call Staking.sync(). It has no access control and transfers all staking-held",
+   "//      USDT into the YSDAO/USDT pair, then pair.sync(), raising the apparent YSDAO price.",
+   "//   3. Transfer 1 USDT into the pair before selling, so _isAddLiquidity() treats the",
+   "//      sale as liquidity addition and bypasses the harsher sell/profit-tax path."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-06__AIDC_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~220.13 WBNB",
+   "// Attacker : 0x89eb2c99e970d831525c7a52badc290afa116b63",
+   "// Attack Contract : 0x26f625738019a1d710b074b23714d1538a151de4",
+   "// Vulnerable Contract : 0x5021d71859f81b4c905b573591db8f9cc4a0c6fe",
+   "// Attack Tx : https://bscscan.com/tx/0x66960f7febf399fa8bd94904398f535c500f4f575dbf025de7b9ab450342645e",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x5021d71859f81b4c905b573591db8f9cc4a0c6fe#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2071415914948685892",
+   "//",
+   "// Attack summary: repeated fresh helper sells set AIDC's accumulated burn, then router transfers trigger burns",
+   "// from the AIDC/WBNB pair and sync the pair at a deflated AIDC reserve.",
+   "// Root cause: AIDCToken lets ordinary transfers burn accumulated sell-side amounts directly from the AMM pair."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    106926103
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__AISOTHPresale_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 30,314.76 USDT",
+   "// Attacker : 0x627df72cc3fa38c475a414e65cdece09b2b177af",
+   "// Attack Contract : 0x2078b0d64ede277d65bdf0272f64aef2a954deab",
+   "// Vulnerable Contract : 0x796c5e8ca10010654dafaef096bd1f4a7ad87672",
+   "// Victim : 0x9efb2e8ba06eb5981034f6e01350af041983e763",
+   "// Attack Tx : https://bscscan.com/tx/0x11462984d7f5663db9cf95c07c6cd9ff91f5b2d6616268e8dd6a3013e190248c",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x796c5e8ca10010654dafaef096bd1f4a7ad87672#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/audit_911/status/2063565495073415618",
+   "//",
+   "// The attacker flash-swapped USDT, bought the full claimable AIS balance from Presale, immediately claimed it,",
+   "// sold the AIS into the AIS/USDT Pancake pair, repaid the flash swap, and forwarded the remaining USDT profit."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    102408283
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__ATM_LP_Burn_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 1,603.99 WBNB",
+   "// Attacker : 0x0eb4075c87ccd23a7ae1e00d77b043e4e8cc5894",
+   "// Attack Contract : 0x48b549e6b551c151bd392bb9acab1f88263adf48",
+   "// Vulnerable Contract : 0x9753a64fb7c233fdc43f04dab9cca88e1e229eba",
+   "// Victim : 0xbe8351c14e5108a57a545dfa8669fa31aa6adc68",
+   "// Attack Tx : https://bscscan.com/tx/0x4e9f3dc3ce3c0a6aa19dae0f1384ff46e801b433b7e3bc4c780de486db6c950a",
+   "// Liquidity Setup Tx : https://bscscan.com/tx/0x2bb7f486730d7d6a271a2a0c18cec45c89f447a95e956415f18d2a0671ec789c",
+   "// Victim LP Transfer Tx : https://bscscan.com/tx/0x5c27edc326e38641d8ce6093cd7f15ae5fca039f5fb988b7f10cb432e6e3a056",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x9753a64fb7c233fdc43f04dab9cca88e1e229eba#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2068993748936151209",
+   "//",
+   "// Victim 0xbe83 first added WBNB/ATM liquidity, then mistakenly transferred the resulting LP tokens",
+   "// to the pair itself. Because Pancake V2 burn redeems pair-held LP balance, the bot could burn that LP,",
+   "// receive the underlying WBNB and ATM, pay most WBNB as native BNB to the builder, and keep the rest."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    105692847
+   ]
+  ],
+  "ntx": 3
+ },
+ "2026-06__ATM_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$243,543 USDT (gross drained from the ATM/USDT PancakeSwap pair)",
+   "// Attacker EOA    : 0x7e7C1f0D567c0483f85e1d016718E44414CdBAFE",
+   "// Attacker Helper : 0xeCe23b485c38110b7a50B5067B7D4B644f897Dc9 (drives the 30 farmer clones)",
+   "// Vulnerable      : 0x986058ec93756E57b4e55b406dD0BeE24bcD95e3 (ATM token, custom _transfer)",
+   "// Victim pair     : 0x659b44d603052132fd36cf048d9e0ba1e307ae3a (ATM/USDT Cake-LP)",
+   "// Setup    Tx     : 0x3738909da7960d72efc2635d73aff5f15ef14a1b18ee0281abaa3d4c94adc69b (block 102070707, buy leg)",
+   "// Drain    Tx     : 0x37b90a337075cd2feea93b12780abe9f953dad476e1c1418a02447aaa6dcfd86 (block 102072357, sell leg)",
+   "// @Analysis",
+   "// Attack date : June 4, 2026",
+   "// Chain       : BSC, drain Block 102072357",
+   "// SlowMist    : https://hacked.slowmist.io/  (ATM, BSC, $243,500)",
+   "//",
+   "// ---------------------------------------------------------------------------------------------",
+   "// Root cause (verified from Sourcify-verified ATMToken source):",
+   "//",
+   "// ATMToken._transfer() sell branch (recipient == uniswapV2Pair, not add-liquidity) auto-dumps the",
+   "// contract's OWN ATM holdings whenever its balance exceeds swapAtAmount (200e18):",
+   "//",
+   "//     uint256 contractTokenBalance = balanceOf[address(this)];",
+   "//     if (contractTokenBalance > swapAtAmount) {",
+   "//         uint256 numTokensSellToFund = (amount * numTokensSellRate) / 100; // numTokensSellRate = 20 -> 20%",
+   "//         if (numTokensSellToFund > contractTokenBalance) numTokensSellToFund = contractTokenBalance;",
+   "//         _swapTokenForFund(numTokensSellToFund);  // PancakeSwap sell with amountOutMin = 0",
+   "//     }",
+   "//",
+   "// On every sell the token sells an extra 20%-of-the-sell-size of its own reserves into the pair",
+   "// at amountOutMin=0, with proceeds going to the marketing/dividend wallets. Combined with weak",
+   "// anti-whale controls that key only off the *sender's* fresh state, an attacker farms the pool.",
+   "//",
+   "// The anti-whale / anti-bot guards in _transfer are all per-(sender) and per-(recipient) and are",
+   "// trivially side-stepped by spreading the position across many brand-new addresses:",
+   "//   * MAX_HOLDER (100_000e18)  -> only checked on the RECIPIENT; each farmer holds < 100k.",
+   "//   * coldTime  (lastBuyTime)  -> a fresh address has lastBuyTime == 0, so the 1-min sell lock",
+   "//                                 (`block.timestamp >= lastBuyTime[sender] + coldTime`) is always satisfied.",
+   "//   * tOwnedU 25% profit fee   -> a fresh address has tOwnedU == 0 (the `else` cost-basis branch).",
+   "//",
+   "// ---------------------------------------------------------------------------------------------",
+   "// Full on-chain attack (three phases, reconstructed from chain state):",
+   "//",
+   "//  1. SETUP  (tx 0x3738..69b, block 102070707): the helper buys ~2.85M ATM for ~154,319 USDT and",
+   "//     spreads it across 30 fresh CREATE2 \"farmer\" clones (~94,999 ATM each, < MAX_HOLDER), each of",
+   "//     which pre-approves the helper. ATM price after this leg ~0.053 USDT.",
+   "//",
+   "//  2. PUMP   (132 attacker txs, nonce 2308 -> 2440): a burn-on-buy ratchet removes ~45.7M ATM from",
+   "//     the pair (pair ATM reserve 92.0M -> 45.7M, DEAD balance +45.7M), ~doubling the price to",
+   "//     ~0.108 USDT/ATM. This is baked into chain state by the time of the drain block.",
+   "//",
+   "//  3. DRAIN  (tx 0x37b9..d86, block 102072357): the helper calls each of the 30 pre-funded clones to",
+   "//     dump its ATM into the now-pumped pair. Each sell ALSO fires _swapTokenForFund (the contract",
+   "//     dumps its own ATM to the fee wallets). Net result: 30 swaps extract 243,543 USDT to the helper.",
+   "//",
+   "// Economics: gross extracted in the drain tx = $243,543 (the figure SlowMist reports). Net of the",
+   "// ~$154,319 spent buying in the setup leg, the attacker's profit is ~$89,224 USDT; the pool/LPs are",
+   "// the net losers. The ~$57,597 the contract auto-dumped to its fee wallets is a *separate* leak and",
+   "// does NOT accrue to the attacker (it actually slightly worsens the price the attacker sells into).",
+   "//",
+   "// This PoC reproduces phase 3 (the headline drain) on a fork at DRAIN_BLOCK-1, where the 30 farmer",
+   "// clones already hold their pumped ATM. The 132-tx pump campaign is not replayed tx-by-tx; it is",
+   "// taken as given chain state, exactly as it was at the moment of the real cash-out transaction."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [],
+  "ntx": 2
+ },
+ "2026-06__AmbientCrocSwapDex_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~67.85 ETH after final USDC->WETH conversion and ETH forwarding",
+   "// Attacker : 0x0000000000037e625b2502c26029aea237f102af",
+   "// Attack Contract : 0xaac14d196a9e27923a92d8e87e3b6a5dcd4fec1b",
+   "// Vulnerable Contract : 0xAaAaAAAaA24eEeb8d57D431224f73832bC34f688",
+   "// Attack Tx : https://etherscan.io/tx/0xb2fc668c42623261074de6fc30d583efede2b0e20d7aded42b7b634f9322ff52",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xAaAaAAAaA24eEeb8d57D431224f73832bC34f688#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2063816231023427861",
+   "//",
+   "// The helper deposited flash-loaned WETH as Ambient native surplus, walked the ETH/USDC",
+   "// pool up one grid at a time, minted and harvested a narrow range, then disbursed the",
+   "// extracted native surplus and repaid Balancer."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "inline",
+    25266404
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__AztecConnect_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$2.19M (908.99 ETH + 270.5K DAI + 167.9 wstETH + yvDAI/yvWETH/LUSD/yvLUSD)",
+   "//                          This PoC covers the 908.99 ETH leg.",
+   "// Attacker EOA          : 0x0F18D8b44a740272f0be4d08338d2b165b7EdD17 (funded via Tornado Cash)",
+   "// Attacker Orchestrator : 0x06f585F74e0DA633Ae813A0f23Fb9900B61d0fcD (4-byte trigger 0x6f3ce701)",
+   "// Vulnerable contract   : 0xFF1F2B4ADb9dF6FC8eAFecDcbF96A2B351680455 (Aztec Connect RollupProcessorV3, deprecated)",
+   "// Attack Tx             : 0x074ec9317d8336db37e8c348fbdd7515573ff4088239c77ab429f522509aeeb1 (block 25,315,715)",
+   "//",
+   "// @Analysis",
+   "// Attack date : Jun-14-2026",
+   "// Chain       : Ethereum mainnet",
+   "// Post-mortem : https://www.cryptotimes.io/2026/06/15/aztec-exploit-drains-2-19m-from-dormant-privacy-protocol/",
+   "// Foundation  : https://x.com/aztecFND/status/2066175938887619055",
+   "//",
+   "// @Root cause - numRealTxs mismatch between proof/hash coverage and L1 settlement (core/Decoder.sol):",
+   "//",
+   "//   * decodeProof() commits the public inputs in FULL inner-rollup chunks. With numRealTxs = 1,",
+   "//     rollupSize = 1024 and numRollupTxs = 32 (innerSize = 1024/32 = 32), it hashes ceil(1/32) = 1",
+   "//     full chunk -> ALL 32 slots of inner-rollup #0 are proven and their notes minted into L2 state.",
+   "//",
+   "//   * processDepositsAndWithdrawals() settles EXACTLY numRealTxs txs:  end = ptr + numRealTxs * 256.",
+   "//     With numRealTxs = 1 only slot 0 is settled.",
+   "//",
+   "//   => A DEPOSIT placed in slot 1 is proven (note minted) but its L1 validation",
+   "//      (decreasePendingDepositBalance + shield signature) is SKIPPED -> unbacked L2 balance,",
+   "//      later withdrawn for real ETH. The proof is a normal, valid rollup proof; nothing is forged.",
+   "//      On the deprecated RollupProcessorV3, processRollup() is permissionless (the provider gate was",
+   "//      removed for sunset self-exit), so anyone can submit these rollups.",
+   "//",
+   "//   numRealTxs lives at proofData[0x11c0], OUTSIDE the 0..0x11c0 header that is hashed, so it is NOT",
+   "//   bound by the zk proof. It only sets the chunk COUNT ceil(numRealTxs/32), and 1..32 all map to one",
+   "//   chunk -> the SAME proof verifies for any numRealTxs in [1..32].",
+   "//",
+   "// @Choreography - 14 state-chained rollups (ids 13277..13290). The ETH leg:",
+   "//      13277        : [slot0 account (settled no-op)] [slot1 DEPOSIT 908.99 ETH (skipped -> unbacked mint)]",
+   "//      13278..13283 : same trick for DAI / wstETH / yvDAI / yvWETH / LUSD / yvLUSD",
+   "//      13284..13289 : withdraw those 6 assets (settled) to the attacker EOA",
+   "//      13290        : [slot0 WITHDRAW 908.99 ETH (settled) -> attacker EOA]",
+   "//",
+   "// Requires an archival mainnet RPC (state at block 25,300,000) for the `mainnet` endpoint."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "inline",
+    25300000
+   ]
+  ],
+  "ntx": 2
+ },
+ "2026-06__AztecEscapeHatch_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$2.2M (1158 ETH + 150,000 DAI + 0.4696 renBTC)",
+   "// Attacker : 0x6952d9246e9afe8b887b2877225163436f78e97f",
+   "// Attack Contract : none (attacker EOA calls escapeHatch directly)",
+   "// Vulnerable Contract : 0x737901bea3eeb88459df9ef1be8ff3ae1b42a2ba (Aztec V1 rollup)",
+   "// Verifier : 0x48cb7ba00d087541dc8e2b3738f80fdd1fee8ce8 (TurboVerifier / Turbo-PLONK)",
+   "// Attack Tx (ETH)   : https://etherscan.io/tx/0xab306cd2184d23b6ba3e151b10b3b9a0b81f211cc16f4f3b0c79f0b17a59c2b5",
+   "// Attack Tx (DAI)   : https://etherscan.io/tx/0x5c196c37a109d74c9797254287a0331f30e0daa637af241bd28fdc43774705c3",
+   "// Attack Tx (renBTC): https://etherscan.io/tx/0x9e1d6ab7c20ae235409d7dd3a9cd47c04f07293585b3498b8beed82d6f6b03ca",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x737901bea3eeb88459df9ef1be8ff3ae1b42a2ba#code",
+   "// @Analysis",
+   "// The Aztec V1 rollup exposes escapeHatch(bytes proofData, bytes signatures, bytes",
+   "// viewingKeys), a permissionless exit that accepts a Turbo-PLONK rollup proof and pays",
+   "// out the encoded withdrawal. The attacker submitted proofs the TurboVerifier accepted",
+   "// yet that authorized withdrawing the rollup's entire pooled ETH/DAI/renBTC balance to",
+   "// an address with no matching deposit, breaking the rollup's value-conservation invariant.",
+   "// Each proof is a cryptographic witness bound to the rollup's on-chain roots at its block."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "inline",
+    25339093
+   ],
+   [
+    "inline",
+    25339168
+   ],
+   [
+    "inline",
+    25339171
+   ]
+  ],
+  "ntx": 3
+ },
+ "2026-06__AztecEscapeHatch_exp2.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : N/A (whitehat educational reproduction; no funds at risk)",
+   "// Worst-case impact : ~$2M, matching the separate vulnerability that actually drained the contracts",
+   "// Attacker : Any caller during an escape-hatch-open block",
+   "// Vulnerable Contract : 0x737901bea3eeb88459df9ef1BE8fF3Ae1B42A2ba (Aztec Connect RollupProcessorV2)",
+   "// Attack Tx : N/A (whitehat fork reproduction)",
+   "//",
+   "// @Analysis",
+   "// Chain       : Ethereum mainnet",
+   "// Date        : Jun-22-2026",
+   "// Fork block  : 25,295,800 (escape hatch open)",
+   "// Note        : The Aztec Connect contracts were already drained through a different vulnerability,",
+   "//               so this is a purely educational reproduction and no funds are at risk.",
+   "// Disclosure  : https://x.com/ivanbogatyy/status/2069159603942596830",
+   "//",
+   "// @Root cause - escape hatch publishes an unconstrained inner proof_id:",
+   "//",
+   "//   escape_hatch_circuit.cpp publishes the inner proof id with:",
+   "//       public_witness_ct(&composer, 0); // proof_id.",
+   "//",
+   "//   public_witness_ct() makes the value public but does not constrain it to 0. A prover can publish",
+   "//   proof_id = 1 while still proving a join-split with public_input > 0 and output notes funded by",
+   "//   that public input.",
+   "//",
+   "//   RollupProcessor.processDepositsAndWithdrawals() settles public deposits/withdrawals only when:",
+   "//       proofId == 0 && (publicInput != 0 || publicOutput != 0)",
+   "//",
+   "//   Therefore the first escape proof below mints a 150,000-DAI private note from public_input =",
+   "//   150_000e18 while",
+   "//   publishing proof_id = 1, causing Solidity to skip pending-deposit validation/debit. The second",
+   "//   escape proof spends the forged note and withdraws 150,000 DAI to the receiver.",
+   "//",
+   "// The compact fixture proofs start from the empty rollup roots. This PoC patches only the deployed",
+   "// processor's five root/id/size slots to those fixture starting roots. The fork still uses the real",
+   "// deployed RollupProcessor, real deployed verifier, real DAI token, and real DAI vault balance."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "OPEN_ESCAPE_BLOCK",
+    25295800
+   ]
+  ],
+  "ntx": 0
+ },
+ "2026-06__BOSS_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 10,207.54 USDT",
+   "// Attacker : 0x618639fe719987153e0ec3fe494aa9a62ca02c91",
+   "// Attack Contract : 0x6a37e235f1a9823406c14d377870046419f9803d",
+   "// Vulnerable Contract : 0x876d4539b7f13dddea969190c9a231a4b91735cf",
+   "// Victim : 0xe4021651f01a00b89410c64de39996da3974d779",
+   "// Attack Tx : https://bscscan.com/tx/0x96d1a0175eb4a82585db62a374518391f6b575a07c25c0e2874ca82400b830c7",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x876d4539b7f13dddea969190c9a231a4b91735cf#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/audit_911/status/2063819348305985748",
+   "//",
+   "// The attacker used a Moolah USDT flash loan, BOSS helper mint/burn calls, and then repeatedly swapped",
+   "// against a BOSS/USDT Pancake pair after reducing its BOSS side to 10 tokens. Each loop transferred",
+   "// pairBossBalance / 10 BOSS into the pair and swapped out USDT using the post-tax amount received by the pair."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    102671877
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__BYToken_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$87,402 (146.60 WBNB drained from the BY/WBNB PancakeSwap pair)",
+   "// Attacker EOA     : 0x047547A4fa4a67C1032d249B49EC1a79c0460BAD",
+   "// Attacker Contract: 0xc08106a36BfA9CFad264F0d64fC45B93543485Ec",
+   "// Vulnerable       : 0x6f50cffEcd4e00EcF7E442774C08c089450B62Ca (BY token)",
+   "// Victim pair      : 0x1F358e18e0DB68FF33C2319C8DaD328eDF9B7059 (BY/WBNB)",
+   "// Attack Tx        : 0xe31c681eee764fb94b1b6bda3bbb0e4f25acb129c19040b9f58ad30541980979",
+   "// Attack date      : June 4, 2026  Chain: BSC  Block: 102329719",
+   "// SlowMist         : https://hacked.slowmist.io/ (BY, BSC, ~$87.4K)",
+   "//",
+   "// Root cause: triggerAutoBurn() is permissionless.",
+   "// Attacker corners BY supply via router, donates WBNB to hit trading threshold,",
+   "// triggers burn to crash BY reserve, then sells tiny BY to drain WBNB."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    102329719
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__CookFinanceIssuance_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~$50,000 USD",
+   "// Attacker : 0xee18c4c2e123402731f43d680e75ca2809c30f8b",
+   "// Attack Contract : 0xeffcb496cae89e7e92abe17d22386345707ceee4",
+   "// Vulnerable Contract : 0x7db3cbaf736c049933a3af28dbed4a4442aa89d0",
+   "// Victim CKToken in this tx : 0xa4e9f6032ee717710d8fd3dce0367d283e16f50e",
+   "// Attack Tx : https://bscscan.com/tx/0x51e46828b7aabfa810910b3f8ca535053716e6bcb8b7f94a4ff59757d71a1bca",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x7db3cbaf736c049933a3af28dbed4a4442aa89d0#code",
+   "//",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2071497001443770684",
+   "//",
+   "// Attack summary: the attacker seeded thin Pancake component pools, called Cook Finance",
+   "// issueWithSingleToken2 twice with caller-chosen component weightings, removed the seeded LP, and",
+   "// sold the recovered CKToken components for BNB.",
+   "// Root cause: issueWithSingleToken2 used attacker-supplied weightings to trade CKToken holdings",
+   "// through a Pancake V2 spot-price adapter with zero minimum output, so thin-pool manipulation turned",
+   "// a one-unit issue request into real CKToken component outflows."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    106740999
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__DIP_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 111,097.59 USDC",
+   "// Attacker : 0x0d4024cd27538350a911d9b7ee90811fa4875ba3",
+   "// Attack Contract : 0xddef10a85a5c67a9af8398d297aa51f8716383c7",
+   "// Vulnerable Contract : 0x6c60bf5db0670ae94489d3dde2c60f271625db50",
+   "// Victim : 0xf7d8267d01d1104da2dd30828aa9c0e1647919ef",
+   "// Attack Tx : https://bscscan.com/tx/0x1c09395848a87069c9d6ddbe5adc6249510aba7a2a83479a74b4280cafb5fb29",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x6c60bf5db0670ae94489d3dde2c60f271625db50#code",
+   "// Attack Contract Code: https://bscscan.com/address/0xddef10a85a5c67a9af8398d297aa51f8716383c7#code (open source)",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2067059314519417163",
+   "//",
+   "// The attacker flash-swapped AIC, used DIP's sell fee plus double router-transfer bug to shrink the DIP/AIC",
+   "// pair's DIP reserve with skim/sync, swapped the remaining DIP for nearly all pair AIC, repaid the flash swap,",
+   "// and swapped residual AIC into USDC for the transaction sender."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    104598278
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__DLMC_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 222,560.22 USDT",
+   "// Attacker : 0x701bb7b460ae231dbbcfa3d87f0ab5b458429699",
+   "// Attack Contract : 0xe81bf6e392eca9ad594b5452ea53cf7071760a04",
+   "// Attack Deployer : 0x74c4a756933d0f713facb1dea325ef511646c3b1",
+   "// Vulnerable Contract : 0xf2ca2a3572b26ae7c479dc7ae36d922113b1bdf2",
+   "// Victim : 0xf2ca2a3572b26ae7c479dc7ae36d922113b1bdf2",
+   "// Attack Tx : https://bscscan.com/tx/0x151025d3f0a782340a74d30ef33a5fad044b838e74437a803f0652e70c231306",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0xf2ca2a3572b26ae7c479dc7ae36d922113b1bdf2#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2069957542109958498",
+   "//",
+   "// The attacker used a Pancake USDT/WBNB flash swap to buy DLMC through two registered contracts. The second buy",
+   "// inflated DLMCToken's reserve-derived livePrice, then the first contract sold the maximum DLMC amount backed by",
+   "// DLMCToken's USDT balance, draining nearly all protocol USDT before repaying the Pancake pair."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    106091606
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__DTXT_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 35,041.11 USDT",
+   "// Attacker : 0xd304ea1592f733e0a46436a01fe54bd504009526",
+   "// Attack Contract : 0x3065bc8ed8bd53bdc3fd4633c3097c40726b5f5f",
+   "// Vulnerable Contract : 0xac9bf7c320d4ce2d0ac978b83955dd67351897d2",
+   "// Victim : 0x90bfc1dbc878ba54858ba8a635b3daebd2ac6c01",
+   "// Attack Tx : https://bscscan.com/tx/0x07ba2ccf2b5c1aaca4c017af4fe87762a73ef7177f6ea8bb569367e908a0671d",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0xac9bf7c320d4ce2d0ac978b83955dd67351897d2#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/audit_911/status/2063793931138347015",
+   "//",
+   "// The attacker used a Moolah USDT flash loan and a pre-funded DTXT helper to add/remove DTXT/USDT",
+   "// liquidity. A 1-wei USDT transfer then made DTXT misclassify a large transfer into the Pancake pair",
+   "// as liquidity addition, bypassing sell fees before swapping DTXT for USDT."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    102432239
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__JB_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 49958.06 USDT",
+   "// Attacker : 0xd99e1abfc5dd5034d7ff63828d16c5e945d1b856",
+   "// Attack Contract : 0xcc21c75f9e13054667663f9ed37f41e65b52dee7",
+   "// Vulnerable Contract : 0x1b5732eb98911c25acf7bdfaffb9409782cae6d7",
+   "// Attack Tx : https://bscscan.com/tx/0x54e120b8d62a9d7cef94bf51f1f5b8aa13565d76d8797a79afeeb25ed0e1dc25",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x1b5732eb98911c25acf7bdfaffb9409782cae6d7#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/audit_911/status/2067943961327763788",
+   "//",
+   "// The attacker flash-borrowed WBNB, used it as Venus collateral, borrowed 70M USDT, and fed the USDT into",
+   "// the unverified JB helper. Repeated JB helper cycles used the live JB balance to sell/burn/sync through the",
+   "// JB/USDT pair, releasing USDT from the pair. Venus was repaid and the remaining USDT was forwarded as profit."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    104980466
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__LBP_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 610.56 BNB",
+   "// Attacker : 0xb26dfe6b6180a30e2a2d9826867cc7e06631825a",
+   "// Attack Contract : 0x5449ded887576f43fc339851e942ebc1e6f8118b",
+   "// Vulnerable Contract : 0x88886f0fd371dff856291badced45922bc888888",
+   "// Attack Tx : https://bscscan.com/tx/0x55856d9fda4c5be5193561c7d775e823c3d6e499da44aab9da963daf61c50b0c",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x88886f0fd371dff856291badced45922bc888888#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2067329401977532429",
+   "//",
+   "// The attacker used Moolah and Pancake Vault flash liquidity to stage LBP LP credit, trigger LBPHashrate reward",
+   "// accounting, and sell the inflated LBP balance exposed by LBP.balanceOf(). The final USDT was swapped to WBNB,",
+   "// unwrapped, and forwarded as BNB profit after a 5 BNB builder payment."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    104727183
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__LixirPermitDrain_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 2.60 ETH, 4,477.72 USDC, 3,609.95 USDT, 24,182.56 LIX",
+   "// Attacker : 0x3Fa8cF7FeA68C8E76A9838d77889464DdFb6a6cf",
+   "// Attack Contract : 0xEFd1b12F5E3c35D7daE0D1449674C247566f9b76",
+   "// Vulnerable Contract : 0xfD4c9a491DD777b8b3e13659e9E379252eC78390; 0x49bba4C5C4F8a2D444Ca5fDA1b3137D94Df40465; 0xF4AF7Ae20EB7334Cbdf334EaF850e7DB42394839;",
+   "//                       0xC870d944Dd883f25a1b7B3312bc2449DD5B0267d; 0xF4aAda01bF9d44FE0D03a6b2Fa6519E3d7325556; 0xecC2b0296EaE113a114CcB9F8846A7852545DC58",
+   "// Attack Tx : https://etherscan.io/tx/0x17026faca0b8e4cb7531e4fb277c390eb165e81229628e0192923ad1d90a41da",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xfD4c9a491DD777b8b3e13659e9E379252eC78390#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2070362661691207935",
+   "//",
+   "// Lixir vault-token permits accepted a dummy signature as long as ecrecover returned a nonzero address.",
+   "// The attacker used the forged permit allowance to withdraw each holder's full vault-token balance."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    25391315
+   ]
+  ],
+  "ntx": 3
+ },
+ "2026-06__NovaBox_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 56.73 ETH",
+   "// Attacker : 0x3690c5efc63eea1167c4d92a3f2dd8afdb85c294",
+   "// Attack Contract : 0xb50be385f6eb02ae379da3d3a1bb58a0dc260858",
+   "// Vulnerable Contract : 0xbc4191167d4b0251cab5201a527daa8a7d3846b0",
+   "// Victim : 0xbc4191167d4b0251cab5201a527daa8a7d3846b0",
+   "// Attack Tx : https://etherscan.io/tx/0x0cfa357e9e4db1540246f17cb6bfa0634ff8727d7cf241b63fb22605021c8844",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xbc4191167d4b0251cab5201a527daa8a7d3846b0#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2064616360466919793",
+   "//",
+   "// NovaBox blocks contract ETH deposits with extcodesize(msg.sender) == 0 and adds new dual ETH/NOVA depositors to the",
+   "// dividend list without initializing their dividend checkpoints. The attacker deposits through a constructor helper,",
+   "// joins the list with zero checkpoints, then immediately withdraws ETH and receives stale historical ETH dividends."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "inline",
+    25281767
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__OLPC_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 1,115,903.66 USDT",
+   "// Attacker : 0x18d6c39ae9e537f948aa2212d44d8c23944fc188",
+   "// Attack Contract : 0x18d6c39ae9e537f948aa2212d44d8c23944fc188",
+   "// Vulnerable Contract : 0x58815cdf9955121a6274680ab396a36fc9e00000",
+   "// Attack Tx : https://bscscan.com/tx/0x8dabb60a94e5124462e5f494a25c14bcd52f6f4d1f7c665a249496f4c6c24764",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0x58815cdf9955121a6274680ab396a36fc9e00000#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/exvulsec/status/2068308334512365924",
+   "// Root Cause : OLPC owner set decimalsValue to 7326680472586200649 at BSC block 96479712",
+   "// (2026-05-05 08:19:47 UTC), making tiny dust transfers force large pair balance decay.",
+   "// Setup Tx : https://bscscan.com/tx/0xa413fdf688398348ddf0246275c6fe3a98806670252e44bfe0acd50b4d50efa2",
+   "//",
+   "// The OLPC token's transfer hook updates price state from Pancake pairs and allows the OLPC/LABUBU",
+   "// pair reserve to be synchronized to a manipulated token balance. After repeated sync/skim cycles,",
+   "// a Pancake supporting-fee swap with amountIn = 0 reads the inflated OLPC pair balance as input and",
+   "// releases LABUBU, which is routed through WBNB into USDT."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    105326392
+   ]
+  ],
+  "ntx": 2
+ },
+ "2026-06__OceanBPoolSideStaking_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~127.86K mOCEAN",
+   "// Attacker : 0x3fa8cf7fea68c8e76a9838d77889464ddfb6a6cf",
+   "// Attack Contract : 0xdd4bfd70117b5b6b343fc8d2c8c0075d095dbee5",
+   "// Vulnerable Contract : 0xbb3051df2d3e408dae6e6daa2296bc6215f0dcfd",
+   "// Victim : 0xe7832A036da14dC3BBcEc5F73a8193221E9F0DA5, 0x2dd64bA8d9b9B1bB402Aa70214E1Fb1D7AF314a1, 0x25faf893edCef3b1C94029f01a088448669fcB9a, 0x1f5927CB77EA8449F0281ed14847A70d7A4f7053, 0x56A5cf2fB3f5b12e6c4bC4C0f100800D3735E522, 0x569C692125CF32bAF19E4ce713F9cf43e4c18c2C, 0x95f57249e6DD394318025068a8BFC841ac6eC0DD, 0x193F1cE9108644cD4d09C769d8DCD100F2B901D6",
+   "// Attack Tx : https://polygonscan.com/tx/0x6dc8a7fba1303faef3ec7afa770b90b17ec5ecd73b51229277a9b0492e285796",
+   "// @Info",
+   "// Vulnerable BPool Code : https://polygonscan.com/address/0xbb3051df2d3e408dae6e6daa2296bc6215f0dcfd#code",
+   "// SideStaking Code : https://polygonscan.com/address/0x3efdd8f728c8e774ab81d14d0b2f07a8238960f4#code",
+   "// mOCEAN Proxy : https://polygonscan.com/address/0x282d8efce846a88b159800bd4130ad77443fa1a1#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/defimonalerts/status/2070362661540286735",
+   "//",
+   "// The attacker flash-swapped mOCEAN, repeatedly performed max single-sided mOCEAN joins into Ocean BPool",
+   "// pools, and then exited BPT back to mOCEAN. BPool's join and exit math is asymmetric, and SideStaking",
+   "// automatically mirrored each single-sided join/exit with datatoken staking/unstaking, letting the attacker",
+   "// redeem more mOCEAN than was deposited."
+  ],
+  "chains": [
+   "polygon"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    89107756
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__RoyalRoyalties_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 261,162.93 USDC",
+   "// Attacker : 0xbd829aa63311bb1e3c0ea58a7193364de670bd56",
+   "// Attack Contract : 0x11ca9155aedfeb6772df5ea42ff714db7fba6adb",
+   "// Vulnerable Contract : 0xd5b297c08d890376b6cbdba6023a39ffbdf65c78",
+   "// Attack Tx : https://polygonscan.com/tx/0x7a92106f145045b7a2bdce60a22109739f9b0cd0185bf16ff83fd1fac98cb42e",
+   "// @Info",
+   "// Vulnerable Contract Code : https://polygonscan.com/address/0xd5b297c08d890376b6cbdba6023a39ffbdf65c78#code",
+   "// Royalty Contract Code : https://polygonscan.com/address/0x1e0598614d9168a657cb57bd038dfd71812c9074#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2069596801725002121",
+   "//",
+   "// Root Cause : Royal1155LDA updates custom per-tier balance bookkeeping for every ERC1155 batch",
+   "// item even when `amounts[i] == 0`. With owned-token backfill incomplete, a zero-balance sender can",
+   "// batch-transfer 100 zero-amount tier-42 LDAs to a fresh receiver. The Royalties contract then reads",
+   "// the receiver's inflated `tierBalanceOf` as 100 while tier supply is 1, so one deposit is claimed",
+   "// at 100x pro-rata ownership."
+  ],
+  "chains": [
+   "polygon"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    89018050
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__TOPBPool_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 944.20 WETH",
+   "// Attacker : 0xff8ef7bc455a57e5893232203052ce0232b39fa2",
+   "// Attack Contract : 0x25c68c44a96518294f5b47d758f98309c6729a21",
+   "// Vulnerable Contract : 0xb935c3d80229d5d92f3761b17cd81dc2610e3a45",
+   "// Attack Tx : https://etherscan.io/tx/0x967aa34c69b7775c718545c7f94d92e965eb5fc553c0f27f6f1a9c65c93ac156",
+   "// @Info",
+   "// Voting Entry Proxy : https://etherscan.io/address/0xb501d26ba74eab601576b62617cf41042bef6865#code",
+   "// Voting Implementation : https://etherscan.io/address/0xb935c3d80229d5d92f3761b17cd81dc2610e3a45#code",
+   "// TokenManager Entry Proxy : https://etherscan.io/address/0x3ac1856376c25a7aebbad1c2a10db63b5dbb7306#code",
+   "// TokenManager Implementation : https://etherscan.io/address/0xde3a93028f2283cc28756b3674bd657eafb992f4#code",
+   "// Balancer BPool : https://etherscan.io/address/0x0fa3e014fa2e751f78e53dca766fac2223327329#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2064616112822583505",
+   "//",
+   "// The historical attack contract held 8,192.000001 TOP against a 16,384 TOP snapshot supply.",
+   "// It created an Aragon vote to mint 10 billion TOP to itself, voted the proposal through in the same",
+   "// transaction, then sold the newly minted TOP into the Balancer BPool for WETH."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    25279891
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__Thetanuts_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 105471.50 USDC",
+   "// Attacker : 0x30498e4466789e534c72e03b52a16c978655b41e",
+   "// Attack Contract : 0x0f9daa9e0adced4e64578b2e131930dde54e492e",
+   "// Vulnerable Contract : 0xc2c3ae0a7b405058558c9b4a63b373486cb86ac7",
+   "// Attack Tx : https://etherscan.io/tx/0xbba9f138fe39503bfd1aa62932dbd6ab35d37d23d48e4b7bf2988a9d5dc39fec",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xc2c3ae0a7b405058558c9b4a63b373486cb86ac7",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/PeckShieldAlert/status/2066540451126190312",
+   "//",
+   "// The attacker flash-loaned Thetanuts index-vault shares, claimed component vault shares, then repeatedly minted",
+   "// replacement index shares while component transfer amounts stayed at zero. The newly minted shares repaid Aave,",
+   "// leaving USDC and residual component-vault shares for the profit receiver."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "forkBlock",
+    25323328
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__Vault4626_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~13.53 WETH",
+   "// Attacker : 0xA27eAE743Cd8C03E9b7c25ebF43DADbBC6Df9bFA",
+   "// Attack Contract : 0x47e775b8f175034b22fbA3A0F5B9E0F02551Af3C",
+   "// Vulnerable Contract : 0xD08579102fc28355C5839019b730Ce58F84E6a4d",
+   "// Attack Tx : https://basescan.org/tx/0x2f2e12fbdf541c28f3667153e5338f73a313096338dc5ca592453566debcd790",
+   "// @Info",
+   "// Vulnerable Contract Code : https://basescan.org/address/0xD08579102fc28355C5839019b730Ce58F84E6a4d#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/DefimonAlerts/status/2071495744071086510",
+   "//",
+   "// Attack summary: deposit borrowed USDC for nearly all vault shares, donate WETH to inflate totalAssets,",
+   "// then redeem so the vault pays USDC value and the actual WETH side.",
+   "// Root cause: Vault4626.totalAssets() quotes idle non-asset WETH into asset value, while redeem() later",
+   "// transfers the non-asset WETH itself to the redeemer."
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    47958574
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-06__WHALE_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 3,460.41 USDT",
+   "// Attacker : 0xa27eae743cd8c03e9b7c25ebf43dadbbc6df9bfa",
+   "// Attack Contract : 0x4ce3e5dea552d1440a8cd766a13a6384ea4d1386",
+   "// Attack Deployer : 0x6d4dce5c6972127f4ff40354f5efc31bf7e30719",
+   "// Attack Logic : 0x8420c6657bf7c37c7014e158404b6416fd82f714",
+   "// Vulnerable Contract : 0xabc79b7c5a0f1fe0ac55fcb7e659d5817e530123",
+   "// Victim : 0xabc79b7c5a0f1fe0ac55fcb7e659d5817e530123",
+   "// Attack Tx : https://bscscan.com/tx/0xf8f431b392a50eb997ecae2e35668d6dd4dc8568d002057600d2532e18f36d86",
+   "// @Info",
+   "// Vulnerable Contract Code : https://bscscan.com/address/0xabc79b7c5a0f1fe0ac55fcb7e659d5817e530123#code",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/audit_911/status/2067451654694412720",
+   "//",
+   "// The attacker used a Moolah USDT flash loan plus a Pancake Infinity Vault lock to manipulate the WHALE/USDT",
+   "// Pancake pair while WHALE's transfer pipeline staged LP credit, flushed POL liquidity, and settled hashrate rewards.",
+   "// The final reserve imbalance let the attacker swap a large WHALE balance out of the pair for USDT, repay both",
+   "// temporary funding sources, and forward the remaining USDT to the attacker EOA."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "inline",
+    104744230
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__CompoundProvider_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// CompoundProvider \u2014 allowance-sweep / missing access control on _takeUnderlying.",
+   "// ~$774,943 USDC drained on Ethereum. The provider proxy exposes an entrypoint",
+   "// (selector 0xe321fa05) that accepts an ATTACKER-CHOSEN recipient plus arbitrary",
+   "// (victim address, amount) arrays, and pulls each victim's USDC via transferFrom \u2014",
+   "// with no authorization check that the caller may move those funds. Any address",
+   "// that had previously approved the provider was drainable. The swept balance is",
+   "// then forwarded to the attacker EOA.",
+   "//",
+   "// Exploit tx: 0xd191fead1b9a2244f2837560f35d4fc865404914d229bfcb0172d1a7a9895afb",
+   "//   from (attacker EOA): 0xF908610E9174c7cd6e9dfD371e238be4511297A1",
+   "//   to   (CompoundProvider proxy, EIP-1967): 0x66c6f3b4B4b458e6d764759Ecf122484ebEf7580",
+   "//   recipient/intermediary: 0xdaa037f99d168b552c0c61b7fb64cf7819d78310",
+   "//   Net: 50 victim wallets -> intermediary -> attacker EOA, 774,943.38 USDC.",
+   "//",
+   "// PoC: fork one block before the exploit, prank the attacker EOA, replay the EXACT",
+   "// calldata against the proxy verbatim. Assert the attacker EOA's USDC balance rises",
+   "// by the reported ~774,943 USDC (aggregate theft \u2014 the bottom-line impact).",
+   "//",
+   "// Run: forge test --contracts ./src/test/2026-07/CompoundProvider_exp.sol -vvv",
+   "// Requires an Ethereum archive RPC (see foundry.toml [rpc_endpoints])."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    25535120
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__CrowdRingCircle_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// CrowdRingCircle (CRC) \u2014 \"sell destroy\" reserve-burn price manipulation on BNB Chain",
+   "// ~$201K USDT drained from the CRC/USDT PancakeSwap LP.",
+   "//",
+   "// Exploit tx : 0xeaef22325e02ac65a8e1f2e1a3a43f7b7ac8d2323ce6f698a90813e77017c834 (block 110301524)",
+   "//   The tx is a CREATE (empty `to`): the whole flash-loan attack runs inside the attacker",
+   "//   contract's constructor. Flash-funded via PancakeSwap Infinity Vault + Venus.",
+   "//",
+   "// Root cause: CRC's `_update` override has a \"sell destroy\" path. On any transfer TO a DEX pair it",
+   "//   burns CRC straight out of the pair's own balance (`_safeDeductBalance(to, amount)`) then calls",
+   "//   `IUniswapV2Pair(to).sync()`. Repeatedly pushing CRC into the LP forces the pair to burn its own",
+   "//   reserves and re-sync, skewing the ratio so CRC's price inflates; the attacker then swaps CRC",
+   "//   for USDT at the manipulated rate.",
+   "//",
+   "// CRC token  : 0x8581433150f2C48ff2efE5A22b17c7D405054509",
+   "// Victim LP  : 0xd8799A644850c065388C22Df4EE0C28472922526 (CRC/USDT PancakeSwap pair)",
+   "// Attacker   : 0x34579eA92a07a88F5505dFaA4D99Ab94b2784087",
+   "//",
+   "// Forensic replay: the exact creation bytecode is hardcoded below and re-deployed via raw CREATE",
+   "// at the historical fork block, pranking the attacker EOA as both msg.sender and tx.origin",
+   "// (the constructor guards on the ORIGIN opcode).",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/CrowdRingCircle_exp.sol -vvv",
+   "//   (add `--evm-version cancun` if you hit a frameless [NotActivated] EvmError)",
+   "//   Requires an ARCHIVE BSC RPC mapped to the `bsc` rpc alias."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    110301524
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__ExchangeIssuance_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Index Coop ExchangeIssuance drain via attacker-crafted SetToken NAV manipulation.",
+   "//",
+   "// Incident tx : 0x7f45428df558fba1d19ab115effef8ecd1e6e05b491f02202b0815e47b8d658b",
+   "//   Ethereum mainnet block 25644621. The attacker EOA 0x0736930a signs three sequential txs",
+   "//   in this same block:",
+   "//     tx0 (nonce 0, CREATE)      -> deploys the orchestrator/\"valuer\" contract at",
+   "//                                   0x388a3Da3...994802.",
+   "//     tx1 (nonce 1, -> 0x388a..) -> setup: deploys the malicious SetToken (BHSET) at",
+   "//                                   0xf7c2d0a2...06948 through the real Set Protocol",
+   "//                                   SetTokenCreator, wires the attacker-controlled manager/hook",
+   "//                                   0x8f449d85...a26c58 and a custom NAV valuer, initialises the",
+   "//                                   BasicIssuanceModule + CustomOracleNavIssuanceModule.",
+   "//     tx2 (nonce 2, -> 0x388a..) -> THIS exploit call (calldata replayed below).",
+   "//   Forking at the tx2 hash makes foundry replay tx0 and tx1 first, so the orchestrator, the",
+   "//   SetToken and the manager already exist at the exact on-chain addresses before the drain.",
+   "//",
+   "// Root cause (attacker-deployed-contract on-chain state manipulation, NOT a compromised",
+   "// signer / admin key). Every privileged role in the flow -- the SetToken's manager, its",
+   "// pre-issue hook, and its NAV valuer -- is a contract the attacker deployed in this same",
+   "// block. No Index Coop key, no privileged EOA, and no signature is involved. Confirmed from",
+   "// the trace: the only externally-owned account in the call tree is the attacker EOA, and it",
+   "// merely calls its own orchestrator.",
+   "//   Index Coop's ExchangeIssuance.issueSetForExactToken trusts arbitrary SetToken state with",
+   "//   no lock between the quote read and the settlement transfer. It reads getComponents() and",
+   "//   getDefaultPositionRealUnit() to size the trade, but the SetToken's positionMultiplier was",
+   "//   inflated (~93.66x) mid-flow by the attacker's manager firing a fake NAV issue/redeem",
+   "//   valuation through the CustomOracleNavIssuanceModule. When BasicIssuanceModule.issue then",
+   "//   settles, it reads the inflated *real* units and pulls ExchangeIssuance's OWN component",
+   "//   inventory (LINK/UNI/AAVE/MKR/WBTC/HEX/BIT/USDC/WETH) into the SetToken -- a TOCTOU between",
+   "//   the units read for pricing and the units used for the transferFrom.",
+   "//",
+   "// Flow inside tx2 (all driven by the orchestrator 0x388a..):",
+   "//   1. Balancer flash-loans ~0.1089 WETH to the orchestrator.",
+   "//   2. Orchestrator seeds a fake BHS/WETH Uniswap pair and buys real basket components,",
+   "//      forwarding them to the manager 0x8f449d.. which NAV-issues 1e18 BHSET -> inflates",
+   "//      positionMultiplier.",
+   "//   3. Orchestrator approves 0.05 WETH and calls ExchangeIssuance.issueSetForExactToken(BHSET,",
+   "//      WETH, 0.05e18, 0). ExchangeIssuance settles against the inflated units and ships its own",
+   "//      component inventory into the SetToken, minting BHSET to the orchestrator.",
+   "//   4. Orchestrator redeems the BHSET, pulling the real components back to itself, unwinds and",
+   "//      repays the flash loan. The drained basket (~9.6K USD) stays in the orchestrator.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/ExchangeIssuance_exp.sol -vvv",
+   "//   (point the `mainnet` rpc alias at an ETH archive node)"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [],
+  "ntx": 1
+ },
+ "2026-07__LULA_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// LULA \u2014 flash-loan-amplified reward-recycle self-drain on BNB Chain",
+   "// ~$578K (578,295 USDT) drained from the LULA/USDT PancakeSwap pair in a single tx.",
+   "//",
+   "// Exploit tx : 0xa219ab9d57e520e5235b15a8801f4ebac8cc45551be0430ce4e49caea0411d7c (block 112655390)",
+   "//   Direct CALL (non-empty `to`): the attacker EOA calls its OWN already-deployed helper",
+   "//   contract 0x5E50...A816 with selector 0x763a0e5b(uint256=15000000), forwarding 1e10 wei.",
+   "//   The whole flash-loan + swap + claim/recycle loop runs inside that helper.",
+   "//",
+   "// Root cause (reproducible contract mechanism, NOT a key/signer/privileged-claim compromise):",
+   "//   Weeks before the drain the attacker deployed helper/clone contracts and, in EARLIER",
+   "//   transactions (~12 days prior), accumulated referral/team \"reward\" credit inside the LULA",
+   "//   token's reward bookkeeping. LULA's reward payout scales with how deflated the LULA/USDT",
+   "//   pool is. In the exploit tx the helper flash-loans a large USDT amount, swaps it to sweep",
+   "//   LULA out of the pair (maximizing the pool's deflation), then calls the PUBLIC",
+   "//   claimReward() -> recycle() path. Because the pre-accumulated reward now redeems against a",
+   "//   drained pool, it pays out far more USDT than was ever deposited. The helper repays the",
+   "//   flash loan and the attacker EOA nets ~578K USDT. Every step is a public function driven by",
+   "//   attacker-controlled on-chain state \u2014 no owner key, no privileged signer, no admin call.",
+   "//",
+   "// The attacker is a plain EOA (code == 0x at the fork block) calling a contract it itself",
+   "// deployed, so the faithful reproduction is to fork at the exploit block (where the ~12-day",
+   "// pre-accumulated reward state and helper/clone contracts already exist on-chain) and re-issue",
+   "// the exact original calldata, pranking the attacker EOA as both msg.sender and tx.origin.",
+   "// Calldata and value are hardcoded below (no env vars). We do NOT re-run the 12-day setup.",
+   "//",
+   "// LULA token   : 0xf5d7029eb6751d170dcF0Bb1c87Af6f93d5A2e9a (\"LULA\")",
+   "// LULA/USDT LP : 0xf0b36389a12a28be1280c0eC2a4bbc76889d6a96 (victim, PancakeSwap pair, drained)",
+   "// USDT         : 0x55d398326f99059fF775485246999027B3197955 (18 decimals on BSC)",
+   "// Attacker EOA : 0x2677806d48325Ced7533C54B86eD5e99b129a4ED (pure EOA)",
+   "// Helper       : 0x5E506Ba06Fa6C61D1069B0E68d7013DE35AFA816 (attacker contract, on-chain)",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/LULA_exp.sol --evm-version cancun -vvv",
+   "//   (cancun is REQUIRED here: without it the Venus rate-model call inside the flash-loan",
+   "//   callback dies with a frameless [NotActivated] EvmError)",
+   "//   Requires an ARCHIVE BSC RPC (fork points at one directly below)."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    112655390
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__LienFinance_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Lien Finance \u2014 permissionless bond registration + crafted payoff function mispricing.",
+   "//",
+   "// Incident tx : 0xb96d572b557a12f5ef193e88cca86123a6ae1b6e98b0eeee265870c85848e0e7",
+   "//   Ethereum mainnet block 25599302, tx index 4 (the USDC drain). The attack is staged",
+   "//   across several txs in that same block, all from EOA 0x0D7d..1808a:",
+   "//     idx 0  CREATE  -> deploys the orchestration contract 0xe74d..062e",
+   "//     idx 1  0xb67d3eef  -> BondMakerCollateralizedEth.registerNewBond(...) x3 with",
+   "//                           attacker-crafted piecewise-linear payoff functions",
+   "//     idx 2  0x973de16c  -> further bond registration / bond-group setup",
+   "//     idx 3  0x808f4a48  -> further setup",
+   "//     idx 4  0xa5514ef8  -> registerNewBondGroup + exchangeEquivalentBonds, then swaps the",
+   "//                           freshly-minted bonds through the OTC pools and sweeps the USDC",
+   "//   The faithful replay therefore deploys the exact orchestration creation bytecode at the",
+   "//   pre-attack block and calls the same four parameterless selectors, in order, as the EOA.",
+   "//",
+   "// Root cause (contract-logic bug, NOT an oracle manipulation):",
+   "//   BondMakerCollateralizedEth.registerNewBond is permissionless \u2014 anyone can register a bond",
+   "//   whose payoff (fnMap) they fully control. GeneralizedDotc._calcRateBondToErc20 prices such a",
+   "//   bond via bondPricer.calcPriceAndLeverage(payoff, oraclePrice, volatility, ...). With a",
+   "//   crafted payoff the pricer massively OVER-values a near-worthless bond. The Chainlink feeds",
+   "//   are read at their normal on-chain values during the drain tx (ETH latestAnswer 187042764678",
+   "//   ~= $1870.42, pricing oracle latestPrice 0x5f5e100 == 1e8) \u2014 no price is moved or spoofed.",
+   "//   The attacker mints the overvalued bonds for ~free and swaps them, via the OTC pools, against",
+   "//   USDC that the LP (0xA961..4d80) had granted as allowance to those pools \u2014 draining it.",
+   "//",
+   "// Verified on-chain USDC (6 dp) deltas across the drain tx:",
+   "//   attacker EOA 0x0D7d..1808a   0 -> 542,144,628,604   (+542,144.628604 USDC)",
+   "//   LP           0xA961..4d80    allowance to GeneralizedDotc pre-block 532,070,026,484 pulled",
+   "//   Final orchestration -> attacker transfer: exactly 542,144,628,604.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/LienFinance_exp.sol -vvv",
+   "//   If you hit a frameless \"NotActivated\", add: --evm-version cancun"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    25599302
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__LumiFinance_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Lumi Finance (Sodium smart account) \u2014 ERC-4337 paymaster validation-phase approval side-effect",
+   "// ~$264k on Arbitrum. An attacker-controlled paymaster caused Sodium smart accounts to grant",
+   "// max ERC20 allowances to the attacker's contract DURING UserOp validation (no user intent),",
+   "// then those allowances were batch-drained.",
+   "//",
+   "// Approval tx : 0x630654fb1c8914405cf81bb02f091b049f19403a152f624f7b8a00c7724c6604  (block 483389834)",
+   "//   attacker EOA -> 0x5636... (attacker batch contract) . 0x363e464b(address[] victims,address[] tokens)",
+   "//   -> internally calls EntryPoint v0.6 handleOps; each victim account approves 0x5636... for max.",
+   "// Sweep tx    : 0x020995ec0b5daafe8fab481e33b1b52fdbd6423578060a1f73fd2a9b9fb0ea90  (block 483390715)",
+   "//   same contract, 0x96e676e5(address[],address[]) \u2014 DIFFERENT victim batch. Not replayed here",
+   "//   (its batch isn't approved yet at the approval-block fork); we drain the approval batch directly.",
+   "//",
+   "// This is a forensic replay of a public, already-executed incident at a historical fork block.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/LumiFinance_exp.sol --evm-version cancun -vvv",
+   "//   Requires an ARCHIVE Arbitrum RPC (Alchemy works) mapped to the `arbitrum` rpc alias."
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [],
+  "ntx": 2
+ },
+ "2026-07__MOKE_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// MOKE (Moke) - unprotected public `claim()` mints protocol-reserve MOKE to any caller,",
+   "//               laundered to BNB through the project's own LP manager + dividend vault.",
+   "// BNB Chain. ~$907.7K reported loss (TenArmor). No public root-cause writeup at build time;",
+   "// mechanism below was recovered by tracing the exploit tx from scratch.",
+   "//",
+   "// Exploit tx : 0x0776048b1b58064fb31b6513721811e7b44d6bdbe7bf5833158b241ca6756a8f",
+   "//              block 113652609, tx index 26.",
+   "//",
+   "// Attacker packaging (EIP-7702): the tx has `to == from == 0xE454...DCF8a`. That EOA had a",
+   "// 7702 delegation designator (0xef0100 || 0xc7fdea02...) installed in an EARLIER block and",
+   "// revoked later, so at the fork block the attacker EOA \"is\" its own exploit contract. This is",
+   "// the attacker delegating their OWN account to their OWN code and self-signing it - NOT a",
+   "// stolen key, compromised signer, admin role, or governance/proxy upgrade. Every victim call",
+   "// below is a plain public function reached by attacker-controlled state.",
+   "//",
+   "// Root cause (the actual bug):",
+   "//   MokeReleaseContract 0x684d722e (unverified; it IS MokeToken.releaseContract()) exposes a",
+   "//   PUBLIC `claim()` (payable, ~0.000341 BNB fee). Each call pulls a large fixed slice of the",
+   "//   MOKE sitting in the protocol's internal reserve pool (0x89715a07) straight to msg.sender",
+   "//   via MokeToken.releaseFromPair(caller, ~41.68M) + addReleasedBalance(caller, ~41.68M), with",
+   "//   NO check that the caller is entitled to that allocation. The attacker calls claim() 4x and",
+   "//   walks off with ~166M MOKE minted from reserves for a few tenths of a cent in fees.",
+   "//",
+   "// Cash-out path (all public, all the project's own plumbing):",
+   "//   - Moolah (Lista Lending) 0x8f73b65b flash-loans WBNB (403,344) + BTCB (3,169) for working",
+   "//     capital; Venus (vBTC/vBNB) is used to lever the BTCB into BNB.",
+   "//   - MokeLPManager 0xacabe59b removeLiquidity() unwinds the attacker's own pre-seeded LP.",
+   "//   - The stolen \"released\" MOKE can only move to whitelisted handlers, so it is fed into",
+   "//     MokeLPDividend 0x5ae569d8: distributeDividend() swaps the vault's MOKE to BNB and bumps",
+   "//     totalDividendPerLP, then claimDividend() is run across the 100 seeded holder accounts to",
+   "//     pull the BNB out. Flash loans + Venus borrow are repaid; the attacker EOA keeps the BNB.",
+   "//",
+   "// Reproduction: fork one block before the exploit (the 7702 delegation code, the attacker's",
+   "// pre-seeded LP position, and all protocol state already exist on-chain), then re-issue the",
+   "// EXACT original calldata against the attacker EOA, pranking it as msg.sender AND tx.origin.",
+   "// revm honours the on-chain 7702 delegation, so this runs the real attacker bytecode against",
+   "// the real victim contracts. Calldata is hardcoded below (no env vars, no guesswork). We do",
+   "// NOT re-run the earlier LP-seeding / delegation-install setup.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/MOKE_exp.sol --evm-version prague -vvv",
+   "//   (prague REQUIRED: EIP-7702 delegation + Venus rate model. Needs an ARCHIVE BSC RPC.)"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    113652609
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__NFTAuctionMarketplace_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// BSC NFT Auction Marketplace -- settle-then-cancel double payout, drains the escrow pool.",
+   "// ~2.173 BNB (~$4.06k) net profit to the attacker; marketplace's entire escrowed BNB balance",
+   "// (2.2176 BNB, ~$4.15k) is drained to zero in this one tx.",
+   "//",
+   "// Root cause: the marketplace lets a listing be both settled (buyNow -> completeAuction, which",
+   "// pays the seller from the sent value) AND cancelled (delist, which refunds the same escrowed",
+   "// BNB back out of the contract's pooled balance) without completeAuction ever clearing the",
+   "// sale's paid/bid state. The attacker -- acting as both seller and buyer of a throwaway,",
+   "// self-minted NFT -- lists it, buys it (paying themselves from flash-loaned BNB), then",
+   "// immediately delists the same listing. delist re-pays the ~2.2176 BNB listing price a second",
+   "// time out of the contract's escrow pool, which is funded by OTHER users' pending",
+   "// listings/bids -- so the \"refund\" is actually drained from other victims' escrowed funds.",
+   "//",
+   "// Victim (marketplace proxy, unverified impl): 0x46c958a169b9f2688e126080c4ec422956621e09",
+   "// Attacker: 0xeaaf475db34fb66f098e51cbf0eeeff76f496974",
+   "// Exploit tx: 0x79dbf5d676c1f1d89cabc046743746b828fc0fa4ed70854c8b77335cd1c194df (BNB Chain)",
+   "//",
+   "// This was a CREATE tx (`to` is empty). The entire attack -- mint NFT, list, buyNow/",
+   "// completeAuction, flash-loan (Moolah/Lista WBNB) to fund the buy side, delist/double-refund,",
+   "// unwind the flash loan, forward leftover BNB -- runs inside the constructor of a one-shot",
+   "// factory contract, which internally deploys its own throwaway ERC721 and seller/buyer helper",
+   "// contracts via nested CREATEs. No attacker address is hardcoded in the creation bytecode (it",
+   "// only bakes in WBNB / USDT / PancakeRouter / the flash-loan pool / the marketplace address as",
+   "// immutables), so profit is forwarded dynamically to tx.origin.",
+   "//",
+   "// PoC strategy: fork one block before the exploit tx (state has the marketplace's real,",
+   "// other-users'-funded escrow balance of 2.2176 BNB), prank the attacker as both tx.origin and",
+   "// msg.sender, and deploy the EXACT on-chain creation bytecode via raw CREATE. The constructor",
+   "// replays the whole attack exactly as it happened on-chain.",
+   "//",
+   "// Run: forge test --contracts ./src/test/2026-07/NFTAuctionMarketplace_exp.sol -vvv --evm-version cancun",
+   "// Requires an archive BSC RPC under the \"bsc\" alias in foundry.toml -- the repo's default alias",
+   "// (llamarpc) does not serve historical state this far back; point it at a working BSC archive",
+   "// RPC (e.g. an Alchemy/QuickNode BSC endpoint) locally to run this test."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    110900319
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__PerpetualProtocol_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Perpetual Protocol (v2 / Curie-style perp) \u2014 missing access-control guard on",
+   "// OrderBook.updateFundingGrowthAndLiquidityCoefficientInFundingPayment().",
+   "//",
+   "// Incident tx : 0xb0a8a3cc76fb17bf965ab1dee3b76b62f79ca72def31e12f8ad8b1711625df08",
+   "//   Optimism block 154311432, tx index 12.",
+   "//   Attacker EOA 0x957c6cF5E0F69597dB7A8065c94af1A48aBCA47d sends a CREATE (to == null):",
+   "//   the ENTIRE attack lives in the contract constructor, and the deployed runtime is a",
+   "//   bare `revert` stub. So the faithful replay is: deploy the exact creation bytecode",
+   "//   (init code + constructor args) at the pre-attack block and watch the vaults drain.",
+   "//",
+   "// Root cause:",
+   "//   OrderBook.updateFundingGrowthAndLiquidityCoefficientInFundingPayment() (OrderBook.sol:232)",
+   "//   is missing the _requireOnlyClearingHouse() guard that its sibling functions carry, so an",
+   "//   attacker can call it directly. The attacker (per market):",
+   "//     1. addLiquidity() a dust order (base=2, quote=1 wei) to create a cached liquidity entry,",
+   "//     2. calls the unguarded funding function with a fabricated twPremiumX96 =",
+   "//        0x0172ebad6ddc73c86d67c5faa71c245689c107950240... (~1e70) to poison the order's",
+   "//        cached funding growth,",
+   "//     3. settleAllFunding then produces a bogus ~1.46e36 funding payment that inflates the",
+   "//        account's realized PnL,",
+   "//     4. Vault.withdraw() cashes the fake PnL out as real USDC belonging to other LPs.",
+   "//   The single tx runs this against TWO perp deployments (two vaults) and forwards the loot",
+   "//   to the attacker EOA.",
+   "//",
+   "// Constructor args baked into the creation code (from the real tx input):",
+   "//   arg0  recipient EOA      0x957c6cF5E0F69597dB7A8065c94af1A48aBCA47d",
+   "//   arg1  settlement token   0x7F5c764cBc14f9669B88837ca1490cCa17c31607  (USDC.e, 6 dp)",
+   "//   uint256[5] market #1     [vault 0x28bb.., clearingHouse 0x4f79.., .., baseToken 0xab3f.., pool 0x66b0..]",
+   "//   uint256[5] market #2     [vault 0xf127.., clearingHouse 0x8098.., .., baseToken 0x28d8.., pool 0x059c..]",
+   "//   bool, bool               (true, true) \u2014 attack both markets",
+   "//",
+   "// Verified on-chain USDC.e (6 dp) balance deltas across the attack tx:",
+   "//   attacker EOA 0x957c..      0            -> 3,062,213,107   (+$3,062.21)",
+   "//   vault #1     0x28bb..     71,777,612    -> 0               (fully drained)",
+   "//   vault #2     0xf127..  2,990,435,495    -> 0               (fully drained)",
+   "//   71,777,612 + 2,990,435,495 == 3,062,213,107  == attacker gain.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/PerpetualProtocol_exp.sol -vvv",
+   "//   If you hit a frameless \"NotActivated\", add: --evm-version cancun"
+  ],
+  "chains": [
+   "optimism"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    154311432
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__ProToken_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Pro Token (CryptoDAO / CDAO ecosystem) \u2014 reward-swap self-dealing drain on BNB Chain",
+   "// ~605K USDT drained from the USDT/Pro PancakeSwap LP in this single tx (the incident's",
+   "// ~$8.2M is the cumulative total across ~13 such transactions).",
+   "//",
+   "// Exploit tx : 0xaaea183bdb5d7e4fd3c8da1d5bfe7edcb2e1db2458cef9a3adac54db6a7793d1 (block 112654014)",
+   "//   Direct CALL (non-empty `to`): the attacker EOA calls its own already-deployed helper",
+   "//   contract 0xf00b... with selector 0x452ae331. The whole loop runs inside that helper.",
+   "//",
+   "// Root cause (reproducible contract mechanism, not a key compromise):",
+   "//   The Pro token's transfer logic auto-processes a \"reward\" on transfers involving its",
+   "//   registered player/holder addresses: it skims a 2.5% cut, then swaps the remainder of the",
+   "//   moved Pro into USDT through the USDT/Pro pair and forwards that USDT straight to a",
+   "//   \"winner\" address. The winner is one of the attacker-controlled addresses. By looping a",
+   "//   dust Pro transfer out of an attacker \"player\" clone (CLONE_A) ~300 times, the helper",
+   "//   repeatedly triggers the reward swap, each pass shipping ~2,016 USDT out of the pair to a",
+   "//   rotating trio of attacker \"winner\" addresses until the pair's USDT reserve is drained.",
+   "//   Nothing here is privileged \u2014 any address can register as a player and drive the loop.",
+   "//",
+   "// Pro token   : 0x8D65744527f55d0b2338350912d5C99A81ddF0e2 (\"Pro Token\")",
+   "// USDT/Pro LP : 0x63844BD4BFad910B1643713302a1cC1ed20d50c3 (victim, PancakeSwap pair, drained)",
+   "// USDT        : 0x55d398326f99059fF775485246999027B3197955 (18 decimals on BSC)",
+   "// Attacker EOA: 0x427671b2C8e91034A91FE698F9B7259b2345F45D",
+   "// Helper      : 0xf00bC28D22d71Be74Bc8aB0d11Fe77F6D77850ac (attacker contract, on-chain)",
+   "// Winners     : 0x4e94c21C.., 0xD9c854ED.., 0xc3994bFF.. (attacker-controlled, hold the USDT)",
+   "//",
+   "// Forensic replay: the helper contract, the player clones and the winner addresses all already",
+   "// exist on-chain at the fork block, so the faithful reproduction is to re-issue the exact",
+   "// original calldata against the deployed helper, pranking the attacker EOA as both msg.sender",
+   "// and tx.origin. The calldata is hardcoded below (no env vars).",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/ProToken_exp.sol -vvv",
+   "//   (add `--evm-version cancun` if you hit a frameless [NotActivated] EvmError)",
+   "//   Requires an ARCHIVE BSC RPC mapped to the `bsc` rpc alias."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    112654014
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__ProjektRewardVault_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Projekt (GREEN / GOLD) reward-vault drain \u2014 fake-purchase allocation, no ETH ever paid.",
+   "//",
+   "// Incident tx : 0x90f40d3c3b60370f7287d51d972ef54596c46e98f21af91b03a4e84c5e410f64",
+   "//   Ethereum mainnet block 25606412. The transaction is a raw CREATE (to == null): the",
+   "//   attacker EOA 0x61e7ad696215688d274c729a4cd0fbbc88fc4f85 deploys a contract whose entire",
+   "//   exploit runs inside the constructor. The deployed contract lands at",
+   "//   0x12d6fe4822325bba82faf6cf706e6b6885c922f9. There are no follow-up calls \u2014 the drain,",
+   "//   the flash-loan repay and the profit sweep all happen in that one deployment.",
+   "//",
+   "// Root cause (contract-logic bug, NOT an oracle / signature / privileged-key issue):",
+   "//   The reward vault 0x574fc478bc45ce144105fa44d98b4b2e4bd442cb (unverified) exposes a",
+   "//   permissionless trackPurchase(buyer) that credits an ETH allocation sized from the buyer's",
+   "//   memecoin token-balance DELTA, but never checks that any real ETH was actually spent to",
+   "//   acquire those tokens. The attacker:",
+   "//     1. flash-borrows ~14K WETH from Morpho,",
+   "//     2. pushes it into dozens of Uniswap V2 memecoin pairs and skim()s the resulting tokens",
+   "//        back to its own address, manufacturing large \"purchase\" balance deltas for free,",
+   "//     3. calls the permissionless trackPurchase to register the inflated allocations,",
+   "//     4. repays the Morpho flash loan in the same tx (net memecoin cost ~ zero),",
+   "//     5. calls massWithdraw(), which pays out msg.sender.transfer(allocation) in ETH.",
+   "//   Because the self-dealing skims size the allocation arbitrarily, the payout drains the",
+   "//   vault's ETH reward pool. No price is signed, no oracle is moved, no privileged key is used \u2014",
+   "//   every step is an ordinary permissionless call reachable by any EOA. Confirmed from the",
+   "//   on-chain trace: a single fresh EOA (0.02 ETH balance), a pure CREATE, and only",
+   "//   permissionless vault / DEX / flash-loan entrypoints in the call tree.",
+   "//",
+   "// Verified on-chain ETH movement in the drain tx (block 25606412):",
+   "//   vault 0x574f..42cb   400.662320 ETH -> 98.957635 ETH   (net -301.70468 ETH drained)",
+   "//   vault -> deployed contract, in 13 massWithdraw tranches, gross 301.70468 ETH",
+   "//   deployed contract selfdestructs at the end, sweeping 300.70468 ETH to the profit wallet",
+   "//     0x7bd736631afbe1d3795a94f60574f7fa0ae89347  (1 ETH tip goes to 0xdadb0d80..783711)",
+   "//   The attacker EOA itself only pays gas \u2014 the profit lands in the deployed contract and is",
+   "//   then forwarded by the constructor's terminal selfdestruct to the profit wallet.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-07/ProjektRewardVault_exp.sol -vvv --evm-version cancun",
+   "//   (point the `mainnet` rpc alias at an ETH archive node)"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "ATTACK_BLOCK",
+    25606412
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__RWT_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : ~118,000 USDT",
+   "// Attacker      : 0x84DD3A5D4DE44c8ad0CE032BeAb8bc3f01D1dcf7",
+   "// Attack Contract : 0x7ed953Ff42509568f620aa340a33A9373447f4CE (unverified)",
+   "// Sell Contract : 0x8812bb5FB89d69d35Ac84D2C37B55769395b9f90 (unverified, holds RWT owner role)",
+   "// Victim (RWT/USDT PancakePair) : 0xc1c2ef25372f12ce18d35044446064b720c4aa27",
+   "// Attack Tx     : https://bscscan.com/tx/0x22300140e7c44899c2602382a6e7a4a34a70f47f9736721744bc6434c07171dc",
+   "//",
+   "// @Analysis",
+   "// Root cause: the unverified \"sell\" contract (0x8812...) exposes an unprotected sell() that each call swaps",
+   "// RWT->USDT into the RWT/USDT PancakePair, adds liquidity, then burns ~72M RWT directly out of the pair's",
+   "// reserves (RWT.burn is onlyOwner and the sell contract holds that role) and calls sync(). Repeatedly burning",
+   "// the pool's RWT collapses its RWT reserve and inflates RWT's USDT price, letting the caller extract USDT from",
+   "// the LP above fair value. The attacker flash-loaned 1M USDT and looped the routine 18x, draining the pair",
+   "// (-158.6K USDT / -110M RWT) and netting ~118K USDT.",
+   "//",
+   "// @Replay",
+   "// The exploit tx is a direct call (not a CREATE) to an already-deployed attack contract with selector",
+   "// 0x695581b2 and four address args. We fork one block before the exploit (the attack + sell contracts are",
+   "// already deployed at that state), prank the attacker as both tx.origin and msg.sender, and replay the exact",
+   "// on-chain calldata. Profit is forwarded by the attack contract to tx.origin (the attacker EOA)."
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    110827952
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__Sodium_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Sodium (ERC-4337 ZK/MPC smart wallet) \u2014 session-key validation-bypass + EntryPoint",
+   "// gas-deposit griefing. ~11.76 ETH (~$21.2k) drained from 300+ wallets in ONE tx, Arbitrum.",
+   "//",
+   "// Root cause: `_validateSignature` on the `executeWithSodiumAuthSession` path returns",
+   "// \"valid\" whenever `sessionKey == signer` and no safe-session is set \u2014 it never verifies",
+   "// the session-add auth proof (that check only runs later, in execution, not validation).",
+   "// Attacker signs userOps with its own EIP-1271 contract (isValidSignature always true) and",
+   "// a self-chosen sessionKey, so validateUserOp passes for ~300 wallets it doesn't own.",
+   "// Each op sets maxFeePerGas ~4062 gwei (~400,000x normal) with callGasLimit=0 and a",
+   "// deliberate out-of-gas on execution, so EntryPoint charges ~0.5 ETH of each wallet's",
+   "// gas deposit to the attacker (beneficiary) per op.",
+   "//",
+   "// Exploit tx: 0x738995176c3bbd22f8deabd7a1e6b89a044231781b39aa2f350897535e6d7bc1",
+   "// This was a CREATE tx (`to` is empty) \u2014 the entire attack runs inside the constructor",
+   "// of a one-shot contract, which loops all 300 victim wallets and self-destructs.",
+   "// Attacker/beneficiary: 0x7bD736631Afbe1d3795a94F60574f7fA0aE89347",
+   "//",
+   "// PoC strategy: fork one block before the exploit tx, prank the attacker address (the",
+   "// constructor hard-checks msg.sender == attacker), and deploy the EXACT creation bytecode",
+   "// via raw CREATE. The constructor replays the whole attack and self-destructs, exactly as",
+   "// it did on mainnet.",
+   "//",
+   "// Run: forge test --contracts ./src/test/2026-07/Sodium_exp.sol -vvv --evm-version cancun",
+   "// Requires an archive Arbitrum RPC (see foundry.toml [rpc_endpoints] \"arbitrum\")."
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    483046805
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__SummerFi_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 6.02M DAI",
+   "// Attacker : 0x7bf716167b48cf527725722c6d79494b45b3bdca",
+   "// Attack Contract : 0x0514f827c129c16418a0933e03c99a6af982fc61",
+   "// Vulnerable Contract : 0x98c49e13bf99d7cad8069faa2a370933ec9ecf17 (Summer.fi / Lazy Summer FleetCommander)",
+   "// Attack Tx : https://etherscan.io/tx/0x0db528c44f23fc7fa4544684a2fab81096450a14aae8bc89f42cd0592d43da12",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0x98c49e13bf99d7cad8069faa2a370933ec9ecf17#code",
+   "// @Analysis",
+   "// PoC : reproduces the in-transaction legs; the attack contract is executed at its",
+   "//       historical address so it inherits the vgUSDC it pre-positioned in a prior setup tx.",
+   "//",
+   "// FleetCommander NAV is the live sum of each Ark's totalAssets() with no manipulation",
+   "// guard. A FleetA ark (SiloManagedVault 0x61d70630, empty at fork) follows Silo vgUSDC,",
+   "// which counts depegged Stream USD (xUSD) collateral at par. The attacker mints vgUSDC far",
+   "// below its counted value (USDT -> xUSD on Uniswap V4, xUSD -> vgUSDC on Balancer V3),",
+   "// deposits a dominant position into FleetA, donates the cheap vgUSDC into the empty ark to",
+   "// inflate NAV, then redeems the inflated shares - draining the other LPs."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "inline",
+    25471347
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__UnprotectedArbBot_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// UnprotectedArbBot \u2014 unprotected arbitrary-call forwarder drained via a pre-granted WETH allowance",
+   "// ~16.623 WETH (~$31.7K at $1904.74/WETH) pulled from an owner EOA on Base in a single tx.",
+   "//",
+   "// Exploit tx : 0xe831f3991132cbaffbb4a3738da7d1e254a6c02f0adce605a333229a61e27ad7 (block 49304016)",
+   "//   Contract-creation tx: the attacker EOA deploys an orchestrator (0x45e7...15cC) whose",
+   "//   constructor deploys a helper (0x797c...6dc8) and immediately drives the drain. The helper",
+   "//   makes ONE call to the victim's unprotected selector 0x42be3129.",
+   "//",
+   "// Root cause (reproduced observable behavior \u2014 victim is UNVERIFIED, names are apparent only):",
+   "//   The victim contract 0xa317...c170 exposes selector 0x42be3129 with NO access control. It",
+   "//   takes a caller-supplied target + calldata, executes it via a low-level CALL, then sweeps the",
+   "//   named token balance to msg.sender. A separate selector (0x23a69e75) IS onlyOwner-gated",
+   "//   (its handler reverts \"not owner\" on `msg.sender != owner`), but 0x42be3129 is not gated at",
+   "//   all. The attacker abused this to make the victim call",
+   "//     WETH.transferFrom(owner, victim, 16.623 WETH)",
+   "//   using an allowance the owner had PRE-GRANTED the victim, then the same 0x42be3129 call swept",
+   "//   that WETH out to the caller (the helper), which forwarded it to the attacker EOA.",
+   "//",
+   "//   Confirmed attacker-controlled + on-chain: no signature, no privileged role, no compromised",
+   "//   key, no upstream privilege upgrade. The victim call in the trace has msg.sender = the",
+   "//   attacker-deployed helper (not the owner), and the tx is a plain contract creation from the",
+   "//   attacker EOA. The only pre-existing state relied upon is the owner's ERC20 allowance to the",
+   "//   victim, which is standard on-chain state, not a privilege.",
+   "//",
+   "// Observed on-chain (drpc callTracer + receipt logs), single 0x42be3129 call:",
+   "//   1. victim -> WETH.transferFrom(helper, WETH, 0)                 (incidental, amount 0)",
+   "//   2. victim -> WETH.transferFrom(owner, victim, 16.623 WETH)      (the arbitrary forwarded call)",
+   "//   3. victim -> WETH.transfer(helper, 16.623 WETH)                 (sweep to caller)",
+   "//   then helper -> WETH.transfer(attacker, 16.623 WETH)             (forward to attacker EOA)",
+   "//",
+   "// Victim (unverified) : 0xA31722CA2a32695280d0E7e325b3dd6d699Fc170",
+   "// Owner EOA (drained) : 0x386218744a2053D949a1cafAE0b7B49a35e03F53",
+   "// Attacker EOA        : 0xBDCe6BDd52bacEaDd1fC91BF01F3bc6AB24df17A",
+   "// WETH (Base)         : 0x4200000000000000000000000000000000000006",
+   "//",
+   "// Run:",
+   "//   forge test --contracts src/test/2026-07/UnprotectedArbBot_exp.sol -vvv"
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    49304015
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-07__edel-xstock_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: UNLICENSED",
+   "// @KeyInfo - Total Lost : 204,215.57 USDC",
+   "// Attacker : 0x58428161bB55c14A413945f06cbDeC157F411C76",
+   "// Attack Contract : 0x1F05c70Db2fFa1B1BAc62b27e7678B765ebe7167",
+   "// Vulnerable Contract : 0xBd497eE429D9D3E46446339286271b3714a83B29",
+   "// Entry/State Contract : 0x3EEeB3cd20f844a578807fc457388Ceb9A67fAa6",
+   "// Attack Tx : https://etherscan.io/tx/0xe2320086b2815d21b0927839bd0e306466c29a68d38d5361e99dd21ec5472612",
+   "//",
+   "// @Info",
+   "// Vulnerable Contract Code : https://etherscan.io/address/0xBd497eE429D9D3E46446339286271b3714a83B29#code",
+   "// Entry Proxy Code : https://etherscan.io/address/0x3EEeB3cd20f844a578807fc457388Ceb9A67fAa6#code",
+   "//",
+   "// @Analysis",
+   "// Twitter Guy : https://x.com/TenArmorAlert/status/2072130807356129726",
+   "//",
+   "// Attack summary: the attacker recursively supplied borrowed wGOOGLx to an Edel collateral helper, redeemed a",
+   "// final wGOOGLx borrow, donated the underlying GOOGLx back to the wrapper, and used the inflated wrapper price to",
+   "// borrow the remaining USDC and wrapped xStock reserves.",
+   "// Root cause: the lending market's oracle valued wrapped xStock collateral through a mutable ERC4626",
+   "// convertToAssets() exchange rate, so a direct underlying donation inflated collateral value inside the same tx."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    25434061
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__AIC_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// AIC \u2014 PancakeSwap-pair skim() reserve-mismatch drain, flash-swap leveraged, on BNB Chain",
+   "// ~32.36 BNB (~$21.5K) netted by the attacker EOA in a single CREATE transaction.",
+   "//",
+   "// Exploit tx : 0x905cc861bcc525d3a8e699583943831b97500bbac11c92dc20ed6edbddd69f87 (block 113782392)",
+   "//   The tx has NO `to` field: it is a raw CONTRACT-CREATION. The EOA deploys the outer",
+   "//   \"factory\" contract 0xf0f74b90afb29903c80ed7531b50764c49089e25, whose CONSTRUCTOR in turn",
+   "//   CREATEs the child attack contract 0x29977d9b8a888b17bffa2958b003956a5e8be69a and",
+   "//   immediately calls its entry selector 0x28022411 on it. The whole exploit therefore runs",
+   "//   inside the deployment of that single tx \u2014 there is no second call, no separate withdraw tx.",
+   "//",
+   "// Root cause (reproducible contract mechanism, NOT a key/signer/privileged-claim compromise):",
+   "//   AIC is a fee-on-transfer token. Its NEX/AIC PancakeSwap pair 0x974c...ddc75 had accumulated",
+   "//   AIC balance ABOVE the pair's recorded reserve (the fee-on-transfer surplus never got",
+   "//   synced into the reserves). skim() on a Uniswap-V2-style pair is PUBLIC and pays out the",
+   "//   difference between the token balance and the recorded reserve to any caller. The attacker:",
+   "//     1. flash-swaps 42.98M AIC out of the USDC/AIC pair 0xe89636...96415 (pancakeCall path),",
+   "//     2. cycles AIC <-> NEX through the NEX/AIC pair to inflate that pair's untracked AIC surplus,",
+   "//     3. calls the PUBLIC skim() on the NEX/AIC pair to extract 83.26M AIC of excess balance,",
+   "//     4. repays 43.09M AIC to close the flash swap,",
+   "//     5. dumps the remaining ~40.17M AIC for 21,504 USDC, routes USDC -> WBNB, unwraps to BNB.",
+   "//   Every step is a permissionless public function (flash swap, skim, swap) driven entirely by",
+   "//   attacker-controlled on-chain state. No owner key, no admin role, no privileged path.",
+   "//   (A separate ~2.03M NEX residue ends up at helper 0x0f7e35653f6a8e09a0865a183b51177e16237cb5;",
+   "//    it is not part of the EOA's BNB gain and is out of scope for the assertion below.)",
+   "//",
+   "// The child contract stamps tx.origin (opcode 0x32) as its owner at deploy time and forwards",
+   "// the unwrapped BNB to that owner inside the same tx. Faithful reproduction: fork at block-1",
+   "// (before the exploit, where the fee-on-transfer surplus already sits on the pair) and re-issue",
+   "// the EXACT original creation bytecode via a raw CREATE, pranking the attacker EOA as BOTH",
+   "// msg.sender AND tx.origin so the child pays the profit back to the EOA. Bytecode is hardcoded",
+   "// verbatim from the on-chain tx input below (no env vars, no reconstruction of the logic).",
+   "//",
+   "// Attacker EOA   : 0xC3cB0872C42BFA5EB3B0258D7EEA2cCaF6a49475 (pure EOA)",
+   "// Factory (outer): 0xf0F74b90aFB29903C80ED7531B50764C49089E25 (created by the tx)",
+   "// Child (inner)  : 0x29977d9b8a888b17bffa2958b003956a5e8be69a (created in the constructor)",
+   "// AIC token      : 0xc0DC449De632586A00409873521AFC251aC5cE74 (victim, fee-on-transfer)",
+   "// NEX token      : 0xaE04AE29bdB7aB7Eb249d3aFa7Bc3D37564e8Cf9",
+   "// USDC/AIC pair  : 0xe89636FB73D04Db51e5Fbd0Ce1379fb8d2b96415 (flash-swap source)",
+   "// NEX/AIC pair   : 0x974C0078740480aE830D379fDB8d5f441C9dDC75 (skim() victim)",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-08/AIC_exp.sol -vvv",
+   "//   (Requires an archive BSC RPC; the fork below points at one directly.)"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    113782392
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__Atomic_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Atomic (non-custodial leveraged trading + isolated \"AtomicLending\") \u2014 Arbitrum",
+   "// ~29,984 USDC drained by a fresh attacker EOA in a single transaction.",
+   "//",
+   "// Exploit tx  : 0xbd4a009cd609a05f1a64458969a1e2c2065472f0ee06a322246f155be12e3a9a (block 492104035)",
+   "// Attacker EOA: 0xf8803DaE13A6757E53711214769B5fb52Ec26C7E (nonce 1 at exploit time)",
+   "// Attack ctrt : 0x44d2D34E148e1Da5c4291C110f6ff0E472037255 (deployed by the EOA at nonce 0)",
+   "// Victim proxy: 0x51fF48f2d43966bE796692BdDdfaE96A435242a8 (unverified)",
+   "//",
+   "// Root cause (reproducible contract mechanism, verified against the on-chain trace, NOT a",
+   "// key/signer/privileged-claim compromise):",
+   "//   The attack contract exposes run(uint256,uint256,uint256), gated ONLY by a hardcoded",
+   "//   msg.sender == attacker EOA check (bytecode PUSH32 0xf8803dae..c7e; there is no admin role,",
+   "//   no signature, no owner-storage path). run() takes an Aave V3 flashLoanSimple of ARB from the",
+   "//   Aave V3 Pool 0x794a61358d6845594f94dc1db02a252b5b4814ad (selector 0x42b0b77c, asset ARB",
+   "//   0x912ce5..6548), and in the executeOperation callback it swaps against the Uniswap V3",
+   "//   ARB/USDC.e pool 0xcda53b1f66614552f834ceef361a8d12a0b8dad8 to skew that pool's spot price.",
+   "//   The Atomic strategy (0xf617a3ad1f0ab9d9fe39e48d688bfe44562769d9) and AtomicLending",
+   "//   (0xc1b677039892c048f2efb7e9c5da1b51fde92504) modules value the protocol's concentrated-",
+   "//   liquidity LP position / lending collateral off that same manipulated spot price, so under the",
+   "//   skew the attacker unwinds liquidity and withdraws more than was deposited. The extracted ARB",
+   "//   is routed ARB -> WETH -> USDC and the profit is forwarded to the attacker EOA at the end of",
+   "//   the same tx.",
+   "//     - log 1  : attack contract receives 18,485.478693 USDC.e from the manipulated pool 0xcda5..",
+   "//     - log 573: attack contract returns 18,485.478693 USDC.e to the pool (closing the position)",
+   "//     - log 579: attack contract receives 29,984.270865 native USDC from the final swap",
+   "//     - log 582: attack contract forwards 29,984.270865 native USDC to the attacker EOA",
+   "//   Every module function invoked is public and permissionless; the only \"authorization\" is the",
+   "//   manipulated on-chain price the modules trust. (Module/variable names are apparent-root-cause,",
+   "//   sourced from calldata + trace: the core vault/strategy/lending contracts are unverified.)",
+   "//",
+   "// Self-contained: the entire exploit is one flash-loan-funded tx, no pre-funding of the EOA and",
+   "// no same-block setup (the attack contract was already deployed 596 blocks earlier at 492103439).",
+   "//",
+   "// Run (Aave V3's flashloan impl uses transient storage, so cancun is required):",
+   "//   forge test --contracts ./src/test/2026-08/Atomic_exp.sol --evm-version cancun -vvv",
+   "//",
+   "// Faithful reproduction: fork at block-1 (real protocol state, before the exploit) and re-deploy",
+   "// the EXACT original creation bytecode via a raw CREATE, then call run() with the EXACT original",
+   "// calldata, pranking the attacker EOA as BOTH msg.sender AND tx.origin so the hardcoded",
+   "// msg.sender gate passes and the profit is forwarded back to it. Both the creation bytecode and",
+   "// the run() arguments are hardcoded verbatim from the on-chain tx below (no reconstruction)."
+  ],
+  "chains": [
+   "arbitrum"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    492104035
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__FoxLpBondsPool_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// FOX / FoxLpBondsPool \u2014 AMM-spot-priced LP bond mint manipulation \u2014 BNB Chain",
+   "// ~$113K (112,976 USDT + dust) drained by an attacker-controlled contract in a single tx.",
+   "//",
+   "// Exploit tx  : 0x8e1775cbfd44db29744cc6687ff1822d2c47321de6e94062f789ad6181ad5514 (block 116169049)",
+   "// Caller EOA  : 0x5670d36f00bc7F6860B6AfdDb288E3668efc0ef9 (nonce 393, plain EOA, tx.origin)",
+   "// Attack ctrt : 0x3A82A2A77061017927e5331fFFd07c0308a1D2DA (entry, selector 0x7f14cf11)",
+   "// Helper ctrt : 0x9fa6d8a13b35e051bfc145918db0111dec13d1a0 (stake/bond orchestrator, passed as arg)",
+   "// Victim pair : 0xaAB18BCdEE287AeA288c0560612CAADF7c328803 (PancakeSwap USDT/FOX pair)",
+   "//   FOX token : 0xdF81d50c6657487D19B66A1b5375E35A804Abb93",
+   "//   USDT (BSC): 0x55d398326f99059fF775485246999027B3197955 (18 decimals)",
+   "// FoxLpBondsPool: 0x58e2a853bB14e46bEFD3148bd4280370feA4655a",
+   "// Treasury      : 0x87614d97808dCdecB069fe8489848Fa1c001e04D",
+   "//",
+   "// Root cause (reproducible contract mechanism, verified against the on-chain trace, NOT a",
+   "// key/signer/privileged-claim compromise):",
+   "//   FoxLpBondsPool.stake() reads a _stakeAmount from a manipulable PancakeSwap AMM spot quote of",
+   "//   the USDT/FOX pair BEFORE the flow executes its own large USDT->FOX swap against that same pair.",
+   "//   The swap materially skews the pair reserves. The subsequent addLiquidity() then supplies FOX",
+   "//   and USDT at the now-different reserve ratio, but _stakeAmount is never recomputed from the",
+   "//   assets actually deposited or the fair value of the minted LP. Treasury.lpBonds() trusts the",
+   "//   stale, economically-unsupported _stakeAmount, mints FOX against it, and in the same flow",
+   "//   transfers an inviterRewardAmount of freshly-minted FOX to an attacker-controlled referral",
+   "//   address. The attacker then sells that FOX back into the pair in the same tx for USDT.",
+   "//   Everything is funded by a large multi-pool USDT flash-loan aggregation; the flash liquidity",
+   "//   only sets the scale, it is not the vulnerability. The defect is manipulable spot pricing +",
+   "//   no accounting-to-actual-backing validation + immediate (non-delayed) reward settlement.",
+   "//",
+   "// Trace evidence (receipt logs, USDT/FOX are 18 decimals):",
+   "//   - log 62 : helper sends 240,987,392 USDT into the pair  (USDT->FOX swap, skews reserves)",
+   "//   - log 64 : helper receives    490,357 FOX from that swap",
+   "//   - log 67 : helper sends 240,987,392 USDT into the pair  (addLiquidity USDT leg)",
+   "//   - log 69 : helper sends      5,619 FOX into the pair     (addLiquidity FOX leg, post-skew ratio)",
+   "//   - log 71 : pair mints  1,162,001 LP to the helper",
+   "//   - log 75 : Treasury mints 91,319,059 FOX (bond mint driven by the stale _stakeAmount)",
+   "//   - log 78 : 2,659,778 FOX routed to referral address 0xae37bdc9 (inviter reward leg)",
+   "//   - log 81 : 2,593,283 FOX sold back into the pair",
+   "//   - log 82 : pair pays 482,652,334 USDT back to the attack contract",
+   "//   Net to the attack contract: +112,976.12 USDT plus dust (WBNB/USDC and two flash-loan LP",
+   "//   tokens), ~$113K, matching the reported ~$118.7K loss.",
+   "//",
+   "// Every protocol function invoked (stake, addLiquidity, lpBonds, the referral payout, the swaps)",
+   "// is a plain permissionless public call chain. The tx originates from a normal EOA calling the",
+   "// attack contract; there is no admin role, signer, or owner-storage path anywhere in the flow.",
+   "//",
+   "// Self-contained: one flash-loan-funded tx. The attack contract (15,009 bytes) and the helper",
+   "// (761 bytes) both already exist in fork state at block-1, so no same-block setup is needed.",
+   "//",
+   "// Faithful reproduction: fork at block-1 (real protocol state, before the exploit) and replay the",
+   "// EXACT original tx \u2014 prank the caller EOA as BOTH msg.sender AND tx.origin and low-level call the",
+   "// already-deployed attack contract with the EXACT original calldata (hardcoded verbatim below, no",
+   "// reconstruction). Assert the attack contract's net USDT gain.",
+   "//",
+   "// Run (the already-deployed attack contract uses cancun-era opcodes, so cancun is required; the",
+   "// repo default evm_version is shanghai, under which the replay reverts with EvmError: NotActivated):",
+   "//   forge test --contracts ./src/test/2026-08/FoxLpBondsPool_exp.sol --evm-version cancun -vvv"
+  ],
+  "chains": [],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    116169049
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__LpdFi_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// LpdFi (LOOPSDAO) - spot-price oracle manipulation lets an attacker mint an inflated",
+   "//                    interest-bearing principal, then drain protocol-owned Cake-LP.",
+   "// BNB Chain. ~$573K attacker net gain. Root cause per DarkNavy writeup, verified below by",
+   "// tracing the two on-chain txs from scratch.",
+   "//",
+   "// Setup tx : 0xbb5b8573d7203e00f8fb9d4839dbeea46a8efd367eac8bed81e4ece2341c3588",
+   "//            block 113613923, ts 1785686399 (2026-08-02 15:59:59 UTC).",
+   "// Claim tx : 0x70bbe0aa3c7ef149ecb6128a06025885deaa8fef3f393a505d447d28ab3315d6",
+   "//            block 113613924, ts 1785686400 (2026-08-02 16:00:00 UTC), exactly 1 second later.",
+   "//",
+   "// Both txs are plain calls from the attacker EOA into the attacker's own pre-deployed executor",
+   "// contract (to != from, so NO EIP-7702). Every victim entrypoint the executor reaches is a",
+   "// permissionless public function - LpdFi.buy(uAmount), LpdFi.claimInterest(index), and",
+   "// PancakeSwap swaps. No signer, admin role, governance, or proxy upgrade is involved. Verified",
+   "// against the trace: the attacker EOA simply funds the executor with 116,495 USDC and calls it",
+   "// twice.",
+   "//",
+   "// Root cause (the actual bug):",
+   "//   - Lpd.price() values the LPD token from the INSTANTANEOUS reserves of a thin PancakeSwap",
+   "//     LPD/USDC pair (0x85346d31...). No TWAP, no liquidity floor, no deviation bound.",
+   "//   - LpdFi.buy(uAmount) lets the caller name a nominal USDC principal and uses that manipulable",
+   "//     spot price only to size the LPD deposit. Push LPD spot up ~5,163x and the LPD deposit",
+   "//     required to register a 140,324,732 USDC principal collapses to ~214,171 LPD.",
+   "//   - getOrder() accrues interest from the discrete (issue - lastIssue) index difference, not",
+   "//     elapsed wall time. Crossing the daily issue boundary after just 1 second credits a full",
+   "//     0.5% period: 140,324,732 * 0.5% = 701,623.66 USDC of \"interest\".",
+   "//   - claimInterest() funds that entitlement by removing protocol-owned Cake-LP with both",
+   "//     PancakeRouter min-outputs set to zero.",
+   "//",
+   "// Attack (executed by the executor bytecode, replayed here verbatim):",
+   "//   1. Setup tx (block 113613923): executor takes 116,495 USDC + temporary liquidity, swaps",
+   "//      43,714,602.6 USDC into the LPD/USDC pool (LPD 0.126899 -> 655.197923 USDC/LPD, 5,163x),",
+   "//      calls buy(140324732e18) at the inflated price, reverses the manip, repays temp liquidity.",
+   "//      LPD is fee-on-transfer, so the reverse swap's 4,573,892.98 LPD only credits 4,116,503.68",
+   "//      to the pair - the executor bytecode already models that, we just replay it.",
+   "//   2. Claim tx (block 113613924, +1s): issue index rolls 18 -> 19, claimInterest(0) removes",
+   "//      1,678,049.359669752344366455 Cake-LP and pays the executor 693,529.79 USDC + a fee",
+   "//      address 7,005.35 USDC. Executor swaps 4,000 USDC to BNB and forwards 689,529.793138... USDC",
+   "//      to the attacker EOA.",
+   "//",
+   "// Net: EOA holds 116,495 USDC before setup and 689,529.793138448987344168 USDC after claim, so",
+   "//      net gain = 573,034.793138448987344168 USDC (the ~690K terminal inflow minus the 116,495",
+   "//      the EOA staked into the setup tx). This is the figure asserted below.",
+   "//",
+   "// Reproduction: this needs REAL elapsed state across two consecutive blocks (the issue-boundary",
+   "// crossing at ts 1785686400), so it cannot be collapsed into one block. Fork at the setup tx's",
+   "// parent (113613922), replay the setup calldata at block 113613923 / ts 1785686399, advance one",
+   "// block and one second, then replay the claim calldata at block 113613924 / ts 1785686400. The",
+   "// executor and all protocol state already exist on-chain at the fork block; we only re-issue the",
+   "// two original calldatas, pranking the attacker EOA as msg.sender and tx.origin.",
+   "//",
+   "// Run:",
+   "//   forge test --contracts ./src/test/2026-08/LpdFi_exp.sol --evm-version cancun -vvv",
+   "//   (cancun REQUIRED: the executor uses transient storage (TSTORE/TLOAD) for its temporary-",
+   "//    liquidity callbacks. Needs an ARCHIVE BSC RPC.)"
+  ],
+  "chains": [
+   "bsc"
+  ],
+  "blocks": [
+   [
+    "SETUP_BLOCK",
+    113613923
+   ]
+  ],
+  "ntx": 2
+ },
+ "2026-08__PantherBase_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// Panther Protocol (ZKP) \u2014 governance-timeout capture on the BASE deployment.",
+   "//",
+   "// IMPORTANT FRAMING: Panther's Base deployment was NOT yet in production at the time of this",
+   "// incident. Per the team's own public (Telegram) statement, no live user funds were compromised;",
+   "// this was a pre-launch governance-mechanism failure, not a drain of an operating protocol. The",
+   "// on-chain value that moved (~5.12M ZKP + ~0.12 ETH) came out of the pre-launch deployment's own",
+   "// governance-controlled proxies, and the root cause was a missing safeguard on THIS deployment",
+   "// (the Reality.eth module was not disabled while there was no active governance proposal), a",
+   "// protection the team indicated was correctly enabled on their other deployments.",
+   "//",
+   "// Same class as the StrongBlock / CompoundProvider (BarnBridge) PoCs already in this repo:",
+   "// governance capture of a proxy-upgrade authority, then abuse of that authority to swap fund-",
+   "// holding proxies to a drainer implementation. The twist here is that NO code bug and NO stolen",
+   "// key were involved. The path is entirely permissionless: anyone can (1) submit a Reality.eth /",
+   "// Zodiac governance proposal, (2) bond a \"yes\" answer to their own proposal, and (3) execute it",
+   "// once finalized. The only thing the attacker exploited was that nobody posted a competing \"no\"",
+   "// bond inside the challenge window, so an unopposed self-answer finalized and executed.",
+   "//",
+   "// ---- Actors / contracts (all verified on-chain, Base / chainId 8453) ----",
+   "// Attacker EOA:            0x7dB4cFea07042ca13a8E26cC90BbB59982Fe95B6",
+   "// Attacker orchestrator:   0x9400161d512C740e1C0C77f3c931D112f068210c  (owner() == attacker EOA)",
+   "//                          its initiate() both ASKED the proposal question and self-answered \"yes\"",
+   "//                          with the 0.5 ETH bond, and it is the recipient of the drained funds.",
+   "// Zodiac RealityModuleETH: 0x4ce69e77A8806B51f15b8D0FC38A9c1f66A851b4  (EIP-1167 clone of",
+   "//                          impl 0x4e35da39fA5893a70A40Ce964F993d891E607cC0)",
+   "//   avatar/target/owner == Panther Safe 0xb16283A233D5b010A7b290d593847207495F0284",
+   "//   oracle              == Reality.eth  0x2F39f464d16402Ca3D8527dA89617b73DE2F60e8",
+   "//   questionTimeout 43200 (12h)  questionCooldown 28800 (8h)  minimumBond 0.5 ETH",
+   "//   (the 12h + 8h challenge/cooldown window the report cites \u2014 read live from the module)",
+   "// Reality.eth v3.0:        0x2F39f464d16402Ca3D8527dA89617b73DE2F60e8",
+   "// ZKP token (Base):        0x0a776C1c22b8b8e7EAB346744dAA33722b80FdA4  (\"Panther\" / ZKP / 18)",
+   "//",
+   "// ---- On-chain timeline (author-verified) ----",
+   "//   block 49587776  ts 1785964899  proposal + self-answer  tx 0xe6a25b20...f45c1d5a",
+   "//                   Reality question named \"zkp-reexploit\" (id 0x185d35ec...3c47c56b),",
+   "//                   answer 0x..01 (\"yes\"), 0.5 ETH bond, asker == the Reality module.",
+   "//   [12h timeout with no competing bond, then 8h module cooldown; ~21.2h total]",
+   "//   block 49625945  ts 1786041237  execution + drain      tx 0x88fb5398...ac197a01",
+   "//                   attacker EOA deploys a one-shot contract whose constructor calls the module's",
+   "//                   executeProposalWithIndex 5x (one per ZKP proxy). Each execution makes the Safe",
+   "//                   upgradeToAndCall() the proxy to a drainer impl, sweeping its ZKP to the",
+   "//                   orchestrator 0x9400161d. Net: 5,124,773.63 ZKP + ~0.1233 ETH to the attacker.",
+   "//",
+   "// PoC strategy (StrongBlock/BarnBridge style): fork ONE block before the execution (49625944),",
+   "// where the governance answer is already finalized on Reality.eth (isFinalized == true,",
+   "// resultFor == \"yes\") so we do NOT replay the vote \u2014 we assert it is already settled, exactly as",
+   "// it was on-chain. Then, as the attacker EOA, replay the drain by deploying the attacker's exact",
+   "// on-chain creation calldata (hardcoded below as DRAIN_CREATION). Assert the orchestrator's ZKP",
+   "// and ETH balances rise by the full reported amounts. No signer key, no admin role, no code bug",
+   "// is used anywhere in this replay \u2014 only the finalized, unopposed governance answer.",
+   "//",
+   "// Run: forge test --contracts ./src/test/2026-08/PantherBase_exp.sol -vvv",
+   "// Requires a Base RPC (foundry.toml alias: base)."
+  ],
+  "chains": [
+   "base"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    49625944
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__StrongBlock_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// StrongBlock \u2014 governance takeover of an abandoned on-chain Governor, then abuse of",
+   "// the seized proxy-upgrade authority to swap a fund-holding proxy's implementation and",
+   "// sweep the treasury. ~32,695 STRONG + ~383,447 STRNGR drained on Ethereum (~$72K).",
+   "//",
+   "// Attacker EOA: 0xACBCa357981870f30130B145762d671891CA810c",
+   "// Victim (StrongBlock Governor, admin of the Upgrader): 0xBDDC7Ef8BaCeacE16DCE005102639a4bB86CB8C1",
+   "// Upgrader (Compound-style admin controlling the proxies): 0x75C53809A047c3d422B91Eda50A20914fBe91C61",
+   "// Service proxy that HELD the tokens (OZ AdminUpgradeabilityProxy): 0x53cA51Ba980B6475C13d158c1825013cf81038Fc",
+   "// Attacker-deployed malicious implementation: 0xe89C0d3FcE4EB31060b6a0329bA408029D0c4106",
+   "//",
+   "// Root cause (governance capture, verified on-chain, same class as the CompoundProvider /",
+   "// BarnBridge precedent already in this repo):",
+   "//   - The Upgrader (0x75C5) is admin of the StrongBlock proxies. Its admin was the Governor",
+   "//     0xBDDC. The Governor's vote token (STRONG) is near worthless and the DAO abandoned, so",
+   "//     the attacker acquired majority voting weight on the open market, then pushed a proposal",
+   "//     through the Governor's own propose/vote/queue/execute flow calling setPendingAdmin(attacker)",
+   "//     on the Upgrader. That is settled on-chain before this replay: at block 25691518,",
+   "//     Upgrader.admin() == Governor 0xBDDC and Upgrader.pendingAdmin() == attacker EOA. No stolen",
+   "//     key or signature anywhere \u2014 the attacker became privileged through the DAO's own machinery.",
+   "//   - The value-loss sequence (attacker EOA tx nonces, all on-chain):",
+   "//       n0  block 25691471  deploy malicious impl 0xe89c0d3f",
+   "//       n1  block 25691519  Upgrader.acceptAdmin()                 -> attacker becomes Upgrader admin",
+   "//       n2  block 25691525  Upgrader.upgrade(serviceProxy, malImpl)-> service proxy now malicious",
+   "//       n3  block 25691527  serviceProxy.run() [selector 0xc0406226] -> sweeps STRONG+STRNGR to caller",
+   "//     Later, in a separate tx (nonce 23, the hash originally provided,",
+   "//     0x92be5e374e260192f8fdb5ffdc33504c768ecad091cc7dbc37282e5ca8ea94c6), the same upgrade",
+   "//     primitive was applied to the Governor proxy 0xBDDC itself. That governor proxy holds no",
+   "//     STRONG/STRNGR, so it is not the fund-loss tx; the ~$72K loss is the service-proxy drain above.",
+   "//",
+   "// The malicious impl is unverified, so run() (0xc0406226) and its attacker-gating are treated as",
+   "// apparent root cause from the trace (a payout-to-caller sweep), not confirmed source.",
+   "//",
+   "// PoC strategy (BarnBridge/CompoundProvider style): fork at block 25691518, one block before the",
+   "// attacker calls acceptAdmin, so the governance seizure (pendingAdmin == attacker) is already",
+   "// settled and we do not replay the vote. Then, as the attacker EOA, replay the three privileged",
+   "// actions verbatim against live state: acceptAdmin -> upgrade(service, malImpl) -> run(). Assert",
+   "// the attacker's STRONG and STRNGR balances rise by the full reported amounts.",
+   "//",
+   "// Run: forge test --contracts ./src/test/2026-08/StrongBlock_exp.sol -vvv",
+   "// Requires an Ethereum archive RPC (see foundry.toml [rpc_endpoints])."
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "FORK_BLOCK",
+    25691518
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__USM_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// USM (Minimalist USD stablecoin) \u2014 split-invariance flaw in the FUM redemption curve.",
+   "// ~70.8 ETH drained on Ethereum, Aug 2026.",
+   "//",
+   "// Attacker EOA:       0xb92b2E47680c89DA8f951B8963ef469f461a50Fc",
+   "// Attacker contract:  0x5a5e29ba89663a3558273354E990426F3cAc7de7",
+   "// Victim (USM):       0x2a7FFf44C19f39468064ab5e5c304De01D591675",
+   "// FUM token:          0x86729873e3b88DE2Ab85CA292D6d6D69D548eDF3",
+   "// Flash lender:       Morpho Blue 0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb (WETH, 0 fee)",
+   "// Exploit tx:         0xfae5e751b8ce01457cbb6b529839f24a0cff50faaabcbd0fd02ca0cf559b050e (block 25716150)",
+   "//",
+   "// Root cause (verified against the on-chain trace of the exploit tx):",
+   "//   USM's defund() redeems FUM for ETH. The ETH paid for a redemption is priced off the",
+   "//   arithmetic mean of the CURRENT FUM sell price and the ESTIMATED FINAL FUM sell price after",
+   "//   the redemption, and each defund() also contracts internal state (adjShrinkFactor). That",
+   "//   averaging is not \"split invariant\": redeeming one large FUM amount in a single defund() pays",
+   "//   strictly LESS ETH than redeeming the same total FUM amount as many small equal slices across",
+   "//   consecutive defund() calls. The per-call state contraction plus integer rounding compound the",
+   "//   gap. The attacker minted a large FUM position with fund(), then redeemed it in 64 equal",
+   "//   slices instead of one, extracting more ETH than it paid in.",
+   "//",
+   "// This is a pure pricing/rounding logic bug, NOT price manipulation. The Chainlink/Uniswap TWAP",
+   "// oracle reads are identical before and during the attack (same latestPrice() return every call",
+   "// in the trace); nothing about the ETH/USD price is moved. The flash loan only supplies working",
+   "// capital to fund() a big FUM position \u2014 it is not used to move any price.",
+   "//",
+   "// Access check (confirmed from the trace): every fund() and defund() in the sequence is a plain",
+   "// permissionless public call made by the attacker contract inside the Morpho flash-loan callback.",
+   "// No signer, no admin role, no privileged path. fund(to, minFumOut) and defund(to, fumToBurn,",
+   "// minEthOut) are open to any caller.",
+   "//",
+   "// PoC strategy: fork one block before the exploit and replay the exact sequence against the real",
+   "// USM and FUM contracts (most faithful \u2014 the actual on-chain FUM pricing math runs, no",
+   "// reimplementation): Morpho flash-loan 11,579.978 WETH -> unwrap -> fund() the whole amount ->",
+   "// 64 defund() calls of ~971,629 FUM each (the same split the attacker used) -> rewrap and repay.",
+   "// Assert net ETH gain lands near the reported ~70.8 ETH.",
+   "//",
+   "// Run: forge test --contracts ./src/test/2026-08/USM_exp.sol -vvv"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "inline",
+    25716149
+   ]
+  ],
+  "ntx": 1
+ },
+ "2026-08__UnistreetLaunchpad_exp.sol": {
+  "head": [
+   "// SPDX-License-Identifier: MIT",
+   "// unistreetsx launchpad \u2014 Uniswap-V4 LP-custody drain via unvalidated launch() calldata forwarding",
+   "// ~$17.75K netted by the attacker EOA in a single CONTRACT-CREATION transaction.",
+   "//",
+   "// Exploit tx : 0x9583e95d5c88c7966e269197f4b09022f26b7a27ad2c13660dda6774e3136d14 (block 25692311)",
+   "//   The tx has NO `to` field: it is a raw CONTRACT-CREATION. The EOA deploys the attack",
+   "//   contract 0xc7d8c70f4349AcC55409800C8768e801b7556B77, whose CONSTRUCTOR runs the entire",
+   "//   exploit and forwards the proceeds back to the EOA in the same tx. There is no second call,",
+   "//   no separate withdraw tx.",
+   "//",
+   "// Root cause (reproducible contract mechanism, NOT a key/signer/privileged-claim compromise):",
+   "//   LaunchpadFactoryAuto.launch() (0xfb60cd...825) forwards attacker-supplied init/modify",
+   "//   calldata VERBATIM into Uniswap V4 PositionManager.multicall(), with the factory itself as",
+   "//   msg.sender, with no validation on the calldata content. The factory custodies EVERY launch's",
+   "//   Uniswap V4 LP-position NFT as custodian. The attacker:",
+   "//     1. calls the PUBLIC launch() to create its own throwaway launch token \"CPOC\"",
+   "//        (0x3d8a2f...988e), which mints 1,000,000 CPOC to the factory and opens its LP position,",
+   "//     2. inside that same launch() passes modifyCalldata = setApprovalForAll(exploitContract, true)",
+   "//        (selector 0xa22cb465), which the factory forwards to the V4 PositionManager",
+   "//        (0xbd216513...ee9e) AS ITSELF, granting the attacker approval over ALL LP-position NFTs",
+   "//        the factory holds (posm ApprovalForAll event, log index 4),",
+   "//     3. the constructor then burns each launch LP position the factory custodies via",
+   "//        posm.modifyLiquidities() + a TAKE_PAIR action (example tokenId 360162, \"UNISTREET\"),",
+   "//        sweeping the underlying tokens out of the V4 PoolManager (0x0000...04444c5dc75...) to",
+   "//        the attack contract,",
+   "//     4. forwards every swept token to tx.origin (the attacker EOA) before the constructor returns.",
+   "//   Every step is a permissionless PUBLIC function (launch, multicall, modifyLiquidities) driven",
+   "//   entirely by attacker-crafted calldata. No owner key, no admin role, no privileged upgrade,",
+   "//   no signature. Confirmed against the on-chain trace: the tx is sent from a plain EOA (nonce 6)",
+   "//   with an empty `to`, and the only \"authorization\" the factory checks \u2014 its own custody of the",
+   "//   NFTs \u2014 is exactly what the injected setApprovalForAll subverts.",
+   "//",
+   "// Faithful reproduction: fork at block-1 (real factory + pool state, before the exploit) and",
+   "// re-issue the EXACT original creation bytecode via a raw CREATE, pranking the attacker EOA as",
+   "// BOTH msg.sender AND tx.origin so the constructor forwards the profit back to it. The creation",
+   "// bytecode is hardcoded verbatim from the on-chain tx input below (no env vars, no reconstruction",
+   "// of the exploit logic).",
+   "//",
+   "// Attacker EOA        : 0xc94e23C58b9b2998eDB7ABC8F99393FEaD985076 (pure EOA)",
+   "// Attack contract     : 0xc7d8c70f4349AcC55409800C8768e801b7556B77 (created by the tx)",
+   "// LaunchpadFactoryAuto: 0xFB60CD0B36aD4bD839b91767a6Ad9055AB6aD825 (victim / LP custodian)",
+   "// V4 PositionManager  : 0xbD216513d74C8cf14cf4747E6AAA6420FF64ee9e (tricked into setApprovalForAll)",
+   "// V4 PoolManager      : 0x000000000004444c5DC75cB358380D2e3dE08A90 (holds the pooled tokens)",
+   "// USDC                : 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (6 dp)",
+   "// WETH                : 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+   "//",
+   "// On-chain net EOA gain (from the tx transfer logs): 17,743,907,229 USDC ($17,743.91) +",
+   "// 7,209,570,881,911,319 WETH (0.00721 WETH), plus 1,000,000 of its own throwaway CPOC and a set",
+   "// of illiquid launch memecoins burned out of the other custodied positions. The core $-value is",
+   "// the USDC + WETH; the memecoins are hard to price and are asserted only as \"received\" (bal > 0).",
+   "//",
+   "// Run (Cancun EVM is REQUIRED -- Uniswap V4's PoolManager uses EIP-1153 transient storage; the",
+   "//      repo default evm_version is 'shanghai', under which the V4 calls revert as NotActivated):",
+   "//   FOUNDRY_EVM_VERSION=cancun forge test --contracts ./src/test/2026-08/UnistreetLaunchpad_exp.sol -vvv"
+  ],
+  "chains": [
+   "mainnet"
+  ],
+  "blocks": [
+   [
+    "EXPLOIT_BLOCK",
+    25692311
+   ]
+  ],
+  "ntx": 1
+ }
+}

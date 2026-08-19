@@ -1,0 +1,932 @@
+[
+ {
+  "dwell_days": -1,
+  "id": 153,
+  "label": "MONA token",
+  "chain": "bsc",
+  "role": "token",
+  "created": "2026-04-13",
+  "hacked": "2026-04-13",
+  "address": "0x311838c073a865E8249F5C35E4cb2a5f815a36e8"
+ },
+ {
+  "dwell_days": 0,
+  "id": 49,
+  "label": "AIDC token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-06-27",
+  "hacked": "2026-06-28",
+  "address": "0x5021d71859f81b4c905b573591db8f9cc4a0c6fe"
+ },
+ {
+  "dwell_days": 0,
+  "id": 62,
+  "label": "JB helper",
+  "chain": "bsc",
+  "role": "exploited contract",
+  "created": "2026-06-18",
+  "hacked": "2026-06-19",
+  "address": "0x1b5732eb98911c25acf7bdfaffb9409782cae6d7"
+ },
+ {
+  "dwell_days": 0,
+  "id": 65,
+  "label": "DIP token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-06-16",
+  "hacked": "2026-06-17",
+  "address": "0x6c60bf5db0670ae94489d3dde2c60f271625db50"
+ },
+ {
+  "dwell_days": 0,
+  "id": 79,
+  "label": "DTXT token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-06-04",
+  "hacked": "2026-06-05",
+  "address": "0xac9bf7c320d4ce2d0ac978b83955dd67351897d2"
+ },
+ {
+  "dwell_days": 0,
+  "id": 81,
+  "label": "BY token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-06-03",
+  "hacked": "2026-06-04",
+  "address": "0x6f50cffEcd4e00EcF7E442774C08c089450B62Ca"
+ },
+ {
+  "dwell_days": 2,
+  "id": 138,
+  "label": "GiddyVaultV3",
+  "chain": "mainnet",
+  "role": "exploited vault",
+  "created": "2026-04-20",
+  "hacked": "2026-04-23",
+  "address": "0x5f0ad32c00641d1d2bb628ff341e0d4bb4494318"
+ },
+ {
+  "dwell_days": 3,
+  "id": 10,
+  "label": "Unistreets LaunchpadFactoryAuto",
+  "chain": "mainnet",
+  "role": "exploited factory",
+  "created": "2026-08-02",
+  "hacked": "2026-08-06",
+  "address": "0xFB60CD0B36aD4bD839b91767a6Ad9055AB6aD825"
+ },
+ {
+  "dwell_days": 3,
+  "id": 91,
+  "label": "AROS",
+  "chain": "bsc",
+  "role": "exploited contract",
+  "created": "2026-05-26",
+  "hacked": "2026-05-30",
+  "address": "0xFEC7D27525cC4efDe5b785EEb5E37Df90E9cd1d5"
+ },
+ {
+  "dwell_days": 3,
+  "id": 99,
+  "label": "SKP token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-05-22",
+  "hacked": "2026-05-26",
+  "address": "0xecbdc0b76142740bb564b8aa1bcd061cb151a666"
+ },
+ {
+  "dwell_days": 4,
+  "id": 2,
+  "label": "FoxMarket FoxLpBondsPool",
+  "chain": "bsc",
+  "role": "exploited pool",
+  "created": "2026-08-10",
+  "hacked": "2026-08-15",
+  "address": "0x58e2a853bB14e46bEFD3148bd4280370feA4655a"
+ },
+ {
+  "dwell_days": 4,
+  "id": 2,
+  "label": "FoxMarket Treasury",
+  "chain": "bsc",
+  "role": "minting treasury",
+  "created": "2026-08-10",
+  "hacked": "2026-08-15",
+  "address": "0x87614d97808dCdecB069fe8489848Fa1c001e04D"
+ },
+ {
+  "dwell_days": 7,
+  "id": 139,
+  "label": "Kipseli router",
+  "chain": "base",
+  "role": "exploited router",
+  "created": "2026-04-14",
+  "hacked": "2026-04-22",
+  "address": "0xd35c6717cca1e04696b694dcb1643ac3620d2152"
+ },
+ {
+  "dwell_days": 8,
+  "id": 39,
+  "label": "BarnBridge CompoundProvider",
+  "chain": "mainnet",
+  "role": "exploited proxy",
+  "created": "2026-07-06",
+  "hacked": "2026-07-15",
+  "address": "0x66c6f3b4B4b458e6d764759Ecf122484ebEf7580"
+ },
+ {
+  "dwell_days": 8,
+  "id": 94,
+  "label": "Joe Agent implementation",
+  "chain": "bsc",
+  "role": "implementation",
+  "created": "2026-05-19",
+  "hacked": "2026-05-28",
+  "address": "0xb12ce0a21f67a9fc3c8ad1c7dbc4b017b7e67319"
+ },
+ {
+  "dwell_days": 10,
+  "id": 14,
+  "label": "MOKE releaseContract",
+  "chain": "bsc",
+  "role": "exploited claim ctr",
+  "created": "2026-07-22",
+  "hacked": "2026-08-02",
+  "address": "0x684D722EbF8980f49492f631f56765DD4Fb302A7"
+ },
+ {
+  "dwell_days": 18,
+  "id": 13,
+  "label": "LOOPSDAO LpdFi",
+  "chain": "bsc",
+  "role": "exploited core",
+  "created": "2026-07-14",
+  "hacked": "2026-08-02",
+  "address": "0xcE6A6e4413D85A136bBaC8AaE6fB46eAa77F295e"
+ },
+ {
+  "dwell_days": 23,
+  "id": 160,
+  "label": "TMM token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-03-11",
+  "hacked": "2026-04-04",
+  "address": "0x1d6f03b0b20b2ec05b37bf60f56af442ced66666"
+ },
+ {
+  "dwell_days": 23,
+  "id": 160,
+  "label": "TMM/USDT pair",
+  "chain": "bsc",
+  "role": "drained pool",
+  "created": "2026-03-11",
+  "hacked": "2026-04-04",
+  "address": "0xc36c718e7d0af055092e5274f92f6511820ca041"
+ },
+ {
+  "dwell_days": 26,
+  "id": 13,
+  "label": "LOOPSDAO LPD token",
+  "chain": "bsc",
+  "role": "token",
+  "created": "2026-07-06",
+  "hacked": "2026-08-02",
+  "address": "0x38763EebE58a69C9CC91876947D9fB83e1273604"
+ },
+ {
+  "dwell_days": 26,
+  "id": 13,
+  "label": "LOOPSDAO LPD/USDC pair",
+  "chain": "bsc",
+  "role": "pricing pool",
+  "created": "2026-07-06",
+  "hacked": "2026-08-02",
+  "address": "0x85346d31743796F7d00D675629e32783A968F210"
+ },
+ {
+  "dwell_days": 33,
+  "id": 19,
+  "label": "LULA token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-06-24",
+  "hacked": "2026-07-28",
+  "address": "0xf5d7029eb6751d170dcF0Bb1c87Af6f93d5A2e9a"
+ },
+ {
+  "dwell_days": 33,
+  "id": 19,
+  "label": "LULA/USDT LP",
+  "chain": "bsc",
+  "role": "drained pool",
+  "created": "2026-06-24",
+  "hacked": "2026-07-28",
+  "address": "0xf0b36389a12a28be1280c0eC2a4bbc76889d6a96"
+ },
+ {
+  "dwell_days": 34,
+  "id": 94,
+  "label": "Joe Agent proxy",
+  "chain": "bsc",
+  "role": "exploited proxy",
+  "created": "2026-04-23",
+  "hacked": "2026-05-28",
+  "address": "0xef0f12d08d66e76E1866e60F30a0DaA578e00c04"
+ },
+ {
+  "dwell_days": 36,
+  "id": 153,
+  "label": "MONA LisaVault",
+  "chain": "bsc",
+  "role": "exploited vault",
+  "created": "2026-03-07",
+  "hacked": "2026-04-13",
+  "address": "0xaEa6E5CA6c1FeeAbBd3A114BCbca30A21424F76b"
+ },
+ {
+  "dwell_days": 39,
+  "id": 132,
+  "label": "YieldCore RWAVault entry",
+  "chain": "mainnet",
+  "role": "vault entry",
+  "created": "2026-03-19",
+  "hacked": "2026-04-28",
+  "address": "0xb9c7c84a1aa0dd40b5b38aae815ad0cdd2e5f88a"
+ },
+ {
+  "dwell_days": 40,
+  "id": 64,
+  "label": "Little Boy Plus LBPHashrate",
+  "chain": "bsc",
+  "role": "exploited contract",
+  "created": "2026-05-07",
+  "hacked": "2026-06-17",
+  "address": "0x88886f0fd371dff856291badced45922bc888888"
+ },
+ {
+  "dwell_days": 42,
+  "id": 2,
+  "label": "FoxMarket FOX token",
+  "chain": "bsc",
+  "role": "token",
+  "created": "2026-07-03",
+  "hacked": "2026-08-15",
+  "address": "0xdF81d50c6657487D19B66A1b5375E35A804Abb93"
+ },
+ {
+  "dwell_days": 50,
+  "id": 59,
+  "label": "OLPC token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-04-30",
+  "hacked": "2026-06-20",
+  "address": "0x58815cdf9955121a6274680ab396a36fc9e00000"
+ },
+ {
+  "dwell_days": 55,
+  "id": 117,
+  "label": "Aurellion Diamond proxy",
+  "chain": "arbitrum",
+  "role": "exploited diamond",
+  "created": "2026-03-17",
+  "hacked": "2026-05-12",
+  "address": "0x0adc63e71b035d5c7fdb1b4593999fa1f296f1b2"
+ },
+ {
+  "dwell_days": 55,
+  "id": 117,
+  "label": "Aurellion SafeOwnable facet",
+  "chain": "arbitrum",
+  "role": "facet",
+  "created": "2026-03-17",
+  "hacked": "2026-05-12",
+  "address": "0x3CA79C1cf29B8d19F7c643bB6E6bc9c49762E70f"
+ },
+ {
+  "dwell_days": 82,
+  "id": 132,
+  "label": "YieldCore RWAVault impl",
+  "chain": "mainnet",
+  "role": "exploited logic",
+  "created": "2026-02-04",
+  "hacked": "2026-04-28",
+  "address": "0x317aa10528ff675ef4c358ea6a5b7b5494325733"
+ },
+ {
+  "dwell_days": 88,
+  "id": 101,
+  "label": "New Market Trading SquidRouterModule",
+  "chain": "mainnet",
+  "role": "exploited safe mod",
+  "created": "2026-02-25",
+  "hacked": "2026-05-25",
+  "address": "0x1f1d37a3Bf840e35c6a860c7C2dA71Fe555123ca"
+ },
+ {
+  "dwell_days": 90,
+  "id": 101,
+  "label": "New Market Trading module (Base)",
+  "chain": "base",
+  "role": "same module on Base",
+  "created": "2026-02-23",
+  "hacked": "2026-05-25",
+  "address": "0x1f1d37a3Bf840e35c6a860c7C2dA71Fe555123ca"
+ },
+ {
+  "dwell_days": 94,
+  "id": 92,
+  "label": "LegendaryMoneyMonNft",
+  "chain": "bsc",
+  "role": "exploited nft/claim",
+  "created": "2026-02-23",
+  "hacked": "2026-05-29",
+  "address": "0x92D60629FF5d53a0098B51E9b1D59546D1D8e5B6"
+ },
+ {
+  "dwell_days": 95,
+  "id": 112,
+  "label": "SEA/MetaSea RedeemPosition distributor",
+  "chain": "arbitrum",
+  "role": "exploited contract",
+  "created": "2026-02-10",
+  "hacked": "2026-05-17",
+  "address": "0xa70f31c06f921019237fc00b1417217dae5c37c5"
+ },
+ {
+  "dwell_days": 99,
+  "id": 135,
+  "label": "Singularity dynBaseUSDCv3 vault",
+  "chain": "base",
+  "role": "exploited vault",
+  "created": "2026-01-17",
+  "hacked": "2026-04-27",
+  "address": "0x67b93f6676bd1911c5fae7ffa90fff5f35e14dcd"
+ },
+ {
+  "dwell_days": 100,
+  "id": 133,
+  "label": "JUDAO token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-01-17",
+  "hacked": "2026-04-28",
+  "address": "0xf55dff7898930a2d28cdbc39d615b1624ac86888"
+ },
+ {
+  "dwell_days": 102,
+  "id": 118,
+  "label": "SQ Protocol Staking",
+  "chain": "bsc",
+  "role": "exploited staking",
+  "created": "2026-01-29",
+  "hacked": "2026-05-12",
+  "address": "0x404404A845FFF0201f3a4D419B4839fC419c99F7"
+ },
+ {
+  "dwell_days": 109,
+  "id": 48,
+  "label": "Edel Finance entry proxy",
+  "chain": "mainnet",
+  "role": "entry proxy",
+  "created": "2026-03-13",
+  "hacked": "2026-07-01",
+  "address": "0x3EEeB3cd20f844a578807fc457388Ceb9A67fAa6"
+ },
+ {
+  "dwell_days": 109,
+  "id": 48,
+  "label": "Edel Finance wrapper",
+  "chain": "mainnet",
+  "role": "exploited contract",
+  "created": "2026-03-13",
+  "hacked": "2026-07-01",
+  "address": "0xBd497eE429D9D3E46446339286271b3714a83B29"
+ },
+ {
+  "dwell_days": 111,
+  "id": 14,
+  "label": "MOKE LPDividend",
+  "chain": "bsc",
+  "role": "cashout path",
+  "created": "2026-04-12",
+  "hacked": "2026-08-02",
+  "address": "0x5ae569d8a0539a6A603E96A26ac8CaEA7CEba377"
+ },
+ {
+  "dwell_days": 111,
+  "id": 14,
+  "label": "MOKE token",
+  "chain": "bsc",
+  "role": "token",
+  "created": "2026-04-12",
+  "hacked": "2026-08-02",
+  "address": "0x1A35C16cE21903Bc17Fd020c4ED73fEdC70c1b2A"
+ },
+ {
+  "dwell_days": 153,
+  "id": 80,
+  "label": "ATM token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-01-01",
+  "hacked": "2026-06-04",
+  "address": "0x986058ec93756E57b4e55b406dD0BeE24bcD95e3"
+ },
+ {
+  "dwell_days": 163,
+  "id": 134,
+  "label": "ZetaChain GatewayEVM impl",
+  "chain": "mainnet",
+  "role": "implementation",
+  "created": "2025-11-14",
+  "hacked": "2026-04-27",
+  "address": "0x1FfF55ccf855212f6b5530c468b44f9a5246572E"
+ },
+ {
+  "dwell_days": 197,
+  "id": 18,
+  "label": "Crypto DAO Pro Token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2026-01-11",
+  "hacked": "2026-07-28",
+  "address": "0x8D65744527f55d0b2338350912d5C99A81ddF0e2"
+ },
+ {
+  "dwell_days": 197,
+  "id": 18,
+  "label": "Crypto DAO USDT/Pro LP",
+  "chain": "bsc",
+  "role": "drained pool",
+  "created": "2026-01-11",
+  "hacked": "2026-07-28",
+  "address": "0x63844BD4BFad910B1643713302a1cC1ed20d50c3"
+ },
+ {
+  "dwell_days": 219,
+  "id": 93,
+  "label": "YSDAO token",
+  "chain": "bsc",
+  "role": "exploited token",
+  "created": "2025-10-21",
+  "hacked": "2026-05-29",
+  "address": "0xc036A13D7A6A84677DfCcec483eED124654B7918"
+ },
+ {
+  "dwell_days": 219,
+  "id": 142,
+  "label": "Juicebox REVLoans",
+  "chain": "mainnet",
+  "role": "exploited contract",
+  "created": "2025-09-12",
+  "hacked": "2026-04-20",
+  "address": "0x1880D832aa283d05b8eAB68877717E25FbD550Bb"
+ },
+ {
+  "dwell_days": 241,
+  "id": 125,
+  "label": "Ekubo extension contract",
+  "chain": "mainnet",
+  "role": "exploited extension",
+  "created": "2025-09-05",
+  "hacked": "2026-05-05",
+  "address": "0x8CCB1ffD5C2aa6Bd926473425Dea4c8c15DE60fd"
+ },
+ {
+  "dwell_days": 281,
+  "id": 93,
+  "label": "YSDAO staking",
+  "chain": "bsc",
+  "role": "exploited staking",
+  "created": "2025-08-20",
+  "hacked": "2026-05-29",
+  "address": "0x3E13019dA3BAAd134493e751704D2D4245Eec7CA"
+ },
+ {
+  "dwell_days": 303,
+  "id": 135,
+  "label": "Singularity oracle",
+  "chain": "base",
+  "role": "oracle",
+  "created": "2025-06-27",
+  "hacked": "2026-04-27",
+  "address": "0x73b8c192bfc323c3ea224c88219d55dfc319e89f"
+ },
+ {
+  "dwell_days": 369,
+  "id": 47,
+  "label": "Hinkal shielded pool",
+  "chain": "mainnet",
+  "role": "exploited pool",
+  "created": "2025-06-27",
+  "hacked": "2026-07-02",
+  "address": "0x25e5e82f5702a27c3466fe68f14abdbbadfca826"
+ },
+ {
+  "dwell_days": 513,
+  "id": 45,
+  "label": "Lazy Summer FleetCommander",
+  "chain": "mainnet",
+  "role": "exploited vault",
+  "created": "2025-02-07",
+  "hacked": "2026-07-06",
+  "address": "0x98c49e13bf99d7cad8069faa2a370933ec9ecf17"
+ },
+ {
+  "dwell_days": 538,
+  "id": 134,
+  "label": "ZetaChain GatewayEVM proxy",
+  "chain": "mainnet",
+  "role": "exploited gateway",
+  "created": "2024-11-04",
+  "hacked": "2026-04-27",
+  "address": "0x48B9AACC350b20147001f88821d31731Ba4C30ed"
+ },
+ {
+  "dwell_days": 566,
+  "id": 106,
+  "label": "Butter/MAP OmniServiceProxy",
+  "chain": "mainnet",
+  "role": "exploited bridge",
+  "created": "2024-10-30",
+  "hacked": "2026-05-20",
+  "address": "0x0000317bec33af037b5fab2028f52d14658f6a56"
+ },
+ {
+  "dwell_days": 589,
+  "id": 124,
+  "label": "TrustedVolumes RFQ impl",
+  "chain": "mainnet",
+  "role": "implementation",
+  "created": "2024-09-24",
+  "hacked": "2026-05-07",
+  "address": "0x88eb28009351Fb414A5746F5d8CA91cdc02760d8"
+ },
+ {
+  "dwell_days": 613,
+  "id": 123,
+  "label": "Renegade V1 Dark Pool proxy",
+  "chain": "arbitrum",
+  "role": "exploited proxy",
+  "created": "2024-09-03",
+  "hacked": "2026-05-10",
+  "address": "0x30bD8eAb29181F790D7e495786d4B96d7AfDC518"
+ },
+ {
+  "dwell_days": 624,
+  "id": 124,
+  "label": "TrustedVolumes RFQ proxy",
+  "chain": "mainnet",
+  "role": "exploited proxy",
+  "created": "2024-08-20",
+  "hacked": "2026-05-07",
+  "address": "0xeEeEEe53033F7227d488ae83a27Bc9A9D5051756"
+ },
+ {
+  "dwell_days": 749,
+  "id": 116,
+  "label": "ShapeShift FOX Colony EtherRouter",
+  "chain": "arbitrum",
+  "role": "exploited colony",
+  "created": "2024-04-23",
+  "hacked": "2026-05-13",
+  "address": "0x5C59D0eC51729E40C413903bE6A4612f4E2452da"
+ },
+ {
+  "dwell_days": 785,
+  "id": 103,
+  "label": "MureDistribution proxy",
+  "chain": "mainnet",
+  "role": "exploited proxy",
+  "created": "2024-03-28",
+  "hacked": "2026-05-23",
+  "address": "0x365083717efb17f3895290ba38f20f568c7a4d8a"
+ },
+ {
+  "dwell_days": 788,
+  "id": 154,
+  "label": "SubQuery Settings",
+  "chain": "base",
+  "role": "exploited config",
+  "created": "2024-02-13",
+  "hacked": "2026-04-12",
+  "address": "0xf282737992Da4217bf5f8B6AE621181e84d7d3b9"
+ },
+ {
+  "dwell_days": 788,
+  "id": 154,
+  "label": "SubQuery Staking",
+  "chain": "base",
+  "role": "drained staking",
+  "created": "2024-02-13",
+  "hacked": "2026-04-12",
+  "address": "0x7A68b10EB116a8b71A9b6f77B32B47EB591B6Ded"
+ },
+ {
+  "dwell_days": 844,
+  "id": 43,
+  "label": "Chi Protocol USC token",
+  "chain": "mainnet",
+  "role": "stablecoin",
+  "created": "2024-03-20",
+  "hacked": "2026-07-13",
+  "address": "0x38547d918b9645f2d94336b6b61aeb08053e142c"
+ },
+ {
+  "dwell_days": 845,
+  "id": 149,
+  "label": "LootBot xLOOT NFT",
+  "chain": "mainnet",
+  "role": "nft",
+  "created": "2023-12-21",
+  "hacked": "2026-04-15",
+  "address": "0x9d87Ff196646A99BDdb16876066aA863900118b4"
+ },
+ {
+  "dwell_days": 845,
+  "id": 149,
+  "label": "LootBot xLoot Staking",
+  "chain": "mainnet",
+  "role": "exploited staking",
+  "created": "2023-12-21",
+  "hacked": "2026-04-15",
+  "address": "0xf3A3648bB1Da9D3aeA107da77E6f5bA9Cf313127"
+ },
+ {
+  "dwell_days": 944,
+  "id": 8,
+  "label": "Atomic Green strategy",
+  "chain": "arbitrum",
+  "role": "strategy module",
+  "created": "2024-01-06",
+  "hacked": "2026-08-08",
+  "address": "0xf617a3ad1f0ab9d9fe39e48d688bfe44562769d9"
+ },
+ {
+  "dwell_days": 946,
+  "id": 42,
+  "label": "Sodium smart account (victim 2)",
+  "chain": "arbitrum",
+  "role": "exploited account",
+  "created": "2023-12-09",
+  "hacked": "2026-07-13",
+  "address": "0x9Ba99e76f2bE6571ae1bf82420621211EFD45236"
+ },
+ {
+  "dwell_days": 947,
+  "id": 42,
+  "label": "Sodium smart account (victim 1)",
+  "chain": "arbitrum",
+  "role": "exploited account",
+  "created": "2023-12-08",
+  "hacked": "2026-07-13",
+  "address": "0x65DE72bD1897B017C91f41c86de2B15873320804"
+ },
+ {
+  "dwell_days": 1023,
+  "id": 27,
+  "label": "Verus Ethereum Bridge",
+  "chain": "mainnet",
+  "role": "exploited bridge",
+  "created": "2023-10-03",
+  "hacked": "2026-07-23",
+  "address": "0x71518580f36feceffe0721f06ba4703218cd7f63"
+ },
+ {
+  "dwell_days": 1092,
+  "id": 105,
+  "label": "Fractal Protocol USDF vault",
+  "chain": "arbitrum",
+  "role": "exploited vault",
+  "created": "2023-05-25",
+  "hacked": "2026-05-22",
+  "address": "0x80e1a981285181686a3951b05ded454734892a09"
+ },
+ {
+  "dwell_days": 1105,
+  "id": 77,
+  "label": "Ambient CrocSwapDex",
+  "chain": "mainnet",
+  "role": "exploited dex",
+  "created": "2023-05-29",
+  "hacked": "2026-06-08",
+  "address": "0xAaAaAAAaA24eEeb8d57D431224f73832bC34f688"
+ },
+ {
+  "dwell_days": 1124,
+  "id": 116,
+  "label": "FOX Colony ClonableBeaconProxy",
+  "chain": "arbitrum",
+  "role": "colony component",
+  "created": "2023-04-14",
+  "hacked": "2026-05-13",
+  "address": "0xf929de51d91c77e42f5090069e0ad7a09e513c73"
+ },
+ {
+  "dwell_days": 1218,
+  "id": 100,
+  "label": "GLOVE token",
+  "chain": "mainnet",
+  "role": "reward token",
+  "created": "2023-01-22",
+  "hacked": "2026-05-25",
+  "address": "0x70c5f366db60a2a0c59c4c24754803ee47ed7284"
+ },
+ {
+  "dwell_days": 1218,
+  "id": 100,
+  "label": "WUSD (Wrapped USD)",
+  "chain": "mainnet",
+  "role": "exploited contract",
+  "created": "2023-01-22",
+  "hacked": "2026-05-25",
+  "address": "0x068E3563b1c19590F822c0e13445c4FA1b9EEFa5"
+ },
+ {
+  "dwell_days": 1369,
+  "id": 8,
+  "label": "Atomic Green vault proxy",
+  "chain": "arbitrum",
+  "role": "exploited proxy",
+  "created": "2022-11-07",
+  "hacked": "2026-08-08",
+  "address": "0x51fF48f2d43966bE796692BdDdfaE96A435242a8"
+ },
+ {
+  "dwell_days": 1423,
+  "id": 141,
+  "label": "Thetanuts new vault (first depositor)",
+  "chain": "mainnet",
+  "role": "exploited vault",
+  "created": "2022-05-27",
+  "hacked": "2026-04-20",
+  "address": "0x80b8eeb34a2ba5dd90c61e02a12ea30515dca6f5"
+ },
+ {
+  "dwell_days": 1467,
+  "id": 67,
+  "label": "Aztec Connect RollupProcessorV3",
+  "chain": "mainnet",
+  "role": "exploited bridge",
+  "created": "2022-06-07",
+  "hacked": "2026-06-14",
+  "address": "0xFF1F2B4ADb9dF6FC8eAFecDcbF96A2B351680455"
+ },
+ {
+  "dwell_days": 1509,
+  "id": 66,
+  "label": "Thetanuts legacy index vault",
+  "chain": "mainnet",
+  "role": "exploited vault",
+  "created": "2022-04-27",
+  "hacked": "2026-06-15",
+  "address": "0xc2c3ae0a7b405058558c9b4a63b373486cb86ac7"
+ },
+ {
+  "dwell_days": 1510,
+  "id": 8,
+  "label": "Atomic Green lending",
+  "chain": "arbitrum",
+  "role": "lending module",
+  "created": "2022-06-19",
+  "hacked": "2026-08-08",
+  "address": "0xc1b677039892c048f2efb7e9c5da1b51fde92504"
+ },
+ {
+  "dwell_days": 1673,
+  "id": 41,
+  "label": "Drips DaiDripsHub proxy",
+  "chain": "mainnet",
+  "role": "exploited hub",
+  "created": "2021-12-13",
+  "hacked": "2026-07-14",
+  "address": "0x73043143e0a6418cc45d82d4505b096b802fd365"
+ },
+ {
+  "dwell_days": 1764,
+  "id": 4,
+  "label": "USM",
+  "chain": "mainnet",
+  "role": "exploited core",
+  "created": "2021-10-10",
+  "hacked": "2026-08-10",
+  "address": "0x2a7FFf44C19f39468064ab5e5c304De01D591675"
+ },
+ {
+  "dwell_days": 1764,
+  "id": 4,
+  "label": "USM FUM token",
+  "chain": "mainnet",
+  "role": "token",
+  "created": "2021-10-10",
+  "hacked": "2026-08-10",
+  "address": "0x86729873e3b88DE2Ab85CA292D6d6D69D548eDF3"
+ },
+ {
+  "dwell_days": 1800,
+  "id": 51,
+  "label": "Lixir vault token 2",
+  "chain": "mainnet",
+  "role": "exploited vault tok",
+  "created": "2021-07-20",
+  "hacked": "2026-06-25",
+  "address": "0x49bba4C5C4F8a2D444Ca5fDA1b3137D94Df40465"
+ },
+ {
+  "dwell_days": 1800,
+  "id": 51,
+  "label": "Lixir vault token lvUSDC-WETH",
+  "chain": "mainnet",
+  "role": "exploited vault tok",
+  "created": "2021-07-20",
+  "hacked": "2026-06-25",
+  "address": "0xfD4c9a491DD777b8b3e13659e9E379252eC78390"
+ },
+ {
+  "dwell_days": 1836,
+  "id": 24,
+  "label": "Projekt reward vault",
+  "chain": "mainnet",
+  "role": "exploited vault",
+  "created": "2021-07-14",
+  "hacked": "2026-07-25",
+  "address": "0x574fc478bc45ce144105fa44d98b4b2e4bd442cb"
+ },
+ {
+  "dwell_days": 1912,
+  "id": 74,
+  "label": "Token of Power Balancer BPool",
+  "chain": "mainnet",
+  "role": "drained pool",
+  "created": "2021-03-14",
+  "hacked": "2026-06-09",
+  "address": "0x0fa3e014fa2e751f78e53dca766fac2223327329"
+ },
+ {
+  "dwell_days": 1917,
+  "id": 74,
+  "label": "Token of Power Voting proxy",
+  "chain": "mainnet",
+  "role": "governance proxy",
+  "created": "2021-03-09",
+  "hacked": "2026-06-09",
+  "address": "0xb501d26ba74eab601576b62617cf41042bef6865"
+ },
+ {
+  "dwell_days": 1922,
+  "id": 95,
+  "label": "DxSale legacy liquidity locker",
+  "chain": "bsc",
+  "role": "exploited locker",
+  "created": "2021-02-20",
+  "hacked": "2026-05-28",
+  "address": "0xEb3a9C56d963b971d320f889bE2fb8B59853e449"
+ },
+ {
+  "dwell_days": 1931,
+  "id": 63,
+  "label": "Aztec RollupProcessorV2 (escape hatch)",
+  "chain": "mainnet",
+  "role": "exploited bridge",
+  "created": "2021-03-03",
+  "hacked": "2026-06-17",
+  "address": "0x737901bea3eeb88459df9ef1BE8fF3Ae1B42A2ba"
+ },
+ {
+  "dwell_days": 1953,
+  "id": 16,
+  "label": "Index Coop ExchangeIssuance",
+  "chain": "mainnet",
+  "role": "exploited contract",
+  "created": "2021-03-24",
+  "hacked": "2026-07-30",
+  "address": "0xc8C85A3b4d03FB3451e7248Ff94F780c92F884fD"
+ },
+ {
+  "dwell_days": 2609,
+  "id": 74,
+  "label": "Token of Power Aragon Voting impl",
+  "chain": "mainnet",
+  "role": "governance impl",
+  "created": "2019-04-17",
+  "hacked": "2026-06-09",
+  "address": "0xb935c3d80229d5d92f3761b17cd81dc2610e3a45"
+ },
+ {
+  "dwell_days": 2797,
+  "id": 73,
+  "label": "NovaBox reward pool",
+  "chain": "mainnet",
+  "role": "exploited pool",
+  "created": "2018-10-11",
+  "hacked": "2026-06-09",
+  "address": "0xbc4191167d4b0251cab5201a527daa8a7d3846b0"
+ }
+]
