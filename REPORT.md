@@ -352,18 +352,26 @@ surfaces a detection window:
 
 | what | when | value |
 |---|---|---|
-| EIP-1967 admin slot before | ≤ 2026-07-06 08:13:34 | `0x0000…0000` (unset) |
-| EIP-1967 admin slot after | **2026-07-06 08:13:35** | `0xf908610e9174c7cd6e9dfd371e238be4511297a1` — **the attacker EOA** |
-| EIP-1967 implementation before | ≤ 2026-07-15 02:37:10 | `0x41ab25709e0c3edf027f6099963fe9ad3ebab3a3` |
-| EIP-1967 implementation after | **2026-07-15 02:37:11** | `0x769a9fa1e2414db14b35c46e4095d6e8f1694565` |
-| drain transaction | 2026-07-15 02:39:47 | −774,943.38 USDC from ~50 approving wallets |
+| EIP-1967 impl **and** admin slots | ≤ block 25472221 | **both `0x0000…0000`** — the address was not an EIP-1967 proxy at all |
+| both slots written, same block | **block 25472222 — 2026-07-06 08:13:35** | impl → `0x41ab25709e0c3edf027f6099963fe9ad3ebab3a3`; admin → `0xf908610e9174c7cd6e9dfd371e238be4511297a1` — **the attacker EOA** |
+| implementation swapped | **block 25535107 — 2026-07-15 02:37:11** | → `0x769a9fa1e2414db14b35c46e4095d6e8f1694565` |
+| drain transaction | block 25535120 — 2026-07-15 02:39:47 | −774,943.38 USDC from ~50 approving wallets |
+| **events emitted by the proxy address at any of those blocks** | — | **zero** (`eth_getLogs` filtered on the address returns nothing at all three blocks) |
 
-*(binary-searched `eth_getStorageAt` on both slots against an Ethereum archive node)*
+*(binary-searched `eth_getStorageAt` on both slots against an Ethereum archive node, then `eth_getLogs` on the address at each block)*
 
-The attacker held the proxy admin slot for **9 days and 18 hours** before doing anything with it, then
-swapped the implementation **2 minutes 36 seconds** before draining. The implementation swap is too fast to
-react to. The admin-slot change is not. "EIP-1967 admin slot on a live proxy changed to a fresh EOA" is a
-single storage-diff check with a 9-day lead time on a $775K loss.
+Two things fall out of this that the write-ups do not say. First, the attacker did not merely change an
+existing admin — the contract **acquired non-zero EIP-1967 slots where it previously had none**, because
+BarnBridge's SMART Yield providers use their own proxy/registry pattern rather than EIP-1967. "A live,
+funded contract suddenly starts presenting EIP-1967 slots" is a far more specific and unusual event than
+"admin changed", and it happened **9 days and 18 hours** before the drain.
+
+Second, **none of it emitted an event.** No `Upgraded`, no `AdminChanged`, no logs whatsoever from the
+proxy address at the slot-write block, the implementation-swap block, or the drain block. Any monitoring
+built on proxy *events* would have seen nothing at any point. Only a storage-slot diff catches this.
+
+The implementation swap itself came **2 minutes 36 seconds** before the drain — too fast to react to. The
+slot acquisition nine days earlier is the actionable signal.
 
 ### The router lane, explicitly tested
 
@@ -544,7 +552,7 @@ list is tokens then reward pools; on Ethereum/Arbitrum it is vaults, bridges and
 
 | flag | weight rationale |
 |---|---|
-| EIP-1967 admin slot changed to a fresh EOA | 9-day lead time, #39 |
+| EIP-1967 slots acquired by a contract that had none, or admin changed to a fresh EOA — **read the slots, not the events; #39 emitted none** | 9d 18h lead time, #39 |
 | callable `initialize*` selector + `_initialized` guard slot == 0 | #117 (55 days live), #123 |
 | stored config outside its valid domain (fee tier, decimals, zero oracle, `admin == address(0)`) | #135 (~3 months), #59 (46 days), #92 |
 | transfer path writes to / `sync()`s an AMM pair | 7+ incidents, all BSC |

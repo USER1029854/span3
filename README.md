@@ -12,6 +12,7 @@ entry was read and classified; none were sampled.
 | file | what it is |
 |---|---|
 | **[`REPORT.md`](REPORT.md)** | the synthesis — age / category / mechanism / wiring / flag distributions, the router-lane check, what discovery misses, the recommendation, and the study's limits |
+| **[`DISCOVERY_PROMPT.md`](DISCOVERY_PROMPT.md)** | the operational output — a runnable discovery prompt encoding these patterns as on-chain predicates, with a scoring model, explicit anti-signals, and a table of empirically verified selectors and storage slots |
 | [`PROFILES.md`](PROFILES.md) | 79 per-target forensic profiles, every field sourced, every gap named rather than filled |
 | [`data/classification-table.md`](data/classification-table.md) | all 160 entries, kept vs discarded, one-line reason each |
 
